@@ -10,14 +10,14 @@ private:
 
 protected:
     Tile* currentTile;
-    const std::string texture;
+    std::string texture;
 
 
 public:
     Character(std::string texture);
     Tile *getCurrentTile() const;
-    std::string &getTexture() const;
-    int move();
+    std::string move();
+    const std::string &getTexture() const;
 };
 
 #endif // CHARACTER_H

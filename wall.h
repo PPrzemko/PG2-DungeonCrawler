@@ -2,10 +2,10 @@
 #define WALL_H
 #include "tile.h"
 
-class Wall : Tile
+class Wall : public Tile
 {
 public:
-    Wall();
+    Wall(const std::string& texture, Character* player, const int& row, const int& column);
 };
 
 #endif // WALL_H

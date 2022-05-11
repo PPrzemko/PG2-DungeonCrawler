@@ -1,6 +1,8 @@
 #include "floor.h"
 
-Floor::Floor()
+Floor::Floor(const std::string& texture, Character* player, const int& row, const int& column)
+    : Tile(texture, player, row, column)
+
 {
 
 }

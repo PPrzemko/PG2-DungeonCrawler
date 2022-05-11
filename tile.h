@@ -9,15 +9,16 @@ class Tile
 private:
 
 protected:
-const std::string& texture;
-Character& player;
-const int& row;
-const int& column;
+const std::string texture;
+Character* player;
+const int row;
+const int column;
 
 public:
-    Tile(const std::string& texture, Character& player, const int& row, const int& column);
+    Tile(const std::string& texture, Character* player, const int& row, const int& column);
     virtual void onEnter() const = 0;
     virtual void onLeave() const = 0;
+
     bool hasCharacter();
     bool moveTo(Tile*destTile,Character*who);
     Tile* onEnter(Tile* fromTile, Character* who);
