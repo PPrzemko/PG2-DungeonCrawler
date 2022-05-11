@@ -12,14 +12,14 @@ void TerminalUI::draw(Level* s)
 
 
 
-for(size_t i=0;i<=s->getTileVector().size();++i){
+for(size_t i=0;i<s->getHeight();++i){
 
-    for(int j=0;i<=s->getTileVector().at(i).size();++i){
+    for(size_t j=0;j<s->getHeight();++j){
 
-    std::cout << s->getTileVector().at(i).at(j);
+    std::cout << s->getTileVector().at(i).at(j)->getTexture();
 
     }
-
+    std::cout << std::endl;
 
 }
 

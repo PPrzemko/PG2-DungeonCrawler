@@ -13,6 +13,7 @@ public:
     Tile* onLeave(Tile* destTile, Character* who) override;
 
 
+    void setDestination(Tile *newDestination);
 };
 
 #endif // PORTAL_H

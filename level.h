@@ -1,7 +1,7 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include <vector>
-class Portal;
+#include "portal.h"
 class Wall;
 #include "floor.h"
 class Tile;

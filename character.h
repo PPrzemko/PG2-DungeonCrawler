@@ -18,6 +18,7 @@ public:
     Tile *getCurrentTile() const;
     std::string move();
     const std::string &getTexture() const;
+    void setCurrentTile(Tile *newCurrentTile);
 };
 
 #endif // CHARACTER_H

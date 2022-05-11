@@ -8,12 +8,25 @@ Tile::Tile(const std::string& texture, Character* player, const int& row, const 
 
 }
 
-
-
-const std::string &Tile::getTexture() const
+bool Tile::hasCharacter()
 {
+    if(player==nullptr){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+
+
+const std::string &Tile::getTexture()
+{
+    if(hasCharacter()){
+        return player->getTexture();
+    }
     return texture;
 }
+
 int Tile::getRow() const
 {
     return row;
@@ -22,4 +35,9 @@ int Tile::getRow() const
 int Tile::getColumn() const
 {
     return column;
+}
+
+void Tile::setPlayer(Character *newPlayer)
+{
+    player = newPlayer;
 }
