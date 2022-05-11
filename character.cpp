@@ -8,10 +8,13 @@ Character::Character(std::string texture) : texture(texture)
 }
 
 
-std::string Character::move()
+char Character::move()
 {
-
-
+// input getten
+char input;
+std::cout << "Bewege dich...";
+std::cin >> input;
+return input;
 
 
 

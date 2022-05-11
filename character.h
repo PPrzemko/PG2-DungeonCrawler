@@ -1,7 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 #include <string>
-
+#include <iostream>
 class Tile;
 
 class Character
@@ -16,7 +16,7 @@ protected:
 public:
     Character(std::string texture);
     Tile *getCurrentTile() const;
-    std::string move();
+    char move();
     const std::string &getTexture() const;
     void setCurrentTile(Tile *newCurrentTile);
 };
