@@ -4,4 +4,24 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        abstractui.cpp \
+        character.cpp \
+        dungeoncrawler.cpp \
+        floor.cpp \
+        level.cpp \
+        main.cpp \
+        portal.cpp \
+        terminalui.cpp \
+        tile.cpp \
+        wall.cpp
+
+HEADERS += \
+    abstractui.h \
+    character.h \
+    dungeoncrawler.h \
+    floor.h \
+    level.h \
+    portal.h \
+    terminalui.h \
+    tile.h \
+    wall.h
