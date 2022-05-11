@@ -20,7 +20,7 @@ Level::Level(const int& width, const int& height) :
     world.push_back({new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0)});
     world.push_back({new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),p2,new Floor(".", nullptr, 0 , 0)});
     world.push_back({new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0)});
-    placeCharacter(d,0,0);
+    placeCharacter(d,2,2);
 
 
 }
@@ -42,9 +42,9 @@ void Level::placeCharacter(Character *c, int row, int col)
 }
 
 
-const Tile *Level::getTile(int row, int col) const
+Tile *Level::getTile(int row, int col) const
 {
-
+    return world.at(row).at(col);
 }
 
 

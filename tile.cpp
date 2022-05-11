@@ -17,6 +17,17 @@ bool Tile::hasCharacter()
     }
 }
 
+bool Tile::moveTo(Tile *destTile, Character *who)
+{
+    bool canMove = true;
+        Tile* actualLeavedTile = onLeave(destTile,who);
+        if(actualLeavedTile == nullptr){
+            canMove = false;
+        }
+        return canMove;
+
+}
+
 
 
 const std::string &Tile::getTexture()

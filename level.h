@@ -22,7 +22,7 @@ protected:
 
 public:
     Level(const int& width, const int& height);
-    const Tile *getTile(int row, int col) const;
+    Tile *getTile(int row, int col) const;
     void placeCharacter(Character *c, int row, int col);
     ~Level();
 
