@@ -13,7 +13,13 @@ DungeonCrawler::DungeonCrawler(AbstractUI* UI, Level* level) : UI(UI), level(lev
         if(input=='q'){
 
 
-            currentCharacterTile->moveTo(level->getTile(currentCharacterTile->getRow()-1,currentCharacterTile->getColumn()-1), level->getCharacterVector().at(i) );
+            Tile* destionationtile = level->getTile(currentCharacterTile->getColumn(),currentCharacterTile->getRow());
+
+            if(currentCharacterTile->moveTo(destionationtile, level->getCharacterVector().at(i))){
+                currentCharacterTile->setPlayer(nullptr);
+            }
+
+
         }else if(input =='w'){
 
         }else if(input =='e'){
@@ -34,6 +40,6 @@ DungeonCrawler::DungeonCrawler(AbstractUI* UI, Level* level) : UI(UI), level(lev
 
 
     }
-
+     UI->draw(level);
 
 }

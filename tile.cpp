@@ -23,6 +23,10 @@ bool Tile::moveTo(Tile *destTile, Character *who)
         Tile* actualLeavedTile = onLeave(destTile,who);
         if(actualLeavedTile == nullptr){
             canMove = false;
+        }else{
+            who->setCurrentTile(destTile);
+            destTile->setPlayer(who);
+
         }
         return canMove;
 

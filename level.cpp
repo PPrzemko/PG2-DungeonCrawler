@@ -16,9 +16,9 @@ Level::Level(const int& width, const int& height) :
     p2->setDestination(p1);
 
 
-    world.push_back({new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),p1,new Floor(".", nullptr, 0 , 0)});
+    world.push_back({new Floor(".", nullptr, 0 , 0),p2,p1,new Floor(".", nullptr, 0 , 0)});
     world.push_back({new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0)});
-    world.push_back({new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),p2,new Floor(".", nullptr, 0 , 0)});
+    world.push_back({new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0)});
     world.push_back({new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0),new Floor(".", nullptr, 0 , 0)});
     placeCharacter(d,2,2);
 
