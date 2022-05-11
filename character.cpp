@@ -1,7 +1,7 @@
 #include "character.h"
 
 
-Character::Character(std::string texture) : texture("X")
+Character::Character(std::string texture) : texture(texture)
 {
 
 }

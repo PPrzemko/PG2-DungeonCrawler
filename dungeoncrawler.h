@@ -1,17 +1,17 @@
 #ifndef DUNGEONCRAWLER_H
 #define DUNGEONCRAWLER_H
-class AbstractUI;
-class Level;
+#include "abstractui.h"
+#include "level.h"
 
 class DungeonCrawler
 {
 
-private:
+protected:
 const AbstractUI* UI;
 Level* level;
 
 public:
-    DungeonCrawler();
+    DungeonCrawler(AbstractUI* UI, Level* level);
 };
 
 #endif // DUNGEONCRAWLER_H

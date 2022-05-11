@@ -23,6 +23,8 @@ public:
     virtual Tile* onLeave(Tile* destTile, Character* who) = 0;
 
     const std::string &getTexture() const;
+    int getRow() const;
+    int getColumn() const;
 };
 
 #endif // TILE_H

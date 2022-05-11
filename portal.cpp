@@ -8,3 +8,7 @@ Portal::Portal(const std::string& texture, Character* player, const int& row, co
 Tile* Portal::onEnter(Tile* fromTile, Character* who){
     return this->destination;
 }
+Tile* Portal::onLeave(Tile* destTile, Character* who){
+
+    return this;
+}
