@@ -10,6 +10,7 @@ private:
 
 public:
     Floor(const std::string& texture, Character* player, const int& row, const int& columns);
+    Tile* onEnter(Tile* fromTile, Character* who) override;
 };
 
 #endif // FLOOR_H

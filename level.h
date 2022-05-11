@@ -11,8 +11,8 @@ private:
     const int width;
     const int height;
 protected:
-std::vector<std::vector<Tile*>> tileVector;
-std::vector<std::vector<Character*>> characterVector;
+    std::vector<std::vector<Tile*>> tileVector;
+    std::vector<std::vector<Character*>> characterVector;
 
 public:
     Level(const int& width, const int& height);

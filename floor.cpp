@@ -6,3 +6,7 @@ Floor::Floor(const std::string& texture, Character* player, const int& row, cons
 {
 
 }
+
+Tile* Floor::onEnter(Tile* fromTile, Character* who){
+    return nullptr;
+}

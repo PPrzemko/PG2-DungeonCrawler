@@ -4,3 +4,10 @@ TerminalUI::TerminalUI()
 {
 
 }
+
+void TerminalUI::draw(Level *)
+{
+
+
+
+}

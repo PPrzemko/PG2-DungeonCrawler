@@ -16,13 +16,11 @@ const int column;
 
 public:
     Tile(const std::string& texture, Character* player, const int& row, const int& column);
-    virtual void onEnter() const = 0;
-    virtual void onLeave() const = 0;
 
     bool hasCharacter();
     bool moveTo(Tile*destTile,Character*who);
-    Tile* onEnter(Tile* fromTile, Character* who);
-    Tile* onLeave(Tile* destTile, Character* who);
+    virtual Tile* onEnter(Tile* fromTile, Character* who) = 0;
+    virtual Tile* onLeave(Tile* destTile, Character* who) = 0;
 
     const std::string &getTexture() const;
 };

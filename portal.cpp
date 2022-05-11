@@ -5,3 +5,6 @@ Portal::Portal(const std::string& texture, Character* player, const int& row, co
 {
 
 }
+Tile* Portal::onEnter(Tile* fromTile, Character* who){
+    return this->destination;
+}

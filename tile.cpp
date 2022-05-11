@@ -13,3 +13,9 @@ const std::string &Tile::getTexture() const
 {
     return texture;
 }
+Tile* Tile::onLeave(Tile* destTile, Character* who){
+
+    return this;
+
+
+}

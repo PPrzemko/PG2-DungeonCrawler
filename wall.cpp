@@ -5,3 +5,7 @@ Wall::Wall(const std::string& texture, Character* player, const int& row, const 
 {
 
 }
+
+Tile* Wall::onEnter(Tile* fromTile, Character* who){
+    return nullptr;
+}
