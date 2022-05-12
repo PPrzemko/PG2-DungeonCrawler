@@ -2,11 +2,12 @@
 
 
 
-Tile::Tile(const std::string& texture, Character* player, const int& row, const int& column)
-    : texture(texture), player(player), row(row), column(column)
+Tile::Tile(const std::string& texture, Character* player, const int& col, const int& row)
+    : texture(texture), player(player), col(col), row(row)
 {
 
 }
+
 
 bool Tile::hasCharacter()
 {
@@ -19,11 +20,15 @@ bool Tile::hasCharacter()
 
 bool Tile::moveTo(Tile *destTile, Character *who)
 {
+    destTile->onEnter(player->getCurrentTile(), who);
+
+
     bool canMove = true;
         Tile* actualLeavedTile = onLeave(destTile,who);
         if(actualLeavedTile == nullptr){
             canMove = false;
         }else{
+            std::cout << destTile->getColumn() << destTile->getRow() << std::endl;
             who->setCurrentTile(destTile);
             destTile->setPlayer(who);
 
@@ -49,7 +54,7 @@ int Tile::getRow() const
 
 int Tile::getColumn() const
 {
-    return column;
+    return col;
 }
 
 void Tile::setPlayer(Character *newPlayer)

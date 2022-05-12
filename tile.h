@@ -12,10 +12,10 @@ protected:
 const std::string texture;
 Character* player;
 const int row;
-const int column;
+const int col;
 
 public:
-    Tile(const std::string& texture, Character* player, const int& row, const int& column);
+    Tile(const std::string& texture, Character* player, const int& col, const int& row);
 
     bool hasCharacter();
     bool moveTo(Tile*destTile,Character*who);

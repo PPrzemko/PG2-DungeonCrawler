@@ -27,24 +27,33 @@ Level::Level(const int& width, const int& height) :
 
 Level::~Level()
 {
- // "delete ptr" all objects in vector
+
+    for(int i = 0; i < characterVector.size(); ++i){
+        delete characterVector.at(i);
+    }
+    for(int i = 0; i < world.size(); ++i){
+        for (int j = 0; i < world.at(i).size(); ++i){
+            delete world.at(i).at(j);
+        }
+    }
+
 
 
 
 }
 
-void Level::placeCharacter(Character *c, int row, int col)
+void Level::placeCharacter(Character *c, int col, int row)
 {
-    c->setCurrentTile(world.at(row).at(col));
-    world.at(row).at(col)->setPlayer(c);
+    c->setCurrentTile(world.at(col).at(row));
+    world.at(col).at(row)->setPlayer(c);
 
 
 }
 
 
-Tile *Level::getTile(int row, int col) const
+Tile *Level::getTile(int col, int row) const
 {
-    return world.at(row).at(col);
+    return world.at(col).at(row);
 }
 
 

@@ -1,8 +1,8 @@
 #include "portal.h"
 
 
-Portal::Portal(const std::string& texture, Character* player, const int& row, const int& column)
-    : Tile(texture, player, row, column)
+Portal::Portal(const std::string& texture, Character* player, const int& col, const int& row)
+    : Tile(texture, player, col, row)
 {
 
 }
