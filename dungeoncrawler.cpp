@@ -3,8 +3,8 @@
 void DungeonCrawler::moveOfset(int i, Tile* currentCharacterTile, int colOfset, int rowOfset)
 {
     Tile* destionationtile = level->getTile(currentCharacterTile->getColumn()+colOfset,currentCharacterTile->getRow()+rowOfset);
-    std::cout << currentCharacterTile->getColumn() << currentCharacterTile->getRow() << std::endl;
-    std::cout << currentCharacterTile->getColumn()+colOfset << currentCharacterTile->getRow()+rowOfset << std::endl;
+    //std::cout << currentCharacterTile->getColumn() << currentCharacterTile->getRow() << std::endl;
+    //std::cout << currentCharacterTile->getColumn()+colOfset << currentCharacterTile->getRow()+rowOfset << std::endl;
 
     if(currentCharacterTile->moveTo(destionationtile, level->getCharacterVector().at(i))){
         currentCharacterTile->setPlayer(nullptr);

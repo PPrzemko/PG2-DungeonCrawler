@@ -20,17 +20,23 @@ bool Tile::hasCharacter()
 
 bool Tile::moveTo(Tile *destTile, Character *who)
 {
-    if(destTile->onEnter(player->getCurrentTile(), who) != nullptr){
-        destTile=destTile->onEnter(player->getCurrentTile(), who);
+    bool canMove = true;
+    Tile* d=destTile->onEnter(player->getCurrentTile(), who);
+
+    if(d!= nullptr){
+        destTile=d;
+    }else if(d==nullptr){
+        destTile=player->getCurrentTile();
+    canMove = false;
     }
 
 
-    bool canMove = true;
+
         Tile* actualLeavedTile = onLeave(destTile,who);
         if(actualLeavedTile == nullptr){
             canMove = false;
         }else{
-            std::cout << destTile->getColumn() << destTile->getRow() << std::endl;
+            //std::cout << destTile->getColumn() << destTile->getRow() << std::endl;
             who->setCurrentTile(destTile);
             destTile->setPlayer(who);
 

@@ -8,7 +8,7 @@ Floor::Floor(const std::string& texture, Character* player, const int& col, cons
 }
 
 Tile* Floor::onEnter(Tile* fromTile, Character* who){
-    return nullptr;
+    return this;
 }
 Tile* Floor::onLeave(Tile* destTile, Character* who){
 
