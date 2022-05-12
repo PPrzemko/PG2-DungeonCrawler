@@ -21,13 +21,14 @@ bool Tile::hasCharacter()
 bool Tile::moveTo(Tile *destTile, Character *who)
 {
     bool canMove = true;
-    Tile* currentTile=destTile->onEnter(player->getCurrentTile(), who);
+    Tile* nextTile=destTile->onEnter(player->getCurrentTile(), who);
 
-    if(currentTile!= nullptr){
-        destTile=currentTile;
-    }else if(currentTile==nullptr){
+    if(nextTile!= nullptr){
+        destTile=nextTile; // POrtal on Enter gives Pointer to other Portal
+    }else if(nextTile==nullptr){
+        // Wall
         destTile=player->getCurrentTile();
-    canMove = false;
+        canMove = false;
     }
 
 
