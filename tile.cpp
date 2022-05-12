@@ -20,7 +20,9 @@ bool Tile::hasCharacter()
 
 bool Tile::moveTo(Tile *destTile, Character *who)
 {
-    destTile->onEnter(player->getCurrentTile(), who);
+    if(destTile->onEnter(player->getCurrentTile(), who) != nullptr){
+        destTile=destTile->onEnter(player->getCurrentTile(), who);
+    }
 
 
     bool canMove = true;
