@@ -2,7 +2,7 @@
 #define DUNGEONCRAWLER_H
 #include "abstractui.h"
 #include "level.h"
-
+#include <iostream>
 class DungeonCrawler
 {
 
@@ -12,6 +12,7 @@ Level* level;
 
 public:
     DungeonCrawler(AbstractUI* UI, Level* level);
+    void moveOfset(int i, Tile* currentCharacterTile, int colOfset, int rowOfset);
 };
 
 #endif // DUNGEONCRAWLER_H
