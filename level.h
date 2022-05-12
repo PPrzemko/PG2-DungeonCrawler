@@ -2,7 +2,7 @@
 #define LEVEL_H
 #include <vector>
 #include "portal.h"
-class Wall;
+#include "wall.h"
 #include "floor.h"
 class Tile;
 #include "character.h"
