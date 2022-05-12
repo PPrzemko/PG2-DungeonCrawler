@@ -11,8 +11,9 @@ private:
 protected:
 const std::string texture;
 Character* player;
-const int row;
 const int col;
+const int row;
+
 
 public:
     Tile(const std::string& texture, Character* player, const int& col, const int& row);

@@ -21,15 +21,14 @@ bool Tile::hasCharacter()
 bool Tile::moveTo(Tile *destTile, Character *who)
 {
     bool canMove = true;
-    Tile* d=destTile->onEnter(player->getCurrentTile(), who);
+    Tile* currentTile=destTile->onEnter(player->getCurrentTile(), who);
 
-    if(d!= nullptr){
-        destTile=d;
-    }else if(d==nullptr){
+    if(currentTile!= nullptr){
+        destTile=currentTile;
+    }else if(currentTile==nullptr){
         destTile=player->getCurrentTile();
     canMove = false;
     }
-
 
 
         Tile* actualLeavedTile = onLeave(destTile,who);
