@@ -21,7 +21,7 @@ bool Tile::hasCharacter()
 bool Tile::moveTo(Tile *destTile, Character *who)
 {
     bool canMove = true;
-    Tile* nextTile=destTile->onEnter(player->getCurrentTile(), who);
+    Tile* nextTile=destTile->onEnter(player->getCurrentTile(), who);  // returns nullptr if destination tile is not enterable
 
     if(nextTile!= nullptr){
         destTile=nextTile; // POrtal on Enter gives Pointer to other Portal
