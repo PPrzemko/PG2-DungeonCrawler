@@ -1,14 +1,9 @@
 #include "dungeoncrawler.h"
 
-void DungeonCrawler::moveOfset(int i, Tile* currentCharacterTile, int colOfset, int rowOfset)
+void DungeonCrawler::moveOffset(int i, Tile* currentCharacterTile, int colOffset, int rowOffset)
 {
-    Tile* destionationtile = level->getTile(currentCharacterTile->getColumn()+colOfset,currentCharacterTile->getRow()+rowOfset);
-    //std::cout << currentCharacterTile->getColumn() << currentCharacterTile->getRow() << std::endl;
-    //std::cout << currentCharacterTile->getColumn()+colOfset << currentCharacterTile->getRow()+rowOfset << std::endl;
-
-    if(currentCharacterTile->moveTo(destionationtile, level->getCharacterVector().at(i))){
-        currentCharacterTile->setPlayer(nullptr);
-    }
+    Tile* destionationtile = level->getTile(currentCharacterTile->getColumn()+colOffset,currentCharacterTile->getRow()+rowOffset);
+    currentCharacterTile->moveTo(destionationtile, level->getCharacterVector().at(i));
 
 }
 
@@ -19,24 +14,24 @@ void DungeonCrawler::play()
 
         Tile* currentCharacterTile = level->getCharacterVector().at(i)->getCurrentTile();
         if(input=='q'){
-            moveOfset(i,currentCharacterTile,-1,-1);
+            moveOffset(i,currentCharacterTile,-1,-1);
         }else if(input =='w'){
-            moveOfset(i,currentCharacterTile,-1,+0);
+            moveOffset(i,currentCharacterTile,-1,+0);
         }else if(input =='e'){
-            moveOfset(i,currentCharacterTile,-1,+1);
+            moveOffset(i,currentCharacterTile,-1,+1);
         }else if(input =='a'){
-            moveOfset(i,currentCharacterTile,+0,-1);
+            moveOffset(i,currentCharacterTile,+0,-1);
         }else if(input =='s'){
 
 
         }else if(input =='d'){
-            moveOfset(i,currentCharacterTile,+0,+1);
+            moveOffset(i,currentCharacterTile,+0,+1);
         }else if(input =='y'){
-            moveOfset(i,currentCharacterTile,+1,-1);
+            moveOffset(i,currentCharacterTile,+1,-1);
         }else if(input =='x'){
-            moveOfset(i,currentCharacterTile,+1,+0);
+            moveOffset(i,currentCharacterTile,+1,+0);
         }else if(input =='c'){
-            moveOfset(i,currentCharacterTile,+1,+1);
+            moveOffset(i,currentCharacterTile,+1,+1);
         }else if(input =='p'){
             exit(0);
         }

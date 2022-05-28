@@ -13,7 +13,7 @@ Level* level;
 
 public:
     DungeonCrawler(AbstractUI* UI, Level* level);
-    void moveOfset(int i, Tile* currentCharacterTile, int colOfset, int rowOfset);
+    void moveOffset(int i, Tile* currentCharacterTile, int colOfset, int rowOfset);
     void play();
 };
 

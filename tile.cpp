@@ -9,6 +9,30 @@ Tile::Tile(const std::string& texture, Character* player, const int& col, const 
 }
 
 
+
+bool Tile::moveTo(Tile *destTile, Character *who)
+{
+
+        bool canMove = true;
+        Tile* actualLeftTile = onLeave(destTile,who);
+        if(actualLeftTile == nullptr){
+            canMove = false;
+        }else{
+            Tile* actualEnteredTile=destTile->onEnter(actualLeftTile, who);
+            if(actualEnteredTile == nullptr){
+                canMove = false;
+            }else{
+                actualLeftTile->setPlayer(nullptr);
+                who->setCurrentTile(actualEnteredTile);
+                actualEnteredTile->setPlayer(who);
+            }
+
+        }
+        return canMove;
+
+
+}
+
 bool Tile::hasCharacter()
 {
     if(player==nullptr){
@@ -16,33 +40,6 @@ bool Tile::hasCharacter()
     }else{
         return true;
     }
-}
-
-bool Tile::moveTo(Tile *destTile, Character *who)
-{
-    bool canMove = true;
-    Tile* nextTile=destTile->onEnter(player->getCurrentTile(), who);  // returns nullptr if destination tile is not enterable
-
-    if(nextTile!= nullptr){
-        destTile=nextTile; // POrtal on Enter gives Pointer to other Portal
-    }else if(nextTile==nullptr){
-        // Wall
-        destTile=player->getCurrentTile();
-        canMove = false;
-    }
-
-
-        Tile* actualLeavedTile = onLeave(destTile,who);
-        if(actualLeavedTile == nullptr){
-            canMove = false;
-        }else{
-            //std::cout << destTile->getColumn() << destTile->getRow() << std::endl;
-            who->setCurrentTile(destTile);
-            destTile->setPlayer(who);
-
-        }
-        return canMove;
-
 }
 
 
