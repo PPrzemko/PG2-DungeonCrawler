@@ -10,22 +10,23 @@ Level::Level(const int& col, const int& row, Controller *con) :
     //Floor* k = new Floor(".", d, 0 , 0);
     //Floor* g = new Floor(".", nullptr, 1 , 1);
 
-    Portal* p1 = new Portal(nullptr, 2 , 3);
+    Portal* p1 = new Portal(nullptr, 2 , 4);
     Portal* p2 = new Portal(nullptr, 0 , 0);
     p1->setDestination(p2);
     p2->setDestination(p1);
     Door* d1 = new Door(nullptr, 1 , 0);
-    Switch* s1 = new Switch(nullptr, 3 ,1);
+    Switch* s1 = new Switch(nullptr, 4 ,1);
     s1->attach(d1);
 
-    Ramp *r1 = new Ramp(nullptr, 0, 2);
-    Pit *pit1 = new Pit(nullptr, 0, 3);
-    Pit *pit2 = new Pit(nullptr, 1, 3);
+    Ramp *r1 = new Ramp(nullptr, 0, 3);
+    Pit *pit1 = new Pit(nullptr, 0, 4);
+    Pit *pit2 = new Pit(nullptr, 1, 4);
 
-    world.push_back({p2, new Floor(nullptr, 0 , 1),r1,pit1});
-    world.push_back({d1,new Floor(nullptr, 1 , 1),new Floor(nullptr, 1 , 2),pit2});
-    world.push_back({new Wall(nullptr, 2 , 0),new Floor(nullptr, 2 , 1),new Floor(nullptr, 2 , 2),p1});
-    world.push_back({new Wall(nullptr, 3 , 0),s1,new Floor(nullptr, 3 , 2),new Floor(nullptr, 3 , 3)});
+    world.push_back({p2, new Floor(nullptr, 0 , 1),new Floor(nullptr, 0 , 2),r1,pit1});
+    world.push_back({d1,new Floor(nullptr, 1 , 1),new Floor(nullptr, 1 , 2),new Floor(nullptr, 1 , 3),pit2});
+    world.push_back({new Wall(nullptr, 2 , 0),new Floor(nullptr, 2 , 1),new Floor(nullptr, 2 , 2),new Floor(nullptr, 2 , 3),p1});
+    world.push_back({new Wall(nullptr, 3 , 0),new Floor(nullptr, 3 , 1),new Floor(nullptr, 3 , 2),new Floor(nullptr, 3 , 3),new Floor(nullptr, 3 , 4)});
+    world.push_back({new Wall(nullptr, 4 , 0),s1,new Floor(nullptr, 4 , 2),new Floor(nullptr, 4 , 3),new Floor(nullptr, 4 , 4)});
     placeCharacter(d,2,2);
 
 
@@ -34,10 +35,10 @@ Level::Level(const int& col, const int& row, Controller *con) :
 Level::~Level()
 {
 
-    for(int i = 0; i < characterVector.size(); ++i){
+    for(size_t i = 0; i < characterVector.size(); ++i){
         delete characterVector.at(i);
     }
-    for(int i = 0; i < world.size(); ++i){
+    for(size_t i = 0; i < world.size(); ++i){
         for (int j = 0; i < world.at(i).size(); ++i){
             delete world.at(i).at(j);
         }

@@ -11,7 +11,7 @@ int main()
     cout << "Hello World!" << endl;
 
     TerminalUI* n = new TerminalUI();
-    Level* k = new Level(4,4,n);
+    Level* k = new Level(5,5,n);
     DungeonCrawler* l = new DungeonCrawler(n,k);
 
 
