@@ -9,8 +9,8 @@ private:
 
 public:
     Passive();
-    virtual ~Passive() = 0;
-    void notify(Active* source);
+    //virtual ~Passive() = 0;
+    virtual void notify(Active* source) = 0;
 
 
 };

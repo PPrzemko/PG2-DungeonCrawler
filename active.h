@@ -7,7 +7,7 @@ class Active
 {
 public:
     Active();
-    virtual ~Active() = 0;
+    //virtual ~Active() = 0;
     void attach(Passive* obj);
     void detach(Passive* obj);
     void activate();

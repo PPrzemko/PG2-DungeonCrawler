@@ -1,7 +1,7 @@
 #include "wall.h"
 
-Wall::Wall(const std::string& texture, Character* player, const int& col, const int& row)
-    : Tile(texture, player, col, row)
+Wall::Wall(Character* player, const int& col, const int& row)
+    : Tile("#", player, col, row)
 {
 
 }

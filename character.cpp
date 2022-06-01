@@ -2,7 +2,7 @@
 
 
 
-Character::Character(std::string texture) : texture(texture)
+Character::Character() : texture("X")
 {
 
 }

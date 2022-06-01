@@ -14,7 +14,7 @@ protected:
 
 
 public:
-    Character(std::string texture);
+    Character();
     Tile *getCurrentTile() const;
     char move();
     const std::string &getTexture() const;

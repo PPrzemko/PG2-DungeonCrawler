@@ -6,7 +6,8 @@
 #include "floor.h"
 class Tile;
 #include "character.h"
-
+#include "door.h"
+#include "switch.h"
 
 class Level
 {
