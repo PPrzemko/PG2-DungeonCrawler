@@ -16,9 +16,9 @@ protected:
 public:
     Character();
     Tile *getCurrentTile() const;
-    char move();
     const std::string &getTexture() const;
     void setCurrentTile(Tile *newCurrentTile);
+    char move();
 };
 
 #endif // CHARACTER_H

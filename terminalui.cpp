@@ -7,23 +7,25 @@ TerminalUI::TerminalUI()
 
 void TerminalUI::draw(Level* s)
 {
-// s->getCharacterVector();
-// s->getTileVector();
 
+    for(size_t i=0;i<s->getCol();++i){
 
+        for(size_t j=0;j<s->getCol();++j){
 
-for(size_t i=0;i<s->getCol();++i){
+        std::cout << s->getTileVector().at(i).at(j)->getTexture();
 
-    for(size_t j=0;j<s->getCol();++j){
-
-    std::cout << s->getTileVector().at(i).at(j)->getTexture();
+        }
+        std::cout << std::endl;
 
     }
-    std::cout << std::endl;
-
 }
 
-
-
+char TerminalUI::move()
+{
+// input getten
+char input;
+std::cout << "Bewege dich...";
+std::cin >> input;
+return input;
 
 }

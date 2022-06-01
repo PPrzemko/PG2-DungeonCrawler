@@ -3,7 +3,7 @@
 #include "abstractui.h"
 #include "level.h"
 #include <iostream>
-
+class TerminalUI;
 class DungeonCrawler
 {
 

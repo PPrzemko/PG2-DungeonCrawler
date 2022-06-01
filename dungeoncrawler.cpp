@@ -1,4 +1,5 @@
 #include "dungeoncrawler.h"
+#include "terminalui.h"
 
 void DungeonCrawler::moveOffset(int i, Tile* currentCharacterTile, int colOffset, int rowOffset)
 {
@@ -22,7 +23,8 @@ void DungeonCrawler::play()
     UI->draw(level);
 
     for(size_t i=0;i<level->getCharacterVector().size();++i){
-        char input = level->getCharacterVector().at(i)->move();
+
+        char input = dynamic_cast<TerminalUI*>(UI)->move();
 
         Tile* currentCharacterTile = level->getCharacterVector().at(i)->getCurrentTile();
         if(input=='q'){
