@@ -15,8 +15,8 @@ class Level
 {
 
 private:
-    const int width;
-    const int height;
+    const int row;
+    const int col;
 protected:
 
 
@@ -31,8 +31,8 @@ public:
 
 
 
-    int getWidth() const;
-    int getHeight() const;
+    int getRow() const;
+    int getCol() const;
     const std::vector<std::vector<Tile *> > &getTileVector() const;
     const std::vector<Character *> &getCharacterVector() const;
 };

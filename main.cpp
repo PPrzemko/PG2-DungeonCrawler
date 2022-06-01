@@ -14,6 +14,7 @@ int main()
     Level* k = new Level(4,4);
     DungeonCrawler* l = new DungeonCrawler(n,k);
 
+
     while(1){
         l->play();
         system("clear");

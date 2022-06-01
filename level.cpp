@@ -1,8 +1,8 @@
 #include "level.h"
 
 
-Level::Level(const int& width, const int& height) :
-    width(width), height(height)
+Level::Level(const int& row, const int& col) :
+    row(row), col(col)
 {
     Character* d = new Character();
     characterVector.push_back(d);
@@ -66,13 +66,13 @@ Tile *Level::getTile(int col, int row) const
 
 
 
-int Level::getHeight() const
+int Level::getCol() const
 {
-    return height;
+    return col;
 }
-int Level::getWidth() const
+int Level::getRow() const
 {
-    return width;
+    return row;
 }
 
 const std::vector<std::vector<Tile *> > &Level::getTileVector() const
