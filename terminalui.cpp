@@ -10,7 +10,7 @@ void TerminalUI::draw(Level* s)
 
     for(size_t i=0;i<s->getCol();++i){
 
-        for(size_t j=0;j<s->getCol();++j){
+        for(size_t j=0;j<s->getRow();++j){
 
         std::cout << s->getTileVector().at(i).at(j)->getTexture();
 

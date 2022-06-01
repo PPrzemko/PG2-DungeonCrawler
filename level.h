@@ -11,12 +11,14 @@ class Tile;
 #include "ramp.h"
 #include "pit.h"
 
+
+class Controller;
 class Level
 {
 
 private:
-    const int row;
     const int col;
+    const int row;
 protected:
 
 
@@ -24,7 +26,7 @@ protected:
     std::vector<Character*> characterVector;
 
 public:
-    Level(const int& width, const int& height);
+    Level(const int& col, const int& row, Controller *con);
     Tile *getTile(int row, int col) const;
     void placeCharacter(Character *c, int row, int col);
     ~Level();

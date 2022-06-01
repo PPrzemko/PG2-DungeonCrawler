@@ -1,10 +1,10 @@
 #include "level.h"
 
 
-Level::Level(const int& row, const int& col) :
-    row(row), col(col)
+Level::Level(const int& col, const int& row, Controller *con) :
+    col(col), row(row)
 {
-    Character* d = new Character();
+    Character* d = new Character(con);
     characterVector.push_back(d);
 
     //Floor* k = new Floor(".", d, 0 , 0);

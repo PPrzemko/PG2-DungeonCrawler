@@ -21,9 +21,7 @@ void Character::setCurrentTile(Tile *newCurrentTile)
 
 char Character::move()
 {
-
-
-
+    return controller->move();
 }
 const std::string &Character::getTexture() const
 {

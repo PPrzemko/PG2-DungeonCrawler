@@ -11,7 +11,7 @@ class TerminalUI : public AbstractUI, public Controller
 public:
     TerminalUI();
     void draw(Level* s) override;
-    char move();
+    char move() override;
 };
 
 #endif // TERMINALUI_H

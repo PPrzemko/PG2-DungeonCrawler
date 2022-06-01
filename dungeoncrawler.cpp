@@ -24,7 +24,8 @@ void DungeonCrawler::play()
 
     for(size_t i=0;i<level->getCharacterVector().size();++i){
 
-        char input = dynamic_cast<TerminalUI*>(UI)->move();
+        //char input = dynamic_cast<TerminalUI*>(UI)->move();
+        char input = level->getCharacterVector().at(i)->move();
 
         Tile* currentCharacterTile = level->getCharacterVector().at(i)->getCurrentTile();
         if(input=='q'){
