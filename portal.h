@@ -14,6 +14,7 @@ public:
 
 
     void setDestination(Tile *newDestination);
+    Tile *getDestination() const;
 };
 
 #endif // PORTAL_H

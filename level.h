@@ -17,8 +17,8 @@ class Level
 {
 
 private:
-    const int col;
-    const int row;
+    int col;
+    int row;
 protected:
 
 
@@ -27,6 +27,7 @@ protected:
 
 public:
     Level(const int& col, const int& row, Controller *con);
+    Level(const Level &level);
     Tile *getTile(int row, int col) const;
     void placeCharacter(Character *c, int row, int col);
     ~Level();

@@ -12,6 +12,8 @@ public:
     void detach(Passive* obj);
     void activate();
 
+    const std::vector<Passive *> &getLinkedPassives() const;
+
 private:
     std::vector<Passive*> linkedPassives;
 };

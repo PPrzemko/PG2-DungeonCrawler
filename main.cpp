@@ -8,16 +8,17 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
 
     TerminalUI* n = new TerminalUI();
     Level* k = new Level(5,5,n);
     DungeonCrawler* l = new DungeonCrawler(n,k);
+    Level* das = new Level(*k);
 
+    cout << "Hello World!" << endl;
 
     while(1){
         l->play();
-        system("clear");
+        system("cls");
     }
 
 }

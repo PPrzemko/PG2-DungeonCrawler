@@ -41,3 +41,8 @@ void Active::activate()
    }
 
 }
+
+const std::vector<Passive *> &Active::getLinkedPassives() const
+{
+    return linkedPassives;
+}
