@@ -8,6 +8,8 @@ class Tile;
 #include "character.h"
 #include "door.h"
 #include "switch.h"
+#include "ramp.h"
+#include "pit.h"
 
 class Level
 {

@@ -12,7 +12,11 @@ int main()
 
     TerminalUI* n = new TerminalUI();
     Level* k = new Level(4,4);
-    DungeonCrawler(n,k);
+    DungeonCrawler* l = new DungeonCrawler(n,k);
 
+    while(1){
+        l->play();
+        system("clear");
+    }
 
 }

@@ -9,6 +9,8 @@ void DungeonCrawler::moveOffset(int i, Tile* currentCharacterTile, int colOffset
 
 void DungeonCrawler::play()
 {
+    UI->draw(level);
+
     for(size_t i=0;i<level->getCharacterVector().size();++i){
         char input = level->getCharacterVector().at(i)->move();
 
@@ -22,6 +24,7 @@ void DungeonCrawler::play()
         }else if(input =='a'){
             moveOffset(i,currentCharacterTile,+0,-1);
         }else if(input =='s'){
+            moveOffset(i,currentCharacterTile,+0,+0);
 
 
         }else if(input =='d'){
@@ -38,18 +41,9 @@ void DungeonCrawler::play()
 
 
     }
+
 }
 
 DungeonCrawler::DungeonCrawler(AbstractUI* UI, Level* level) : UI(UI), level(level)
 {
-
-    UI->draw(level);
-
-
-    while(1){
-        play();
-        UI->draw(level);
-    }
-
-
 }

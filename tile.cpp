@@ -13,10 +13,12 @@ bool Tile::moveTo(Tile *destTile, Character *who)
 
         bool canMove = true;
         Tile* actualLeftTile = onLeave(destTile,who);
+
         if(actualLeftTile == nullptr){
             canMove = false;
         }else{
             Tile* actualEnteredTile=destTile->onEnter(actualLeftTile, who);
+
             if(actualEnteredTile == nullptr){
                 canMove = false;
             }else{

@@ -16,11 +16,14 @@ Level::Level(const int& width, const int& height) :
     p2->setDestination(p1);
     Door* d1 = new Door(nullptr, 1 , 0);
     Switch* s1 = new Switch(nullptr, 3 ,1);
-
     s1->attach(d1);
 
-    world.push_back({p2, new Floor(nullptr, 0 , 1),new Floor(nullptr, 0 , 2),new Floor(nullptr, 0 , 3)});
-    world.push_back({d1,new Floor(nullptr, 1 , 1),new Floor(nullptr, 1 , 2),new Floor(nullptr, 1 , 3)});
+    Ramp *r1 = new Ramp(nullptr, 0, 2);
+    Pit *pit1 = new Pit(nullptr, 0, 3);
+    Pit *pit2 = new Pit(nullptr, 1, 3);
+
+    world.push_back({p2, new Floor(nullptr, 0 , 1),r1,pit1});
+    world.push_back({d1,new Floor(nullptr, 1 , 1),new Floor(nullptr, 1 , 2),pit2});
     world.push_back({new Wall(nullptr, 2 , 0),new Floor(nullptr, 2 , 1),new Floor(nullptr, 2 , 2),p1});
     world.push_back({new Wall(nullptr, 3 , 0),s1,new Floor(nullptr, 3 , 2),new Floor(nullptr, 3 , 3)});
     placeCharacter(d,2,2);

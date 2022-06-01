@@ -8,7 +8,7 @@ class DungeonCrawler
 {
 
 protected:
-const AbstractUI* UI;
+AbstractUI* UI;
 Level* level;
 
 public:
