@@ -17,6 +17,8 @@ Level::Level(const int& width, const int& height) :
     Door* d1 = new Door(nullptr, 1 , 0);
     Switch* s1 = new Switch(nullptr, 3 ,1);
 
+    s1->attach(d1);
+
     world.push_back({p2, new Floor(nullptr, 0 , 1),new Floor(nullptr, 0 , 2),new Floor(nullptr, 0 , 3)});
     world.push_back({d1,new Floor(nullptr, 1 , 1),new Floor(nullptr, 1 , 2),new Floor(nullptr, 1 , 3)});
     world.push_back({new Wall(nullptr, 2 , 0),new Floor(nullptr, 2 , 1),new Floor(nullptr, 2 , 2),p1});

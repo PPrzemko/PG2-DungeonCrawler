@@ -1,7 +1,5 @@
 #include "tile.h"
 
-
-
 Tile::Tile(const std::string& texture, Character* player, const int& col, const int& row)
     : texture(texture), player(player), col(col), row(row)
 {
@@ -50,6 +48,11 @@ const std::string &Tile::getTexture()
         return player->getTexture();
     }
     return texture;
+}
+
+void Tile::setTexture(const std::string &newTexture)
+{
+    texture = newTexture;
 }
 
 int Tile::getRow() const

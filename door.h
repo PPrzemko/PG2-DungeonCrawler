@@ -9,8 +9,8 @@ public:
     Door(Character* player, const int& col, const int& row);
     void notify(Active* source) override;
     void swapState();
-    Tile* onLeave(Tile* destTile, Character* who);
-    Tile* onEnter(Tile* fromTile, Character* who);
+    Tile* onLeave(Tile* destTile, Character* who) override;
+    Tile* onEnter(Tile* fromTile, Character* who) override;
 private:
     bool open;
 };

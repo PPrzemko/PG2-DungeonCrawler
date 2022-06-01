@@ -9,7 +9,8 @@ class Tile
 private:
 
 protected:
-const std::string texture;
+std::string texture;
+
 Character* player;
 const int col;
 const int row;
@@ -28,6 +29,7 @@ public:
     int getColumn() const;
 
     void setPlayer(Character *newPlayer);
+    void setTexture(const std::string &newTexture);
 };
 
 #endif // TILE_H
