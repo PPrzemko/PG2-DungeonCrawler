@@ -10,7 +10,7 @@ class Tile;
 #include "switch.h"
 #include "ramp.h"
 #include "pit.h"
-
+#include <algorithm>
 
 class Controller;
 class Level
@@ -28,6 +28,7 @@ protected:
 public:
     Level(const int& col, const int& row, Controller *con);
     Level(const Level &level);
+    Level &operator=(Level level);
     Tile *getTile(int row, int col) const;
     void placeCharacter(Character *c, int row, int col);
     ~Level();

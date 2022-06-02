@@ -33,6 +33,8 @@ Level::Level(const int& col, const int& row, Controller *con) :
 
 }
 
+
+
 Level::Level(const Level &level) : col(level.getCol()), row(level.getRow())
 {
     std::vector<Portal*> portalQueue;
@@ -120,6 +122,14 @@ Level::Level(const Level &level) : col(level.getCol()), row(level.getRow())
     }
 
 
+}
+
+Level &Level::operator=(Level level)
+{
+    col=level.getCol();
+    row=level.getRow();
+    std::swap(characterVector,level.characterVector);
+    std::swap(world,level.world);
 }
 
 

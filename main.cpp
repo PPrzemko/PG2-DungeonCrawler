@@ -10,10 +10,11 @@ int main()
 {
 
     TerminalUI* n = new TerminalUI();
-    Level* k = new Level(5,5,n);
-    DungeonCrawler* l = new DungeonCrawler(n,k);
-    //Level* das = new Level(*k);
-    Level k2(*k);
+    Level* k1 = new Level(5,5,n);
+    DungeonCrawler* l = new DungeonCrawler(n,k1);
+    Level* k2 = new Level(*k1);
+    *k2=*k1;
+
 
     cout << "Hello World!" << endl;
 

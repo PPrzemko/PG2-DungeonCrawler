@@ -18,7 +18,7 @@ const int row;
 
 public:
     Tile(const std::string& texture, Character* player, const int& col, const int& row);
-    virtual ~Tile() = 0;
+    virtual ~Tile(){};
     bool hasCharacter();
     bool moveTo(Tile*destTile,Character*who);
     virtual Tile* onEnter(Tile* fromTile, Character* who) = 0;
