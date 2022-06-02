@@ -130,18 +130,19 @@ Level &Level::operator=(Level level)
     row=level.getRow();
     std::swap(characterVector,level.characterVector);
     std::swap(world,level.world);
+    return *this;
 }
 
 
 
 Level::~Level()
 {
-    for(auto &a:characterVector){
-        delete a;
+    for(size_t i = 0; i < characterVector.size(); ++i){
+            delete characterVector.at(i);
     }
 
-    for(size_t i = 0; i < world.size(); ++i){
-        for (int j = 0; i < world.at(i).size(); ++i){
+    for(size_t i = 0; i < col; ++i){
+        for (int j = 0; i < row; ++i){
             delete world.at(i).at(j);
         }
     }
