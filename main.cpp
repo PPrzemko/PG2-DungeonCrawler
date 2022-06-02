@@ -19,7 +19,7 @@ int main()
 
     while(1){
         l->play();
-        system("cls");
+        system("clear");
     }
 
 }

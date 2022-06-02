@@ -38,8 +38,6 @@ void DungeonCrawler::play()
             moveOffset(i,currentCharacterTile,+0,-1);
         }else if(input =='s'){
             moveOffset(i,currentCharacterTile,+0,+0);
-
-
         }else if(input =='d'){
             moveOffset(i,currentCharacterTile,+0,+1);
         }else if(input =='y'){

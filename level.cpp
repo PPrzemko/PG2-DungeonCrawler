@@ -126,14 +126,17 @@ Level::Level(const Level &level) : col(level.getCol()), row(level.getRow())
 
 Level::~Level()
 {
-    for(size_t i = 0; i < characterVector.size(); ++i){
-        delete characterVector.at(i);
+    for(auto &a:characterVector){
+        delete a;
     }
+
     for(size_t i = 0; i < world.size(); ++i){
         for (int j = 0; i < world.at(i).size(); ++i){
             delete world.at(i).at(j);
         }
     }
+
+
 }
 
 void Level::placeCharacter(Character *c, int col, int row)
