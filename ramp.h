@@ -1,15 +1,14 @@
-#ifndef WALL_H
-#define WALL_H
+#ifndef RAMP_H
+#define RAMP_H
 #include "tile.h"
 
-class Wall : public Tile
+class Ramp : public Tile
 {
 public:
-    Wall(Character* player, const int& row, const int& column);
+    Ramp(Character* player, const int& col, const int& row);
     Tile* onEnter(Tile* fromTile, Character* who) override;
     Tile* onLeave(Tile* destTile, Character* who) override;
 
-
 };
 
-#endif // WALL_H
+#endif // RAMP_H

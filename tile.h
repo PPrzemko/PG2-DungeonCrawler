@@ -9,7 +9,8 @@ class Tile
 private:
 
 protected:
-const std::string texture;
+std::string texture;
+
 Character* player;
 const int col;
 const int row;
@@ -17,7 +18,7 @@ const int row;
 
 public:
     Tile(const std::string& texture, Character* player, const int& col, const int& row);
-
+    virtual ~Tile(){};
     bool hasCharacter();
     bool moveTo(Tile*destTile,Character*who);
     virtual Tile* onEnter(Tile* fromTile, Character* who) = 0;
@@ -28,6 +29,7 @@ public:
     int getColumn() const;
 
     void setPlayer(Character *newPlayer);
+    void setTexture(const std::string &newTexture);
 };
 
 #endif // TILE_H

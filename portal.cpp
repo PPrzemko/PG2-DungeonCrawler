@@ -1,8 +1,9 @@
 #include "portal.h"
 
 
-Portal::Portal(const std::string& texture, Character* player, const int& col, const int& row)
-    : Tile(texture, player, col, row)
+
+Portal::Portal(Character* player, const int& col, const int& row)
+    : Tile("O", player, col, row)
 {
 
 }
@@ -16,4 +17,8 @@ Tile* Portal::onLeave(Tile* destTile, Character* who){
 void Portal::setDestination(Tile *newDestination)
 {
     destination = newDestination;
+}
+Tile *Portal::getDestination() const
+{
+    return destination;
 }

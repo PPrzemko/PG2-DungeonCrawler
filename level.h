@@ -6,14 +6,19 @@
 #include "floor.h"
 class Tile;
 #include "character.h"
+#include "door.h"
+#include "switch.h"
+#include "ramp.h"
+#include "pit.h"
+#include <algorithm>
 
-
+class Controller;
 class Level
 {
 
 private:
-    const int width;
-    const int height;
+    int col;
+    int row;
 protected:
 
 
@@ -21,15 +26,17 @@ protected:
     std::vector<Character*> characterVector;
 
 public:
-    Level(const int& width, const int& height);
+    Level(const int& col, const int& row, Controller *con);
+    Level(const Level &level);
+    Level &operator=(Level level);
     Tile *getTile(int row, int col) const;
     void placeCharacter(Character *c, int row, int col);
     ~Level();
 
 
 
-    int getWidth() const;
-    int getHeight() const;
+    int getRow() const;
+    int getCol() const;
     const std::vector<std::vector<Tile *> > &getTileVector() const;
     const std::vector<Character *> &getCharacterVector() const;
 };

@@ -1,7 +1,5 @@
 #include "tile.h"
 
-
-
 Tile::Tile(const std::string& texture, Character* player, const int& col, const int& row)
     : texture(texture), player(player), col(col), row(row)
 {
@@ -15,10 +13,12 @@ bool Tile::moveTo(Tile *destTile, Character *who)
 
         bool canMove = true;
         Tile* actualLeftTile = onLeave(destTile,who);
+
         if(actualLeftTile == nullptr){
             canMove = false;
         }else{
             Tile* actualEnteredTile=destTile->onEnter(actualLeftTile, who);
+
             if(actualEnteredTile == nullptr){
                 canMove = false;
             }else{
@@ -50,6 +50,11 @@ const std::string &Tile::getTexture()
         return player->getTexture();
     }
     return texture;
+}
+
+void Tile::setTexture(const std::string &newTexture)
+{
+    texture = newTexture;
 }
 
 int Tile::getRow() const

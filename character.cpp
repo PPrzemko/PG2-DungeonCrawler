@@ -2,23 +2,12 @@
 
 
 
-Character::Character(std::string texture) : texture(texture)
+Character::Character(Controller* controller) : texture("X"), controller(controller)
 {
 
 }
 
 
-char Character::move()
-{
-// input getten
-char input;
-std::cout << "Bewege dich...";
-std::cin >> input;
-return input;
-
-
-
-}
 
 Tile *Character::getCurrentTile() const
 {
@@ -28,6 +17,11 @@ Tile *Character::getCurrentTile() const
 void Character::setCurrentTile(Tile *newCurrentTile)
 {
     currentTile = newCurrentTile;
+}
+
+char Character::move()
+{
+    return controller->move();
 }
 const std::string &Character::getTexture() const
 {
