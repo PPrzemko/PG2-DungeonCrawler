@@ -16,7 +16,7 @@ int main()
     *k2=*k1;
 
 
-    cout << "Hello World!" << endl;
+    cout << "Hello World!123" << endl;
 
     while(1){
         l->play();
