@@ -15,5 +15,31 @@
         <file>texture/arrows/arrow_up.png</file>
         <file>texture/arrows/arrow_up_left.png</file>
         <file>texture/arrows/arrow_up_right.png</file>
+        <file>texture/char/back/char_back_1.png</file>
+        <file>texture/char/back/char_back_2.png</file>
+        <file>texture/char/back/char_back_3.png</file>
+        <file>texture/char/front/char_front_1.png</file>
+        <file>texture/char/front/char_front_2.png</file>
+        <file>texture/char/front/char_front_3.png</file>
+        <file>texture/char/left/char_left_1.png</file>
+        <file>texture/char/left/char_left_2.png</file>
+        <file>texture/char/left/char_left_3.png</file>
+        <file>texture/char/right/char_right_1.png</file>
+        <file>texture/char/right/char_right_2.png</file>
+        <file>texture/char/right/char_right_3.png</file>
+        <file>texture/char/char_complete.png</file>
+        <file>texture/doors/door1.png</file>
+        <file>texture/doors/door2.png</file>
+        <file>texture/floor/floor1.png</file>
+        <file>texture/floor/floor2.png</file>
+        <file>texture/floor/floor3.png</file>
+        <file>texture/floor/floor4.png</file>
+        <file>texture/floor/floor5.png</file>
+        <file>texture/portal/portal1.png</file>
+        <file>texture/portal/portal2.png</file>
+        <file>texture/portal/portal3.png</file>
+        <file>texture/wall/wall1.png</file>
+        <file>texture/zombie/zombie_left.png</file>
+        <file>texture/zombie/zombie_right.png</file>
     </qresource>
 </RCC>
