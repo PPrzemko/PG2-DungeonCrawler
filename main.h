@@ -6,7 +6,8 @@
 #include "level.h"
 #include "abstractui.h"
 #include "dungeoncrawler.h"
-#include "terminalui.h"
+
+#include "startscreen.h"
 #include <QApplication>
 
 
@@ -16,7 +17,7 @@ private:
 
 public:
     void startGame();
-    void startGUI(int &argc, char **argv);
+    void startGUI(int &argc, char *argv[]);
 
 
 };

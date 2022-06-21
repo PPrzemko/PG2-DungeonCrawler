@@ -6,6 +6,11 @@ StartScreen::StartScreen(QWidget *parent) :
     ui(new Ui::StartScreen)
 {
     ui->setupUi(this);
+
+
+
+
+
 }
 
 StartScreen::~StartScreen()

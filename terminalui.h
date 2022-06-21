@@ -1,10 +1,11 @@
 #ifndef TERMINALUI_H
 #define TERMINALUI_H
 #include "abstractui.h"
+#include "controller.h"
 #include "level.h"
 #include <vector>
 #include <iostream>
-#include "controller.h"
+
 
 class TerminalUI : public AbstractUI, public Controller
 {

@@ -16,6 +16,7 @@ SOURCES += \
         door.cpp \
         dungeoncrawler.cpp \
         floor.cpp \
+        graphicalui.cpp \
         level.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     door.h \
     dungeoncrawler.h \
     floor.h \
+    graphicalui.h \
     level.h \
     main.h \
     mainwindow.h \
