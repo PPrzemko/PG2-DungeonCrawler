@@ -1,6 +1,7 @@
 #ifndef STARTSCREEN_H
 #define STARTSCREEN_H
 
+#include <iostream>
 #include <QDialog>
 
 namespace Ui {
@@ -13,10 +14,16 @@ class StartScreen : public QDialog
 
 public:
     explicit StartScreen(QWidget *parent = nullptr);
+
     ~StartScreen();
 
 private:
     Ui::StartScreen *ui;
+
+public slots:
+    void StartButtonClicked();
+
+
 };
 
 #endif // STARTSCREEN_H

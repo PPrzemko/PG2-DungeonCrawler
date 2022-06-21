@@ -13,19 +13,34 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="ButtonStartGame">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>380</y>
-     <width>231</width>
-     <height>131</height>
+     <x>330</x>
+     <y>400</y>
+     <width>270</width>
+     <height>200</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="LabelBackgroundImage">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>951</width>
+     <height>631</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>LabelBackgroundImage</zorder>
+  <zorder>ButtonStartGame</zorder>
  </widget>
  <resources/>
  <connections/>

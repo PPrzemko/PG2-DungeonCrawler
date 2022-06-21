@@ -98,3 +98,7 @@ DISTFILES += \
     texture/wall/wall1.png \
     texture/zombie/zombie_left.png \
     texture/zombie/zombie_right.png
+
+RESOURCES += \
+    texture.qrc
+
