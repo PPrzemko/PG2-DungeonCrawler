@@ -22,14 +22,14 @@ void Active::attach(Passive *obj)
 
 void Active::detach(Passive *obj)
 {
-    int objPosition=NULL;
+    int objPosition=-1;
     for(size_t i=0 ; i>=linkedPassives.size() ; ++i){
         if(obj==linkedPassives.at(i)){
             objPosition=i;
         }
     }
 
-    if(objPosition != NULL){
+    if(objPosition != -1){
         linkedPassives.erase(linkedPassives.begin() + objPosition );
     }
 }

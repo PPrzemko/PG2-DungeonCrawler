@@ -14,9 +14,9 @@ void Door::swapState()
 {
     open=!open;
     if(open){
-        this->setTexture("/");
+        texture = ("/");
     }else{
-        this->setTexture("X");
+        texture = ("X");
     }
 }
 Tile* Door::onEnter(Tile* fromTile, Character* who){

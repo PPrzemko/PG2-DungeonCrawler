@@ -1,26 +1,43 @@
-#include <iostream>
-#include <level.h>
-#include <abstractui.h>
-#include <dungeoncrawler.h>
-#include <terminalui.h>
-
+#include <main.h>
 using namespace std;
 
-int main()
-{
+    int main()
+    {
 
-    TerminalUI* n = new TerminalUI();
-    Level* k1 = new Level(5,5,n);
-    DungeonCrawler* l = new DungeonCrawler(n,k1);
-    Level* k2 = new Level(*k1);
-    *k2=*k1;
+    startGUIU();
 
 
-    cout << "Hello World!123" << endl;
 
-    while(1){
-        l->play();
-        system("clear");
+
+    }
+    void main::startGame()
+    {
+
+        TerminalUI* n = new TerminalUI();
+        Level* k1 = new Level(5,5,n);
+        DungeonCrawler* l = new DungeonCrawler(n,k1);
+        // Level* k2 = new Level(*k1);
+        // *k2=*k1;
+
+
+        cout << "Hello World!123" << endl;
+
+        while(1){
+            l->play();
+            system("clear");
+
+        }
     }
 
-}
+
+    void startGUI(int &argc, char **argv){
+        TerminalUI* n = new TerminalUI();
+        Level* k1 = new Level(5,5,n);
+        DungeonCrawler* l = new DungeonCrawler(n,k1);
+
+
+        QApplication(argc,argv);
+
+
+
+    }
