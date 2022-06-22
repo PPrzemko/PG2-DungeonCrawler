@@ -83,7 +83,7 @@ Level::Level(const Level &level) : col(level.getCol()), row(level.getRow())
                 Tile* k = new Floor(c->getColumn() , c->getRow());
                 world.at(i).at(j)=k;
             }else if(typeid (*c)==typeid (Portal)){
-                Tile* k = new Portal(dynamic_cast<Portal*>(c)->getPortalType(),c->getColumn() , c->getRow());
+                Tile* k = new Portal(dynamic_cast<Portal*>(c)->getPortalTypeID(),c->getColumn() , c->getRow());
                 portalQueue.push_back(dynamic_cast<Portal*>(k));
                 world.at(i).at(j)=k;
             }else if(typeid (*c)==typeid (Door)){
@@ -119,6 +119,7 @@ Level::Level(const Level &level) : col(level.getCol()), row(level.getRow())
         characterVector.push_back(player);
     }
     // Portal
+    // TODO: Copy constructor PortalColor/ID prob not working
     for(auto &newPortal : portalQueue){
         int NewCol = newPortal->getColumn();
         int NewRow = newPortal->getRow();
