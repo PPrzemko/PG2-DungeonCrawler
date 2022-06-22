@@ -38,8 +38,9 @@ void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
     ui->gridGame->addWidget(label);
     label->show();
     if(hasPlayer){
-        currentCharLabel->setParent(label);
-        currentCharLabel->show();
+        // TODO: needs fix
+        //currentCharLabel->setParent(label);
+        //currentCharLabel->show();
 
     }
 

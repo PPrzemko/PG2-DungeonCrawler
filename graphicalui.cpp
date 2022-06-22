@@ -20,15 +20,15 @@ void GraphicalUI::draw(Level* s){
         int row = s->getRow();
         for(int i = 0; i < col;++i){
             for(int j = 0; j < row;++j){
-                //std::cout << level->getCollumn() << " Collum" << std::endl;
-                //std::cout << level->getRow() << " Row" << std::endl;
-                //std::cout << i << " und " << j << std::endl;
+
                 Tile* currentTile = s->getTile(i,j);
+                //Tempfix reloadtextures
                 mainWindow->setLabelTexture(textures.find(currentTile->getTexture())->second,i,j);
                 if(currentTile->hasCharacter()){
                     //windowMainWindow->setCharLabelParent(i,j);
-                    mainWindow->setLabelTexture(textures.find("texCharRight")->second,i,j);
+                    mainWindow->setLabelTexture(textures.find("Player")->second,i,j);
                 }
+
                 if(typeid (currentTile) == typeid (Door)){
 
                     Door *door = dynamic_cast<Door*>(currentTile);
