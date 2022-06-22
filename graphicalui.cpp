@@ -6,6 +6,8 @@ GraphicalUI::GraphicalUI()
     startScreen = new StartScreen(mainWindow);
     QObject::connect(startScreen->getButtonStartGame(), &QPushButton::clicked, this, &GraphicalUI::StartButtonClicked);
 
+
+
     startScreen->show();
 
 
@@ -24,26 +26,21 @@ void GraphicalUI::initField(Level* s)
     //   mainWindow->addTile(texturePath1);
 
    //}
-
+    mainWindow->addControl(textures);
 
     for(auto &a: s->getTileVector()){
-
             for(auto &b : a){
-
-
-
-                //std::cout << textures.find(b->getTexture())->first;
-
+                // std::cout << textures.find(b->getTexture())->first;
                 QPixmap* texturePath = textures.find(b->getTexture())->second;
                 mainWindow->addTile(texturePath);
-
-
-
-
             }
 
-              std::cout << std::endl;
+              // std::cout << std::endl;
     }
+
+
+
+
 }
 
 char GraphicalUI::move()
@@ -96,10 +93,35 @@ void GraphicalUI::initTextures()
     QPixmap* wall = new QPixmap("://texture/wall/wall1.png");
     textures.insert(std::make_pair("Wall",wall));
 
-
     QPixmap* player = new QPixmap("://texture/char/front/char_front_1.png");
     textures.insert(std::make_pair("Player",player));
 
+    QPixmap* arrowUPLEFT = new QPixmap("://texture/arrows/arrow_up_left.png");
+    textures.insert(std::make_pair("arrowUPLEFT",arrowUPLEFT));
+
+    QPixmap* arrowUP = new QPixmap("://texture/arrows/arrow_up.png");
+    textures.insert(std::make_pair("arrowUP",arrowUP));
+
+    QPixmap* arrowUPRIGHT = new QPixmap("://texture/arrows/arrow_up_right.png");
+    textures.insert(std::make_pair("arrowUPRIGHT",arrowUPRIGHT));
+
+    QPixmap* arrowLEFT = new QPixmap("://texture/arrows/arrow_left.png");
+    textures.insert(std::make_pair("arrowLEFT",arrowLEFT));
+
+    QPixmap* arrowMID = new QPixmap("://texture/arrows/arrow_skip.png");
+    textures.insert(std::make_pair("arrowMID",arrowMID));
+
+    QPixmap* arrowRIGHT = new QPixmap("://texture/arrows/arrow_right.png");
+    textures.insert(std::make_pair("arrowRIGHT",arrowRIGHT));
+
+    QPixmap* arrowDOWNLEFT = new QPixmap("://texture/arrows/arrow_down_left.png");
+    textures.insert(std::make_pair("arrowDOWNLEFT",arrowDOWNLEFT));
+
+    QPixmap* arrowDOWN = new QPixmap("://texture/arrows/arrow_down.png");
+    textures.insert(std::make_pair("arrowDOWN",arrowDOWN));
+
+    QPixmap* arrowDOWNRIGHT = new QPixmap("://texture/arrows/arrow_down_right.png");
+    textures.insert(std::make_pair("arrowDOWNRIGHT",arrowDOWNRIGHT));
 }
 
 void GraphicalUI::StartButtonClicked()

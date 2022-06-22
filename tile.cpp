@@ -35,6 +35,7 @@ bool Tile::moveTo(Tile *destTile, Character *who)
 
 bool Tile::hasCharacter()
 {
+    return false;
     if(player==nullptr){
         return false;
     }else{
@@ -46,6 +47,7 @@ bool Tile::hasCharacter()
 
 const std::string &Tile::getTexture()
 {
+    // TODO: Auskommentiert
     if(hasCharacter()){
         return player->getTexture();
     }

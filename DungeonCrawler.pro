@@ -13,6 +13,7 @@ SOURCES += \
         active.cpp \
         character.cpp \
         controller.cpp \
+        directionbutton.cpp \
         door.cpp \
         dungeoncrawler.cpp \
         floor.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     active.h \
     character.h \
     controller.h \
+    directionbutton.h \
     door.h \
     dungeoncrawler.h \
     floor.h \
