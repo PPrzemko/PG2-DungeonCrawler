@@ -11,6 +11,8 @@ public:
     void swapState();
     Tile* onLeave(Tile* destTile, Character* who) override;
     Tile* onEnter(Tile* fromTile, Character* who) override;
+    bool getOpen() const;
+
 private:
     bool open;
 };

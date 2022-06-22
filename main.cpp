@@ -10,7 +10,7 @@ using namespace std;
 
 
         DungeonCrawler* l = new DungeonCrawler();
-
+        l->play();
 
         return a.exec();
 

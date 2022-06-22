@@ -28,6 +28,11 @@ Tile* Door::onEnter(Tile* fromTile, Character* who){
     }
 }
 
+bool Door::getOpen() const
+{
+    return open;
+}
+
 Tile* Door::onLeave(Tile* destTile, Character* who){
 
     return this;

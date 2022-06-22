@@ -7,6 +7,8 @@
 #include "level.h"
 #include <QPushButton>
 #include <QObject>
+#include <QTest>
+#include <QCoreApplication>
 
 class GraphicalUI : public AbstractUI, public Controller, public QObject
 {
@@ -24,6 +26,7 @@ public:
     void initField(Level* s);
     char move() override;
     void initTextures();
+
 
 public slots:
     void StartButtonClicked();

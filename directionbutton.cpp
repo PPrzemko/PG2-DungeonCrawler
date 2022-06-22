@@ -5,6 +5,7 @@ DirectionButton::DirectionButton(QPixmap* texture, char direction): direction(di
     this->setIcon(*texture);
     this->setMinimumSize(64,64);
     this->setMaximumSize(64,64);
+
     connect(this, &DirectionButton::clicked, this, &DirectionButton::clickedSlot);
 
 

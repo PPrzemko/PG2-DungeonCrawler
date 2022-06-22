@@ -10,7 +10,7 @@ class DungeonCrawler
 {
 
 protected:
-AbstractUI* UI;
+GraphicalUI* UI;
 Level* level;
 
 public:

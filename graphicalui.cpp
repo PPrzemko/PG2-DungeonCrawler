@@ -1,5 +1,6 @@
 #include "graphicalui.h"
 
+
 GraphicalUI::GraphicalUI()
 {
     mainWindow = new MainWindow();
@@ -15,6 +16,33 @@ GraphicalUI::GraphicalUI()
 }
 void GraphicalUI::draw(Level* s){
 
+    int col = s->getCol();
+        int row = s->getRow();
+        for(int i = 0; i < col;++i){
+            for(int j = 0; j < row;++j){
+                //std::cout << level->getCollumn() << " Collum" << std::endl;
+                //std::cout << level->getRow() << " Row" << std::endl;
+                //std::cout << i << " und " << j << std::endl;
+                Tile* currentTile = s->getTile(i,j);
+                mainWindow->setLabelTexture(textures.find(currentTile->getTexture())->second,i,j);
+                if(currentTile->hasCharacter()){
+                    //windowMainWindow->setCharLabelParent(i,j);
+                    mainWindow->setLabelTexture(textures.find("texCharRight")->second,i,j);
+                }
+                if(typeid (currentTile) == typeid (Door)){
+
+                    Door *door = dynamic_cast<Door*>(currentTile);
+                    if(door->getOpen()){
+                        mainWindow->setLabelTexture(textures.find("texDoor2")->second,i,j);
+                    }else if(!door->getOpen()){
+                        mainWindow->setLabelTexture(textures.find("texDoor1")->second,i,j);
+                    }
+                }
+            }
+        }
+
+
+
 }
 
 void GraphicalUI::initField(Level* s)
@@ -27,12 +55,18 @@ void GraphicalUI::initField(Level* s)
 
    //}
     mainWindow->addControl(textures);
-
+    mainWindow->addPlayer(textures);
     for(auto &a: s->getTileVector()){
             for(auto &b : a){
+                bool hasPlayer=false;
                 // std::cout << textures.find(b->getTexture())->first;
                 QPixmap* texturePath = textures.find(b->getTexture())->second;
-                mainWindow->addTile(texturePath);
+
+                if(b->hasCharacter()){
+                   hasPlayer=true;
+                }
+
+                mainWindow->addTile(texturePath, hasPlayer);
             }
 
               // std::cout << std::endl;
@@ -41,10 +75,28 @@ void GraphicalUI::initField(Level* s)
 
 
 
+
+    /* DEBUG HIDE ALL
+    for(auto &a: mainWindow->getLabelVector()){
+        for(auto &b:a){
+            b->hide();
+        }
+    }
+    */
+
+
+
 }
 
 char GraphicalUI::move()
 {
+    char c = mainWindow->getDirection();
+    QCoreApplication::processEvents(QEventLoop::AllEvents);
+    QTest::qWait(50);
+    std::cout << "C: " << c << std::endl;
+    return c;
+
+
 
 }
 
@@ -93,9 +145,6 @@ void GraphicalUI::initTextures()
     QPixmap* wall = new QPixmap("://texture/wall/wall1.png");
     textures.insert(std::make_pair("Wall",wall));
 
-    QPixmap* player = new QPixmap("://texture/char/front/char_front_1.png");
-    textures.insert(std::make_pair("Player",player));
-
     QPixmap* arrowUPLEFT = new QPixmap("://texture/arrows/arrow_up_left.png");
     textures.insert(std::make_pair("arrowUPLEFT",arrowUPLEFT));
 
@@ -122,6 +171,11 @@ void GraphicalUI::initTextures()
 
     QPixmap* arrowDOWNRIGHT = new QPixmap("://texture/arrows/arrow_down_right.png");
     textures.insert(std::make_pair("arrowDOWNRIGHT",arrowDOWNRIGHT));
+
+    QPixmap* player = new QPixmap("://texture/char/front/char_front_1.png");
+    textures.insert(std::make_pair("Player",player));
+
+
 }
 
 void GraphicalUI::StartButtonClicked()

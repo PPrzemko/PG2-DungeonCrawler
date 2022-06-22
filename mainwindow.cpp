@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
     QWidget::setStyleSheet("background-color: black;");
     int gridRow = 8;
@@ -14,17 +15,73 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->gridGame->addLayout(tempGridGame,gridRow-1,gridCol-1);
     ui->gridControl->addLayout(tempGridControll ,2,2);
 
+
+
+
+
+
+    for(int i=0; i<8;++i){
+         labelVector.push_back(std::vector<QLabel*>(16));
+    }
+
+
+
 }
 
-void MainWindow::addTile(QPixmap* texturePath)
+void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
 {
+
     QLabel* label = new QLabel();
     label->setPixmap(*texturePath);
     label->setMinimumSize(64,64);
     label->setScaledContents(true);
     ui->gridGame->addWidget(label);
     label->show();
+    if(hasPlayer){
+        currentCharLabel->setParent(label);
+        currentCharLabel->show();
+
+    }
+
+    static int col = 0;
+    static int row = 0;
+
+    labelVector.at(col).at(row) = label;
+
+    if(row < 15){
+         ++row;
+     }else{
+         row = 0;
+         ++col;
+     }
+
+
+
+
 }
+void MainWindow::addPlayer(std::map<std::string, QPixmap *> textures)
+{
+    currentCharLabel = new QLabel();
+    currentCharLabel->setPixmap(*textures.find("Player")->second);
+    currentCharLabel->setMaximumSize(64,64);
+    currentCharLabel->setScaledContents(true);
+    setCharacterParent(currentCharLabel,3,3);
+    currentCharLabel->hide();
+}
+
+
+void MainWindow::setLabelTexture(QPixmap *texture, int col, int row)
+{
+    labelVector.at(col).at(row)->setPixmap(*texture);
+}
+
+void MainWindow::setCharacterParent(QLabel* playerLabel, int col, int row)
+{
+    playerLabel->setParent(labelVector.at(col).at(row));
+}
+
+
+
 
 void MainWindow::addControl(std::map<std::string,QPixmap*> textures)
 {
@@ -59,6 +116,7 @@ void MainWindow::addControl(std::map<std::string,QPixmap*> textures)
     connect(arrowDOWNLEFT, &DirectionButton::charButtonClicked, this, &MainWindow::charButtonClickedSlot);
 }
 
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -68,8 +126,18 @@ void MainWindow::charButtonClickedSlot(char direction)
 {
     this->direction=direction;
     std::cout << direction;
+
 }
+
+
+const std::vector<std::vector<QLabel *> > &MainWindow::getLabelVector() const
+{
+    return labelVector;
+}
+
+
 char MainWindow::getDirection() const
 {
     return direction;
 }
+
