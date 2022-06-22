@@ -1,6 +1,6 @@
 #include "floor.h"
 
-Floor::Floor(Character* player, const int& col, const int& row)
+Floor::Floor(const int& col, const int& row, Character* player)
     : Tile(".", player, col, row)
 
 {

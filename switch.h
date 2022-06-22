@@ -6,7 +6,7 @@
 class Switch : public Tile, public Active
 {
 public:
-    Switch(Character *player, const int& col, const int& row);
+    Switch(const int& col, const int& row, Character* player=nullptr);
     Tile *onLeave(Tile *destTile, Character *who) override;
     Tile *onEnter(Tile *fromTile, Character *who) override;
 };

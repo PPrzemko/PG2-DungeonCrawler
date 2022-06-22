@@ -2,7 +2,7 @@
 
 
 
-Portal::Portal(Character* player, const int& col, const int& row)
+Portal::Portal(const int& col, const int& row, Character* player)
     : Tile("O", player, col, row)
 {
 

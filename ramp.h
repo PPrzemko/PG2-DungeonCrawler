@@ -5,7 +5,7 @@
 class Ramp : public Tile
 {
 public:
-    Ramp(Character* player, const int& col, const int& row);
+    Ramp(const int& col, const int& row, Character* player=nullptr);
     Tile* onEnter(Tile* fromTile, Character* who) override;
     Tile* onLeave(Tile* destTile, Character* who) override;
 

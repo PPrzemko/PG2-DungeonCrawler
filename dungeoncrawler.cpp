@@ -6,15 +6,17 @@ void DungeonCrawler::moveOffset(int i, Tile* currentCharacterTile, int colOffset
     colOffset = currentCharacterTile->getColumn()+colOffset;
     rowOffset = currentCharacterTile->getRow()+rowOffset;
 
-    if(colOffset>=level->getCol() || colOffset < 0){
+    Tile* destionationtile = level->getTile(colOffset,rowOffset);
+    currentCharacterTile->moveTo(destionationtile, level->getCharacterVector().at(i));
+    /*
+    if(colOffset>=level->getCol() || rowOffset  < 0){
         std::cout << "Spielfeld kann nicht verlassen werden" << std::endl;
-    }else if(rowOffset>=level->getRow() || rowOffset < 0){
+    }else if(rowOffset>=level->getRow() || colOffset< 0){
         std::cout << "Spielfeld kann nicht verlassen werden" << std::endl;
     }else{
-        Tile* destionationtile = level->getTile(colOffset,rowOffset);
-        currentCharacterTile->moveTo(destionationtile, level->getCharacterVector().at(i));
-    }
 
+    }
+    */
 
 }
 

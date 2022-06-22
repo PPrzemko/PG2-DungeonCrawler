@@ -10,7 +10,7 @@ int main()
 {
 
     TerminalUI* n = new TerminalUI();
-    Level* k1 = new Level(5,5,n);
+    Level* k1 = new Level(8,8,n);
     DungeonCrawler* l = new DungeonCrawler(n,k1);
     Level* k2 = new Level(*k1);
     *k2=*k1;
@@ -20,7 +20,7 @@ int main()
 
     while(1){
         l->play();
-        system("clear");
+        system("cls");
     }
 
 }

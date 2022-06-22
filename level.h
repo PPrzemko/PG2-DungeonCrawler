@@ -29,14 +29,14 @@ public:
     Level(const int& col, const int& row, Controller *con);
     Level(const Level &level);
     Level &operator=(Level level);
-    Tile *getTile(int row, int col) const;
-    void placeCharacter(Character *c, int row, int col);
+    Tile *getTile(int col, int row) const;
+    void placeCharacter(Character *c, int col, int row);
     ~Level();
 
 
-
-    int getRow() const;
     int getCol() const;
+    int getRow() const;
+
     const std::vector<std::vector<Tile *> > &getTileVector() const;
     const std::vector<Character *> &getCharacterVector() const;
 };

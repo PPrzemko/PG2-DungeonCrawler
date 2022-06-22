@@ -1,6 +1,6 @@
 #include "switch.h"
 
-Switch::Switch(Character* player, const int& col, const int& row) : Tile("?", player, col, row), Active()
+Switch::Switch(const int& col, const int& row, Character* player) : Tile("?", player, col, row), Active()
 {
 
 }

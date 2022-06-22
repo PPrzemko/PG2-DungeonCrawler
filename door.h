@@ -6,7 +6,7 @@
 class Door : public Tile, public Passive
 {
 public:
-    Door(Character* player, const int& col, const int& row);
+    Door(const int& col, const int& row, Character* player=nullptr);
     void notify(Active* source) override;
     void swapState();
     Tile* onLeave(Tile* destTile, Character* who) override;

@@ -1,6 +1,6 @@
 #include "ramp.h"
 
-Ramp::Ramp(Character* player, const int& col, const int& row) : Tile(">", player, col, row)
+Ramp::Ramp(const int& col, const int& row, Character* player) : Tile(">", player, col, row)
 {
 
 }
