@@ -9,7 +9,7 @@ private:
 
 
 public:
-    Floor(Character* player, const int& col, const int& row);
+    Floor(const int& col, const int& row, Character* player=nullptr);
     Tile* onEnter(Tile* fromTile, Character* who) override;
     Tile* onLeave(Tile* destTile, Character* who) override;
 

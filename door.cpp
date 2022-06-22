@@ -1,6 +1,6 @@
 #include "door.h"
 
-Door::Door(Character* player, const int& col, const int& row) : Tile("X", player, col, row), Passive()
+Door::Door(const int& col, const int& row, Character* player) : Tile("X", player, col, row), Passive()
 {
     open=false;
 }

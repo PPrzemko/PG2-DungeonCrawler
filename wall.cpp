@@ -1,6 +1,6 @@
 #include "wall.h"
 
-Wall::Wall(Character* player, const int& col, const int& row)
+Wall::Wall(const int& col, const int& row, Character* player)
     : Tile("#", player, col, row)
 {
 

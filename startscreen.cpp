@@ -15,11 +15,15 @@ StartScreen::StartScreen(QWidget *parent) :
     QPixmap buttonIcon = QPixmap("://texture/new_game_button.png");
     ui->ButtonStartGame->setIcon(buttonIcon);
     ui->ButtonStartGame->setIconSize(QSize(270,200));
-    connect(ui->ButtonStartGame, &QPushButton::clicked, this, &StartScreen::StartButtonClicked);
 
 
 
 
+}
+
+QPushButton* StartScreen::getButtonStartGame()
+{
+    return ui->ButtonStartGame;
 }
 
 StartScreen::~StartScreen()
@@ -27,7 +31,4 @@ StartScreen::~StartScreen()
     delete ui;
 }
 
-void StartScreen::StartButtonClicked()
-{
-    std::cout << "test";
-}
+

@@ -1,6 +1,6 @@
 #include "pit.h"
 
-Pit::Pit(Character* player, const int& col, const int& row) : Tile("_", player, col, row)
+Pit::Pit(const int& col, const int& row, Character* player) : Tile("_", player, col, row)
 {
 
 }

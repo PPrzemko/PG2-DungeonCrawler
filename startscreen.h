@@ -14,14 +14,12 @@ class StartScreen : public QDialog
 
 public:
     explicit StartScreen(QWidget *parent = nullptr);
-
+    QPushButton* getButtonStartGame();
     ~StartScreen();
 
 private:
     Ui::StartScreen *ui;
 
-public slots:
-    void StartButtonClicked();
 
 
 };
