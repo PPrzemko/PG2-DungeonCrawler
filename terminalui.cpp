@@ -7,17 +7,16 @@ TerminalUI::TerminalUI()
 
 void TerminalUI::draw(Level* s)
 {
+    for(auto &a: s->getTileVector()){
 
-    for(int i=0;i<s->getCol();++i){
+            for(auto &b : a){
 
-        for(int j=0;j<s->getRow();++j){
+                std::cout << b->getTexture();
+            }
 
-        std::cout << s->getTileVector().at(i).at(j)->getTexture();
-
+              std::cout << std::endl;
         }
-        std::cout << std::endl;
 
-    }
 }
 
 char TerminalUI::move()

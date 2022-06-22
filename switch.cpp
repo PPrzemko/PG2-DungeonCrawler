@@ -1,8 +1,8 @@
 #include "switch.h"
 
-Switch::Switch(const int& col, const int& row, Character* player) : Tile("?", player, col, row), Active()
+Switch::Switch(const int& col, const int& row, Character* player) : Tile(player, col, row), Active()
 {
-
+    texture="Switch";
 }
 
 Tile *Switch::onLeave(Tile *destTile, Character *who)

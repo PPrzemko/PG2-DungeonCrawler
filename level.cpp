@@ -7,17 +7,15 @@ Level::Level(const int& col, const int& row, Controller *con) :
     Character* d = new Character(con);
     characterVector.push_back(d);
 
-
     //Floor* k = new Floor(".", d, 0 , 0);
     //Floor* g = new Floor(".", nullptr, 1 , 1);
-
-    Portal* redPortal1 = new Portal(1 , 9);
-    Portal* redPortal2 = new Portal(2 , 1);
+    Portal* redPortal1 = new Portal(Rot, 1 , 9);
+    Portal* redPortal2 = new Portal(Rot, 2 , 1);
     redPortal1->setDestination(redPortal2);
     redPortal2->setDestination(redPortal1);
 
-    Portal* bluePortal1 = new Portal(3 , 7);
-    Portal* bluePortal2 = new Portal(6 , 1);
+    Portal* bluePortal1 = new Portal(Blau, 3 , 7);
+    Portal* bluePortal2 = new Portal(Blau, 6 , 1);
     bluePortal1->setDestination(bluePortal2);
     bluePortal2->setDestination(bluePortal1);
 
@@ -31,7 +29,6 @@ Level::Level(const int& col, const int& row, Controller *con) :
     // 0
     world.push_back({new Wall(0 , 0),new Wall(0 , 1),new Wall(0 , 2),new Wall(0 , 3),new Wall(0 , 4),new Wall(0 , 5),new Wall(0 , 6),new Wall(0 , 7),new Wall(0 , 8),
                      new Wall(0 , 9),new Wall(0 , 10),new Wall(0 , 11),new Wall(0 , 12),new Wall(0 , 13),new Wall(0 , 14),new Wall(0 , 15)});
-
     //1
     world.push_back({new Wall(1 , 0),new Floor(1 , 1),new Floor(1 , 2),new Floor(1 , 3),new Floor(1 , 4),new Floor(1 , 5),new Floor(1 , 6),new Floor(1 , 7),new Wall(1 , 8),
                      redPortal1     ,new Floor(1 , 10),new Pit(1 , 11),new Ramp(1 , 12),new Floor(1 , 13),new Floor(1 , 14),new Wall(1 , 15)});
@@ -86,7 +83,7 @@ Level::Level(const Level &level) : col(level.getCol()), row(level.getRow())
                 Tile* k = new Floor(c->getColumn() , c->getRow());
                 world.at(i).at(j)=k;
             }else if(typeid (*c)==typeid (Portal)){
-                Tile* k = new Portal(c->getColumn() , c->getRow());
+                Tile* k = new Portal(dynamic_cast<Portal*>(c)->getPortalType(),c->getColumn() , c->getRow());
                 portalQueue.push_back(dynamic_cast<Portal*>(k));
                 world.at(i).at(j)=k;
             }else if(typeid (*c)==typeid (Door)){

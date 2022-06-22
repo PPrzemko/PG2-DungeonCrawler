@@ -2,6 +2,7 @@
 #define FLOOR_H
 #include "tile.h"
 #include <string>
+#include <ctime>
 
 class Floor : public Tile
 {

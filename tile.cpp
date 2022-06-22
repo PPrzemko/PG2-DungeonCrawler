@@ -1,7 +1,7 @@
 #include "tile.h"
 
-Tile::Tile(const std::string& texture, Character* player, const int& col, const int& row)
-    : texture(texture), player(player), col(col), row(row)
+Tile::Tile(Character* player, const int& col, const int& row)
+    : player(player), col(col), row(row)
 {
 
 }

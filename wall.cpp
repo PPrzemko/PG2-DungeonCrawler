@@ -1,9 +1,9 @@
 #include "wall.h"
 
 Wall::Wall(const int& col, const int& row, Character* player)
-    : Tile("#", player, col, row)
+    : Tile(player, col, row)
 {
-
+    texture="Wall";
 }
 
 Tile* Wall::onEnter(Tile* fromTile, Character* who){

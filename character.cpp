@@ -4,7 +4,7 @@
 
 Character::Character(Controller* controller) : texture("X"), controller(controller)
 {
-
+    texture="Player";
 }
 
 

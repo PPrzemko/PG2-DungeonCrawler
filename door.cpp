@@ -1,8 +1,9 @@
 #include "door.h"
 
-Door::Door(const int& col, const int& row, Character* player) : Tile("X", player, col, row), Passive()
+Door::Door(const int& col, const int& row, Character* player) : Tile(player, col, row), Passive()
 {
     open=false;
+    texture = ("DoorClose");
 }
 
 void Door::notify(Active *source)
@@ -14,9 +15,9 @@ void Door::swapState()
 {
     open=!open;
     if(open){
-        texture = ("/");
+        texture = ("DoorOpen");
     }else{
-        texture = ("X");
+        texture = ("DoorClose");
     }
 }
 Tile* Door::onEnter(Tile* fromTile, Character* who){

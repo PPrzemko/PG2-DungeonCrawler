@@ -1,8 +1,8 @@
 #include "ramp.h"
 
-Ramp::Ramp(const int& col, const int& row, Character* player) : Tile(">", player, col, row)
+Ramp::Ramp(const int& col, const int& row, Character* player) : Tile(player, col, row)
 {
-
+    texture="Ramp";
 }
 Tile* Ramp::onEnter(Tile* fromTile, Character* who){
     return this;

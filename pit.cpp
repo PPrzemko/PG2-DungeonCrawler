@@ -1,8 +1,8 @@
 #include "pit.h"
 
-Pit::Pit(const int& col, const int& row, Character* player) : Tile("_", player, col, row)
+Pit::Pit(const int& col, const int& row, Character* player) : Tile(player, col, row)
 {
-
+    texture="pit";
 }
 Tile* Pit::onEnter(Tile* fromTile, Character* who){
     return this;

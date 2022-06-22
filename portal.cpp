@@ -1,10 +1,20 @@
 #include "portal.h"
 
 
-
-Portal::Portal(const int& col, const int& row, Character* player)
-    : Tile("O", player, col, row)
+Portal::Portal(const int& col, const int& row,int portaltype, Character* player)
+    : Tile(player, col, row), portalType(portaltype)
 {
+    texture="Rot";
+    /*
+    if(portalType==Blau){
+    texture="Blau";
+    }if(portalType==Rot){
+    texture="Rot";
+    }else if(portalType==Gelb){
+    texture="Gelb";
+    }
+    */
+
 
 }
 Tile* Portal::onEnter(Tile* fromTile, Character* who){
@@ -21,4 +31,8 @@ void Portal::setDestination(Tile *newDestination)
 Tile *Portal::getDestination() const
 {
     return destination;
+}
+int Portal::getPortalType() const
+{
+    return portalType;
 }

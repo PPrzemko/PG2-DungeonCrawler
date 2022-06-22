@@ -6,6 +6,7 @@ DungeonCrawler::DungeonCrawler()
     GraphicalUI* n = new GraphicalUI();
     Level* k1 = new Level(8,16,n);
     n->draw(k1);
+    n->initField(k1);
 
 }
 
