@@ -76,8 +76,11 @@ void MainWindow::addPlayer(std::map<std::string, QPixmap *> textures)
 
 void MainWindow::setLabelTexture(QPixmap *texture, int col, int row)
 {
-    std::cout <<  "texture umsetzten";
     labelVector.at(col).at(row)->setPixmap(*texture);
+}
+void MainWindow::setLabelTexture(QPixmap *texture)
+{
+    currentCharLabel->setPixmap(*texture);
 }
 
 void MainWindow::setCharacterParent(int col, int row)

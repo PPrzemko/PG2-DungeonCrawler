@@ -22,18 +22,17 @@ public:
     void setLabelTexture(QPixmap* texture, int col, int row);
     void setCharacterParent(int col, int row);
     void addPlayer(std::map<std::string,QPixmap*> textures);
+    void setLabelTexture(QPixmap *texture);
+
+
     ~MainWindow();
 
 
 
     const std::vector<std::vector<QLabel *> > &getLabelVector() const;
-
     void setDirection(char newDirection);
     char getDirection() const;
-
-
     bool getHasInputReady() const;
-
     void setHasInputReady(bool newHasInputReady);
 
 private:

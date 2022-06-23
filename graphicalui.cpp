@@ -35,7 +35,6 @@ void GraphicalUI::draw(Level* s){
                 }
 
                 if(typeid (*currentTile) == typeid (Door)){
-                    std::cout << "TEST";
                     Door *door = dynamic_cast<Door*>(currentTile);
                     if(door->getOpen()){
                         mainWindow->setLabelTexture(textures.find("DoorOpen")->second,i,j);
@@ -57,9 +56,24 @@ char GraphicalUI::move()
      QTest::qWait(100);
      QCoreApplication::processEvents(QEventLoop::AllEvents);
      if(mainWindow->getHasInputReady()){
+         c = mainWindow->getDirection();
+         if(c=='w'){
+             mainWindow->setLabelTexture(textures.find("PlayerUP")->second);
+         }else if(c=='x'){
+             mainWindow->setLabelTexture(textures.find("Player")->second);
+         }else if(c=='d'){
+             mainWindow->setLabelTexture(textures.find("PlayerRIGHT")->second);
+         }else if(c=='a'){
+             mainWindow->setLabelTexture(textures.find("PlayerLEFT")->second);
+         }
+
+
+
+
          std::cout << "Direction: " << c << std::endl;
          mainWindow->setHasInputReady(false);
-         c = mainWindow->getDirection();
+
+
      }
      return c;
 
@@ -188,6 +202,16 @@ void GraphicalUI::initTextures()
 
     QPixmap* player = new QPixmap("://texture/char/front/char_front_1.png");
     textures.insert(std::make_pair("Player",player));
+
+    QPixmap* playerUP = new QPixmap("://texture/char/back/char_back_1.png");
+    textures.insert(std::make_pair("PlayerUP",playerUP));
+
+    QPixmap* playerRIGHT = new QPixmap("://texture/char/right/char_right_1.png");
+    textures.insert(std::make_pair("PlayerRIGHT",playerRIGHT));
+
+    QPixmap* playerLEFT = new QPixmap("://texture/char/left/char_left_1.png");
+    textures.insert(std::make_pair("PlayerLEFT",playerLEFT));
+
 
 
 }
