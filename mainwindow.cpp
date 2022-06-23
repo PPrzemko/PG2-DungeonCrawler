@@ -183,3 +183,10 @@ QPoint MainWindow::getQPosOfLabel(int col, int row)
     return labelVector.at(col).at(row)->pos();
 }
 
+QLabel *MainWindow::getCurrentCharLabel() const
+{
+    return currentCharLabel;
+}
+
+
+

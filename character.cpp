@@ -2,6 +2,16 @@
 
 
 
+const char &Character::getLastMoveDirection() const
+{
+    return lastMoveDirection;
+}
+
+void Character::setLastMoveDirection(const char &newLastMoveDirection)
+{
+    lastMoveDirection = newLastMoveDirection;
+}
+
 Character::Character(Controller* controller) : texture("X"), controller(controller)
 {
     texture="Player";

@@ -33,6 +33,7 @@ void DungeonCrawler::play()
         UI->draw(level);
         for(size_t i=0;i<level->getCharacterVector().size();++i){
             char input = level->getCharacterVector().at(i)->move();
+            level->getCharacterVector().at(i)->setLastMoveDirection(input);
 
             Tile* currentCharacterTile = level->getCharacterVector().at(i)->getCurrentTile();
             if(input=='q'){

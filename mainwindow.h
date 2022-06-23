@@ -36,6 +36,8 @@ public:
     void setHasInputReady(bool newHasInputReady);
     QPoint getQPosOfLabel(int col, int row);
 
+    QLabel *getCurrentCharLabel() const;
+
 private:
     bool hasInputReady;
     Ui::MainWindow *ui;

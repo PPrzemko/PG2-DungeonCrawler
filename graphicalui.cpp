@@ -16,6 +16,13 @@ GraphicalUI::GraphicalUI()
 }
 void GraphicalUI::draw(Level* s){
 
+
+
+
+
+
+
+
     int col = s->getCol();
         int row = s->getRow();
         for(int i = 0; i < col;++i){
@@ -26,6 +33,66 @@ void GraphicalUI::draw(Level* s){
                 //mainWindow->setLabelTexture(textures.find(currentTile->getTexture())->second,i,j);
 
                 if(currentTile->hasCharacter()){
+
+                    char movement = s->getCharacterVector().at(0)->getLastMoveDirection();
+                    if(movement=='w' || movement=='q' || movement=='e'){
+                        static int zahl=0;
+                        if(zahl==0){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP")->second);
+                            ++zahl;
+                        }else if(zahl==1){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP1")->second);
+                            ++zahl;
+                        }else if(zahl==2){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP2")->second);
+                            zahl=0;
+                        }
+                    }else if(movement=='x' ||	movement=='s' || movement=='y' ||	movement=='c'){
+                        static int zahl=0;
+                        if(zahl==0){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player")->second);
+                            ++zahl;
+                        }else if(zahl==1){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player1")->second);
+                            ++zahl;
+                        }else if(zahl==2){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player2")->second);
+                            zahl=0;
+                        }
+
+                    }else if(movement=='a'){
+                        static int zahl=0;
+                        if(zahl==0){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT")->second);
+                            ++zahl;
+                        }else if(zahl==1){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT1")->second);
+                            ++zahl;
+                        }else if(zahl==2){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT2")->second);
+                            zahl=0;
+                        }
+
+                    }else if(movement=='d'){
+                        static int zahl=0;
+                        if(zahl==0){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT")->second);
+                            ++zahl;
+                        }else if(zahl==1){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT1")->second);
+                            ++zahl;
+                        }else if(zahl==2){
+                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT2")->second);
+                            zahl=0;
+                        }
+
+                    }
+
+
+
+
+
+
                     bool isPit=false;
                     if(typeid (*currentTile) == typeid (Pit)){
                        isPit=true;
@@ -58,6 +125,8 @@ char GraphicalUI::move()
      QCoreApplication::processEvents(QEventLoop::AllEvents);
      if(mainWindow->getHasInputReady()){
          c = mainWindow->getDirection();
+
+         /*
          if(c=='w' || c=='q' ||	c=='e'){
              mainWindow->setLabelTexture(textures.find("PlayerUP")->second);
          }else if(c=='x' ||	c=='s' || c=='y' ||	c=='c'){
@@ -67,7 +136,7 @@ char GraphicalUI::move()
          }else if(c=='a'){
              mainWindow->setLabelTexture(textures.find("PlayerLEFT")->second);
          }
-
+        */
 
 
 
@@ -203,17 +272,31 @@ void GraphicalUI::initTextures()
 
     QPixmap* player = new QPixmap("://texture/char/front/char_front_1.png");
     textures.insert(std::make_pair("Player",player));
+    QPixmap* player1 = new QPixmap("://texture/char/front/char_front_2.png");
+    textures.insert(std::make_pair("Player1",player1));
+    QPixmap* player2 = new QPixmap("://texture/char/front/char_front_3.png");
+    textures.insert(std::make_pair("Player2",player2));
 
     QPixmap* playerUP = new QPixmap("://texture/char/back/char_back_1.png");
     textures.insert(std::make_pair("PlayerUP",playerUP));
+    QPixmap* playerUP1 = new QPixmap("://texture/char/back/char_back_2.png");
+    textures.insert(std::make_pair("PlayerUP1",playerUP1));
+    QPixmap* playerUP2 = new QPixmap("://texture/char/back/char_back_3.png");
+    textures.insert(std::make_pair("PlayerUP2",playerUP2));
 
     QPixmap* playerRIGHT = new QPixmap("://texture/char/right/char_right_1.png");
     textures.insert(std::make_pair("PlayerRIGHT",playerRIGHT));
+    QPixmap* playerRIGHT1 = new QPixmap("://texture/char/right/char_right_2.png");
+    textures.insert(std::make_pair("PlayerRIGHT1",playerRIGHT1));
+    QPixmap* playerRIGHT2 = new QPixmap("://texture/char/right/char_right_3.png");
+    textures.insert(std::make_pair("PlayerRIGHT2",playerRIGHT2));
 
     QPixmap* playerLEFT = new QPixmap("://texture/char/left/char_left_1.png");
     textures.insert(std::make_pair("PlayerLEFT",playerLEFT));
-
-
+    QPixmap* playerLEFT1 = new QPixmap("://texture/char/left/char_left_2.png");
+    textures.insert(std::make_pair("PlayerLEFT1",playerLEFT1));
+    QPixmap* playerLEFT2 = new QPixmap("://texture/char/left/char_left_3.png");
+    textures.insert(std::make_pair("PlayerLEFT2",playerLEFT2));
 
 }
 
