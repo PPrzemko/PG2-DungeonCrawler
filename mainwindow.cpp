@@ -85,7 +85,7 @@ void MainWindow::setLabelTexture(QPixmap *texture)
 
 void MainWindow::setCharacterParent(int col, int row, bool isPit)
 {
-    currentCharLabel->move(col,row);
+
     if(isPit){
         //labelVector.at(col).at(row)->setParent(currentCharLabel);
         //currentCharLabel->setParent(this);
@@ -95,6 +95,8 @@ void MainWindow::setCharacterParent(int col, int row, bool isPit)
     }else{
         currentCharLabel->setParent(labelVector.at(col).at(row));
     }
+    // need move col, row=0 if not player shifts down
+    currentCharLabel->move(col,0);
     currentCharLabel->show();
 }
 
