@@ -34,6 +34,7 @@ public:
     char getDirection() const;
     bool getHasInputReady() const;
     void setHasInputReady(bool newHasInputReady);
+    QPoint getQPosOfLabel(int col, int row);
 
 private:
     bool hasInputReady;

@@ -173,3 +173,8 @@ void MainWindow::setHasInputReady(bool newHasInputReady)
     hasInputReady = newHasInputReady;
 }
 
+QPoint MainWindow::getQPosOfLabel(int col, int row)
+{
+    return labelVector.at(col).at(row)->pos();
+}
+
