@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    QWidget::setStyleSheet("background-color: black;");
+    //QWidget::setStyleSheet("background-color: black;");
     int gridRow = 8;
     int gridCol = 16;
     QGridLayout* tempGridGame = new QGridLayout();
@@ -32,16 +32,16 @@ void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
 {
 
     QLabel* label = new QLabel();
+    //label->setStyleSheet("background-color: rgba(0,0,0,0%);color: rgba(150, 30, 30, 90%)");
+    //label->raise();
     label->setPixmap(*texturePath);
     label->setMinimumSize(64,64);
     label->setScaledContents(true);
     ui->gridGame->addWidget(label);
     label->show();
     if(hasPlayer){
-        // TODO: needs fix
         currentCharLabel->setParent(label);
         currentCharLabel->show();
-
     }
 
     static int col = 0;
@@ -90,13 +90,18 @@ void MainWindow::setCharacterParent(int col, int row, bool isPit)
         //labelVector.at(col).at(row)->setParent(currentCharLabel);
         //currentCharLabel->setParent(this);
 
-        currentCharLabel->setParent(labelVector.at(col).at(row));
+        currentCharLabel->setParent(this);
+        // Add QPoint to center char
+        currentCharLabel->move(labelVector.at(col).at(row)->pos() + QPoint(10,20));
+        currentCharLabel->lower();
+        labelVector.at(col).at(row)->raise(); // does not do anything
 
     }else{
         currentCharLabel->setParent(labelVector.at(col).at(row));
+        currentCharLabel->move(col,0);
     }
     // need move col, row=0 if not player shifts down
-    currentCharLabel->move(col,0);
+
     currentCharLabel->show();
 }
 
