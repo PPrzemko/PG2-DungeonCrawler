@@ -8,12 +8,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
     //QWidget::setStyleSheet("background-color: black;");
+    // Background label
     int gridRow = 8;
     int gridCol = 16;
     QGridLayout* tempGridGame = new QGridLayout();
     QGridLayout* tempGridControll = new QGridLayout();
     ui->gridGame->addLayout(tempGridGame,gridRow-1,gridCol-1);
     ui->gridControl->addLayout(tempGridControll ,2,2);
+
 
 
 
