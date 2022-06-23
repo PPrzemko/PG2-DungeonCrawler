@@ -20,7 +20,7 @@ public:
     void addTile(QPixmap* texturePath, bool hasPlayer);
     void addControl(std::map<std::string,QPixmap*> textures);
     void setLabelTexture(QPixmap* texture, int col, int row);
-    void setCharacterParent(int col, int row);
+    void setCharacterParent(int col, int row, bool isPit);
     void addPlayer(std::map<std::string,QPixmap*> textures);
     void setLabelTexture(QPixmap *texture);
 

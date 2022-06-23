@@ -66,7 +66,7 @@ void MainWindow::addPlayer(std::map<std::string, QPixmap *> textures)
     currentCharLabel->setPixmap(*textures.find("Player")->second);
     currentCharLabel->setMaximumSize(64,64);
     currentCharLabel->setScaledContents(true);
-    setCharacterParent(3,3);
+    setCharacterParent(3,3,false);
     //currentCharLabel->setAutoFillBackground(false);
     currentCharLabel->setStyleSheet("background-color: rgba(0,0,0,0%);color: rgba(150, 30, 30, 90%)");
     currentCharLabel->hide();
@@ -83,12 +83,21 @@ void MainWindow::setLabelTexture(QPixmap *texture)
     currentCharLabel->setPixmap(*texture);
 }
 
-void MainWindow::setCharacterParent(int col, int row)
+void MainWindow::setCharacterParent(int col, int row, bool isPit)
 {
     currentCharLabel->move(col,row);
-    currentCharLabel->setParent(labelVector.at(col).at(row));
+    if(isPit){
+        //labelVector.at(col).at(row)->setParent(currentCharLabel);
+        //currentCharLabel->setParent(this);
+
+        currentCharLabel->setParent(labelVector.at(col).at(row));
+
+    }else{
+        currentCharLabel->setParent(labelVector.at(col).at(row));
+    }
     currentCharLabel->show();
 }
+
 
 
 

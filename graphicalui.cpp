@@ -26,11 +26,13 @@ void GraphicalUI::draw(Level* s){
                 //mainWindow->setLabelTexture(textures.find(currentTile->getTexture())->second,i,j);
 
                 if(currentTile->hasCharacter()){
-                    mainWindow->setCharacterParent(i,j);
+                    bool isPit=false;
+                    if(typeid (*currentTile) == typeid (Pit)){
+                       isPit=true;
+                    }
+                    mainWindow->setCharacterParent(i,j,isPit);
 
                     //mainWindow->setLabelTexture(textures.find("Player")->second,i,j);
-
-
 
                 }
 
@@ -52,14 +54,13 @@ void GraphicalUI::draw(Level* s){
 char GraphicalUI::move()
 {
     char c = 'o';
-
      QTest::qWait(100);
      QCoreApplication::processEvents(QEventLoop::AllEvents);
      if(mainWindow->getHasInputReady()){
          c = mainWindow->getDirection();
-         if(c=='w'){
+         if(c=='w' || c=='q' ||	c=='e'){
              mainWindow->setLabelTexture(textures.find("PlayerUP")->second);
-         }else if(c=='x'){
+         }else if(c=='x' ||	c=='s' || c=='y' ||	c=='c'){
              mainWindow->setLabelTexture(textures.find("Player")->second);
          }else if(c=='d'){
              mainWindow->setLabelTexture(textures.find("PlayerRIGHT")->second);
