@@ -23,19 +23,24 @@ void GraphicalUI::draw(Level* s){
 
                 Tile* currentTile = s->getTile(i,j);
                 //Tempfix reloadtextures
-                mainWindow->setLabelTexture(textures.find(currentTile->getTexture())->second,i,j);
+                //mainWindow->setLabelTexture(textures.find(currentTile->getTexture())->second,i,j);
+
                 if(currentTile->hasCharacter()){
-                    //windowMainWindow->setCharLabelParent(i,j);
-                    mainWindow->setLabelTexture(textures.find("Player")->second,i,j);
+                    mainWindow->setCharacterParent(i,j);
+
+                    //mainWindow->setLabelTexture(textures.find("Player")->second,i,j);
+
+
+
                 }
 
-                if(typeid (currentTile) == typeid (Door)){
-
+                if(typeid (*currentTile) == typeid (Door)){
+                    std::cout << "TEST";
                     Door *door = dynamic_cast<Door*>(currentTile);
                     if(door->getOpen()){
-                        mainWindow->setLabelTexture(textures.find("texDoor2")->second,i,j);
+                        mainWindow->setLabelTexture(textures.find("DoorOpen")->second,i,j);
                     }else if(!door->getOpen()){
-                        mainWindow->setLabelTexture(textures.find("texDoor1")->second,i,j);
+                        mainWindow->setLabelTexture(textures.find("DoorClose")->second,i,j);
                     }
                 }
             }
@@ -44,6 +49,25 @@ void GraphicalUI::draw(Level* s){
 
 
 }
+
+char GraphicalUI::move()
+{
+    char c = 'o';
+
+     QTest::qWait(100);
+     QCoreApplication::processEvents(QEventLoop::AllEvents);
+     if(mainWindow->getHasInputReady()){
+         std::cout << "Direction: " << c << std::endl;
+         mainWindow->setHasInputReady(false);
+         c = mainWindow->getDirection();
+     }
+     return c;
+
+
+
+}
+
+
 
 void GraphicalUI::initField(Level* s)
 {
@@ -88,17 +112,7 @@ void GraphicalUI::initField(Level* s)
 
 }
 
-char GraphicalUI::move()
-{
-    char c = mainWindow->getDirection();
-    QCoreApplication::processEvents(QEventLoop::AllEvents);
-    QTest::qWait(50);
-    std::cout << "C: " << c << std::endl;
-    return c;
 
-
-
-}
 
 void GraphicalUI::initTextures()
 {

@@ -20,7 +20,7 @@ public:
     void addTile(QPixmap* texturePath, bool hasPlayer);
     void addControl(std::map<std::string,QPixmap*> textures);
     void setLabelTexture(QPixmap* texture, int col, int row);
-    void setCharacterParent(QLabel* Player, int col, int row);
+    void setCharacterParent(int col, int row);
     void addPlayer(std::map<std::string,QPixmap*> textures);
     ~MainWindow();
 
@@ -29,14 +29,17 @@ public:
     const std::vector<std::vector<QLabel *> > &getLabelVector() const;
 
     void setDirection(char newDirection);
-
     char getDirection() const;
 
 
+    bool getHasInputReady() const;
+
+    void setHasInputReady(bool newHasInputReady);
+
 private:
+    bool hasInputReady;
     Ui::MainWindow *ui;
     char direction;
-
     QLabel* currentCharLabel;
     std::vector<std::vector<QLabel*>> labelVector;
 

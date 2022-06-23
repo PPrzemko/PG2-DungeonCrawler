@@ -39,8 +39,8 @@ void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
     label->show();
     if(hasPlayer){
         // TODO: needs fix
-        //currentCharLabel->setParent(label);
-        //currentCharLabel->show();
+        currentCharLabel->setParent(label);
+        currentCharLabel->show();
 
     }
 
@@ -66,19 +66,25 @@ void MainWindow::addPlayer(std::map<std::string, QPixmap *> textures)
     currentCharLabel->setPixmap(*textures.find("Player")->second);
     currentCharLabel->setMaximumSize(64,64);
     currentCharLabel->setScaledContents(true);
-    setCharacterParent(currentCharLabel,3,3);
+    setCharacterParent(3,3);
+    //currentCharLabel->setAutoFillBackground(false);
+    currentCharLabel->setStyleSheet("background-color: rgba(0,0,0,0%);color: rgba(150, 30, 30, 90%)");
     currentCharLabel->hide();
+
 }
 
 
 void MainWindow::setLabelTexture(QPixmap *texture, int col, int row)
 {
+    std::cout <<  "texture umsetzten";
     labelVector.at(col).at(row)->setPixmap(*texture);
 }
 
-void MainWindow::setCharacterParent(QLabel* playerLabel, int col, int row)
+void MainWindow::setCharacterParent(int col, int row)
 {
-    playerLabel->setParent(labelVector.at(col).at(row));
+    currentCharLabel->move(col,row);
+    currentCharLabel->setParent(labelVector.at(col).at(row));
+    currentCharLabel->show();
 }
 
 
@@ -127,6 +133,7 @@ void MainWindow::charButtonClickedSlot(char direction)
 {
     this->direction=direction;
     std::cout << direction;
+    hasInputReady=true;
 
 }
 
@@ -140,5 +147,15 @@ const std::vector<std::vector<QLabel *> > &MainWindow::getLabelVector() const
 char MainWindow::getDirection() const
 {
     return direction;
+}
+
+bool MainWindow::getHasInputReady() const
+{
+    return hasInputReady;
+}
+
+void MainWindow::setHasInputReady(bool newHasInputReady)
+{
+    hasInputReady = newHasInputReady;
 }
 
