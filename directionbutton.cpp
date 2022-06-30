@@ -4,6 +4,7 @@ DirectionButton::DirectionButton(QPixmap* texture, char direction): direction(di
 {
     this->setIcon(*texture);
     this->setIconSize(QSize(64,64));
+    this->setStyleSheet("border:none");
     connect(this, &DirectionButton::clicked, this, &DirectionButton::clickedSlot);
 
 

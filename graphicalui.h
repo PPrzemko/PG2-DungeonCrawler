@@ -20,6 +20,8 @@ private:
 
 
 
+    void animateCharacter(char movement);
+
 public:
     GraphicalUI();
     void draw(Level* s) override;

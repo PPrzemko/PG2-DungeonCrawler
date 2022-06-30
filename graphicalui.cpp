@@ -14,6 +14,8 @@ GraphicalUI::GraphicalUI()
 
 
 }
+
+
 void GraphicalUI::draw(Level* s){
 
     std::string tmpStrength = std::to_string(s->getCharacterVector().at(0)->getStrength());
@@ -27,68 +29,10 @@ void GraphicalUI::draw(Level* s){
         for(int j = 0; j < row;++j){
 
             Tile* currentTile = s->getTile(i,j);
-            //Tempfix reloadtextures
-            //mainWindow->setLabelTexture(textures.find(currentTile->getTexture())->second,i,j);
-
+            // update Player Animation and falling down a pit
             if(currentTile->hasCharacter()){
-
                 char movement = s->getCharacterVector().at(0)->getLastMoveDirection();
-                if(movement=='w' || movement=='q' || movement=='e'){
-                    static int zahl=0;
-                    if(zahl==0){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP")->second);
-                        ++zahl;
-                    }else if(zahl==1){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP1")->second);
-                        ++zahl;
-                    }else if(zahl==2){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP2")->second);
-                        zahl=0;
-                    }
-                }else if(movement=='x' ||	movement=='s' || movement=='y' ||	movement=='c'){
-                    static int zahl=0;
-                    if(zahl==0){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player")->second);
-                        ++zahl;
-                    }else if(zahl==1){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player1")->second);
-                        ++zahl;
-                    }else if(zahl==2){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player2")->second);
-                        zahl=0;
-                    }
-
-                }else if(movement=='a'){
-                    static int zahl=0;
-                    if(zahl==0){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT")->second);
-                        ++zahl;
-                    }else if(zahl==1){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT1")->second);
-                        ++zahl;
-                    }else if(zahl==2){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT2")->second);
-                        zahl=0;
-                    }
-
-                }else if(movement=='d'){
-                    static int zahl=0;
-                    if(zahl==0){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT")->second);
-                        ++zahl;
-                    }else if(zahl==1){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT1")->second);
-                        ++zahl;
-                    }else if(zahl==2){
-                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT2")->second);
-                        zahl=0;
-                    }
-
-                }
-
-
-
-
+                animateCharacter(movement);
 
 
                 bool isPit=false;
@@ -97,10 +41,9 @@ void GraphicalUI::draw(Level* s){
                 }
                 mainWindow->setCharacterParent(i,j,isPit);
 
-                //mainWindow->setLabelTexture(textures.find("Player")->second,i,j);
-
             }
 
+            // Update Door Status
             if(typeid (*currentTile) == typeid (Door)){
                 Door *door = dynamic_cast<Door*>(currentTile);
                 if(door->getOpen()){
@@ -158,11 +101,6 @@ void GraphicalUI::initField(Level* s)
 {
     initTextures();
 
-    //QPixmap* texturePath1 = new QPixmap("://texture/floor/floor1.png");
-    //for(int i=0;i<128;++i){
-    //   mainWindow->addTile(texturePath1);
-
-   //}
     mainWindow->addControl(textures);
     mainWindow->addPlayer(textures);
     for(auto &a: s->getTileVector()){
@@ -181,17 +119,6 @@ void GraphicalUI::initField(Level* s)
               // std::cout << std::endl;
     }
 
-
-
-
-
-    /* DEBUG HIDE ALL
-    for(auto &a: mainWindow->getLabelVector()){
-        for(auto &b:a){
-            b->hide();
-        }
-    }
-    */
 
 
 
@@ -305,4 +232,61 @@ void GraphicalUI::StartButtonClicked()
 {
     startScreen->hide();
     mainWindow->show();
+}
+
+void GraphicalUI::animateCharacter(char movement)
+{
+
+    if(movement=='w' || movement=='q' || movement=='e'){
+        static int zahl=0;
+        if(zahl==0){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP")->second);
+            ++zahl;
+        }else if(zahl==1){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP1")->second);
+            ++zahl;
+        }else if(zahl==2){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP2")->second);
+            zahl=0;
+        }
+    }else if(movement=='x' ||	movement=='s' || movement=='y' ||	movement=='c'){
+        static int zahl=0;
+        if(zahl==0){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player")->second);
+            ++zahl;
+        }else if(zahl==1){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player1")->second);
+            ++zahl;
+        }else if(zahl==2){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player2")->second);
+            zahl=0;
+        }
+
+    }else if(movement=='a'){
+        static int zahl=0;
+        if(zahl==0){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT")->second);
+            ++zahl;
+        }else if(zahl==1){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT1")->second);
+            ++zahl;
+        }else if(zahl==2){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT2")->second);
+            zahl=0;
+        }
+
+    }else if(movement=='d'){
+        static int zahl=0;
+        if(zahl==0){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT")->second);
+            ++zahl;
+        }else if(zahl==1){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT1")->second);
+            ++zahl;
+        }else if(zahl==2){
+            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT2")->second);
+            zahl=0;
+        }
+
+    }
 }

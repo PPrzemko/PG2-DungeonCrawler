@@ -23,7 +23,7 @@
       <widget class="QWidget" name="gridLayoutWidget_2">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>10</x>
          <y>20</y>
          <width>1071</width>
          <height>571</height>
@@ -42,6 +42,28 @@
        </property>
        <layout class="QGridLayout" name="gridControl"/>
       </widget>
+      <widget class="QLabel" name="backgroundColorLabel">
+       <property name="geometry">
+        <rect>
+         <x>-4</x>
+         <y>2</y>
+         <width>1301</width>
+         <height>641</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color : black</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <zorder>backgroundColorLabel</zorder>
+      <zorder>gridLayoutWidget_2</zorder>
+      <zorder>gridLayoutWidget</zorder>
      </widget>
     </item>
    </layout>
@@ -52,7 +74,7 @@
      <x>0</x>
      <y>0</y>
      <width>1319</width>
-     <height>24</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
