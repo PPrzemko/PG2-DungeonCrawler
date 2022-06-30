@@ -26,17 +26,17 @@ public:
 
 
     ~MainWindow();
-
-
-
     const std::vector<std::vector<QLabel *> > &getLabelVector() const;
     void setDirection(char newDirection);
     char getDirection() const;
     bool getHasInputReady() const;
     void setHasInputReady(bool newHasInputReady);
     QPoint getQPosOfLabel(int col, int row);
-
     QLabel *getCurrentCharLabel() const;
+
+    void updateStausbarLabels(const std::string &strength, const std::string &stamina, const std::string &hitpoint);
+
+
 
 private:
     bool hasInputReady;
@@ -45,6 +45,11 @@ private:
     QLabel* currentCharLabel;
     std::vector<std::vector<QLabel*>> labelVector;
 
+    QLabel* strengthStatusLabel;
+    QLabel* staminaStatusLabel;
+    QLabel* hitPointStatusLabel;
+
+    void initQStatusbar();
 public slots:
     void charButtonClickedSlot(char direction);
 };

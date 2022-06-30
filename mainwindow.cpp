@@ -17,9 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->gridControl->addLayout(tempGridControll ,2,2);
 
 
-
-
-
+    initQStatusbar();
 
 
     for(int i=0; i<8;++i){
@@ -188,6 +186,43 @@ QPoint MainWindow::getQPosOfLabel(int col, int row)
 QLabel *MainWindow::getCurrentCharLabel() const
 {
     return currentCharLabel;
+}
+
+void MainWindow::updateStausbarLabels(const std::string &strength, const std::string &stamina, const std::string &hitpoint)
+{
+    strengthStatusLabel->setText(QString::fromStdString(strength));
+    staminaStatusLabel->setText(QString::fromStdString(stamina));
+    hitPointStatusLabel->setText(QString::fromStdString(hitpoint));
+}
+
+
+void MainWindow::initQStatusbar()
+{
+    // add Statusbar
+    // Add Stregth,stamina,hitpoint label and store pointer in attribute
+     QLabel* strengthStatusLabelText = new QLabel();
+     strengthStatusLabelText->setText("Strength");
+     statusBar()->addWidget(strengthStatusLabelText);
+
+     strengthStatusLabel = new QLabel();
+     strengthStatusLabel->setText("0");
+     statusBar()->addWidget(strengthStatusLabel);
+     // Stamina
+     QLabel* staminaText = new QLabel();
+     staminaText->setText("Stamina");
+     statusBar()->addWidget(staminaText);
+
+     staminaStatusLabel = new QLabel();;
+     staminaStatusLabel->setText("0");
+     statusBar()->addWidget(staminaStatusLabel);
+    // HP
+     QLabel* HitpointText = new QLabel();
+     HitpointText->setText("Hitpoints");
+     statusBar()->addWidget(HitpointText);
+
+     hitPointStatusLabel = new QLabel();
+     hitPointStatusLabel->setText("0");
+     statusBar()->addWidget(hitPointStatusLabel);
 }
 
 

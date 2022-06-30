@@ -16,103 +16,104 @@ GraphicalUI::GraphicalUI()
 }
 void GraphicalUI::draw(Level* s){
 
-
-
-
-
-
-
+    std::string tmpStrength = std::to_string(s->getCharacterVector().at(0)->getStrength());
+    std::string tmpStamina = std::to_string(s->getCharacterVector().at(0)->getStamina());
+    std::string tmpHitpoints = std::to_string(s->getCharacterVector().at(0)->getHitpoints());
+    mainWindow->updateStausbarLabels(tmpStrength,tmpStamina,tmpHitpoints);
 
     int col = s->getCol();
-        int row = s->getRow();
-        for(int i = 0; i < col;++i){
-            for(int j = 0; j < row;++j){
+    int row = s->getRow();
+    for(int i = 0; i < col;++i){
+        for(int j = 0; j < row;++j){
 
-                Tile* currentTile = s->getTile(i,j);
-                //Tempfix reloadtextures
-                //mainWindow->setLabelTexture(textures.find(currentTile->getTexture())->second,i,j);
+            Tile* currentTile = s->getTile(i,j);
+            //Tempfix reloadtextures
+            //mainWindow->setLabelTexture(textures.find(currentTile->getTexture())->second,i,j);
 
-                if(currentTile->hasCharacter()){
+            if(currentTile->hasCharacter()){
 
-                    char movement = s->getCharacterVector().at(0)->getLastMoveDirection();
-                    if(movement=='w' || movement=='q' || movement=='e'){
-                        static int zahl=0;
-                        if(zahl==0){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP")->second);
-                            ++zahl;
-                        }else if(zahl==1){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP1")->second);
-                            ++zahl;
-                        }else if(zahl==2){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP2")->second);
-                            zahl=0;
-                        }
-                    }else if(movement=='x' ||	movement=='s' || movement=='y' ||	movement=='c'){
-                        static int zahl=0;
-                        if(zahl==0){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player")->second);
-                            ++zahl;
-                        }else if(zahl==1){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player1")->second);
-                            ++zahl;
-                        }else if(zahl==2){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player2")->second);
-                            zahl=0;
-                        }
-
-                    }else if(movement=='a'){
-                        static int zahl=0;
-                        if(zahl==0){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT")->second);
-                            ++zahl;
-                        }else if(zahl==1){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT1")->second);
-                            ++zahl;
-                        }else if(zahl==2){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT2")->second);
-                            zahl=0;
-                        }
-
-                    }else if(movement=='d'){
-                        static int zahl=0;
-                        if(zahl==0){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT")->second);
-                            ++zahl;
-                        }else if(zahl==1){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT1")->second);
-                            ++zahl;
-                        }else if(zahl==2){
-                            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT2")->second);
-                            zahl=0;
-                        }
-
+                char movement = s->getCharacterVector().at(0)->getLastMoveDirection();
+                if(movement=='w' || movement=='q' || movement=='e'){
+                    static int zahl=0;
+                    if(zahl==0){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP")->second);
+                        ++zahl;
+                    }else if(zahl==1){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP1")->second);
+                        ++zahl;
+                    }else if(zahl==2){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP2")->second);
+                        zahl=0;
+                    }
+                }else if(movement=='x' ||	movement=='s' || movement=='y' ||	movement=='c'){
+                    static int zahl=0;
+                    if(zahl==0){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player")->second);
+                        ++zahl;
+                    }else if(zahl==1){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player1")->second);
+                        ++zahl;
+                    }else if(zahl==2){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player2")->second);
+                        zahl=0;
                     }
 
-
-
-
-
-
-                    bool isPit=false;
-                    if(typeid (*currentTile) == typeid (Pit)){
-                       isPit=true;
+                }else if(movement=='a'){
+                    static int zahl=0;
+                    if(zahl==0){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT")->second);
+                        ++zahl;
+                    }else if(zahl==1){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT1")->second);
+                        ++zahl;
+                    }else if(zahl==2){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT2")->second);
+                        zahl=0;
                     }
-                    mainWindow->setCharacterParent(i,j,isPit);
 
-                    //mainWindow->setLabelTexture(textures.find("Player")->second,i,j);
+                }else if(movement=='d'){
+                    static int zahl=0;
+                    if(zahl==0){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT")->second);
+                        ++zahl;
+                    }else if(zahl==1){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT1")->second);
+                        ++zahl;
+                    }else if(zahl==2){
+                        mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT2")->second);
+                        zahl=0;
+                    }
 
                 }
 
-                if(typeid (*currentTile) == typeid (Door)){
-                    Door *door = dynamic_cast<Door*>(currentTile);
-                    if(door->getOpen()){
-                        mainWindow->setLabelTexture(textures.find("DoorOpen")->second,i,j);
-                    }else if(!door->getOpen()){
-                        mainWindow->setLabelTexture(textures.find("DoorClose")->second,i,j);
-                    }
+
+
+
+
+
+                bool isPit=false;
+                if(typeid (*currentTile) == typeid (Pit)){
+                   isPit=true;
+                }
+                mainWindow->setCharacterParent(i,j,isPit);
+
+                //mainWindow->setLabelTexture(textures.find("Player")->second,i,j);
+
+            }
+
+            if(typeid (*currentTile) == typeid (Door)){
+                Door *door = dynamic_cast<Door*>(currentTile);
+                if(door->getOpen()){
+                    mainWindow->setLabelTexture(textures.find("DoorOpen")->second,i,j);
+                }else if(!door->getOpen()){
+                    mainWindow->setLabelTexture(textures.find("DoorClose")->second,i,j);
                 }
             }
+
+
+
         }
+    }
 
 
 

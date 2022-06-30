@@ -4,7 +4,7 @@
 Level::Level(const int& col, const int& row, Controller *con) :
     col(col), row(row)
 {
-    Character* d = new Character(con);
+    Character* d = new Character(con,3,3);
     characterVector.push_back(d);
 
     //Floor* k = new Floor(".", d, 0 , 0);

@@ -1,4 +1,24 @@
 #include "character.h"
+Character::Character(Controller* controller, const int& strength, const int& stamina) : controller(controller), strength(strength), stamina(stamina)
+{
+    texture="Player";
+    this->hitpoints=getMaxHP();
+
+}
+int Character::getStrength() const
+{
+    return strength;
+}
+
+int Character::getStamina() const
+{
+    return stamina;
+}
+
+int Character::getHitpoints() const
+{
+    return hitpoints;
+}
 
 
 
@@ -12,12 +32,11 @@ void Character::setLastMoveDirection(const char &newLastMoveDirection)
     lastMoveDirection = newLastMoveDirection;
 }
 
-Character::Character(Controller* controller) : texture("X"), controller(controller)
+int Character::getMaxHP()
 {
-    texture="Player";
+    int maxHP = 20+(stamina*5);
+    return maxHP;
 }
-
-
 
 Tile *Character::getCurrentTile() const
 {
