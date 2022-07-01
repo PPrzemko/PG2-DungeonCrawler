@@ -50,6 +50,8 @@ private:
     QLabel* hitPointStatusLabel;
 
     void initQStatusbar();
+    void createGridTemplateForLabels();
+    
 public slots:
     void charButtonClickedSlot(char direction);
 };

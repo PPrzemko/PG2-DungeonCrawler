@@ -55,7 +55,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color : black</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string/>
@@ -74,7 +74,7 @@
      <x>0</x>
      <y>0</y>
      <width>1319</width>
-     <height>20</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

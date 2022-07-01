@@ -5,21 +5,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
-    //QWidget::setStyleSheet("background-color: black;");
-    // Background label
-    int gridRow = 8;
-    int gridCol = 16;
-    QGridLayout* tempGridGame = new QGridLayout();
-    QGridLayout* tempGridControll = new QGridLayout();
-    ui->gridGame->addLayout(tempGridGame,gridRow-1,gridCol-1);
-    ui->gridControl->addLayout(tempGridControll ,2,2);
 
-
+    createGridTemplateForLabels();
     initQStatusbar();
 
-
+    //QWidget::setStyleSheet("background-color: black;");
+    // Background Label color (not working because character is below background label after lower)
+    //ui->backgroundColorLabel->setStyleSheet("background-color : white");
     for(int i=0; i<8;++i){
          labelVector.push_back(std::vector<QLabel*>(16));
     }
@@ -90,11 +83,14 @@ void MainWindow::setCharacterParent(int col, int row, bool isPit)
         //labelVector.at(col).at(row)->setParent(currentCharLabel);
         //currentCharLabel->setParent(this);
 
+
+
         currentCharLabel->setParent(this);
         // Add QPoint to center char
         currentCharLabel->move(labelVector.at(col).at(row)->pos() + QPoint(10,20));
         currentCharLabel->lower();
         labelVector.at(col).at(row)->raise(); // does not do anything
+
 
     }else{
         currentCharLabel->setParent(labelVector.at(col).at(row));
@@ -225,5 +221,13 @@ void MainWindow::initQStatusbar()
      statusBar()->addWidget(hitPointStatusLabel);
 }
 
-
+void MainWindow::createGridTemplateForLabels()
+{
+    int gridRow = 8;
+    int gridCol = 16;
+    QGridLayout* tempGridGame = new QGridLayout();
+    QGridLayout* tempGridControll = new QGridLayout();
+    ui->gridGame->addLayout(tempGridGame,gridRow-1,gridCol-1);
+    ui->gridControl->addLayout(tempGridControll ,2,2);
+}
 
