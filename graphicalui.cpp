@@ -6,12 +6,7 @@ GraphicalUI::GraphicalUI()
     mainWindow = new MainWindow();
     startScreen = new StartScreen(mainWindow);
     QObject::connect(startScreen->getButtonStartGame(), &QPushButton::clicked, this, &GraphicalUI::StartButtonClicked);
-
-
-
     startScreen->show();
-
-
 
 }
 
@@ -69,30 +64,10 @@ char GraphicalUI::move()
      QCoreApplication::processEvents(QEventLoop::AllEvents);
      if(mainWindow->getHasInputReady()){
          c = mainWindow->getDirection();
-
-         /*
-         if(c=='w' || c=='q' ||	c=='e'){
-             mainWindow->setLabelTexture(textures.find("PlayerUP")->second);
-         }else if(c=='x' ||	c=='s' || c=='y' ||	c=='c'){
-             mainWindow->setLabelTexture(textures.find("Player")->second);
-         }else if(c=='d'){
-             mainWindow->setLabelTexture(textures.find("PlayerRIGHT")->second);
-         }else if(c=='a'){
-             mainWindow->setLabelTexture(textures.find("PlayerLEFT")->second);
-         }
-        */
-
-
-
          std::cout << "Direction: " << c << std::endl;
          mainWindow->setHasInputReady(false);
-
-
      }
      return c;
-
-
-
 }
 
 
@@ -100,9 +75,9 @@ char GraphicalUI::move()
 void GraphicalUI::initField(Level* s)
 {
     initTextures();
-
     mainWindow->addControl(textures);
     mainWindow->addPlayer(textures);
+    // create tiles with QPixmap texures
     for(auto &a: s->getTileVector()){
             for(auto &b : a){
                 bool hasPlayer=false;
@@ -115,12 +90,7 @@ void GraphicalUI::initField(Level* s)
 
                 mainWindow->addTile(texturePath, hasPlayer);
             }
-
-              // std::cout << std::endl;
     }
-
-
-
 
 }
 

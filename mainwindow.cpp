@@ -48,11 +48,8 @@ void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
          row = 0;
          ++col;
      }
-
-
-
-
 }
+
 void MainWindow::addPlayer(std::map<std::string, QPixmap *> textures)
 {
     currentCharLabel = new QLabel();
@@ -82,9 +79,6 @@ void MainWindow::setCharacterParent(int col, int row, bool isPit)
     if(isPit){
         //labelVector.at(col).at(row)->setParent(currentCharLabel);
         //currentCharLabel->setParent(this);
-
-
-
         currentCharLabel->setParent(this);
         // Add QPoint to center char
         currentCharLabel->move(labelVector.at(col).at(row)->pos() + QPoint(10,20));
