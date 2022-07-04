@@ -1,6 +1,7 @@
 #include "dungeoncrawler.h"
 
 
+
 DungeonCrawler::DungeonCrawler()
 {
     UI= new GraphicalUI();
@@ -22,6 +23,14 @@ void DungeonCrawler::moveOffset(int i, Tile* currentCharacterTile, int colOffset
         std::cout << "Spielfeld kann nicht verlassen werden" << std::endl;
     }else{
         Tile* destionationtile = level->getTile(colOffset,rowOffset);
+        if(destionationtile->hasCharacter()){
+            if(currentCharacterTile->getPlayer()->getNpc() != destionationtile->getPlayer()->getNpc()){
+
+                fight(currentCharacterTile->getPlayer(), destionationtile->getPlayer());
+            }
+        }
+
+
         currentCharacterTile->moveTo(destionationtile, level->getCharacterVector().at(i));
     }
 
@@ -58,14 +67,10 @@ void DungeonCrawler::play()
             }else if(input =='p'){
                 exit(0);
             }
-
-
         }
-
     }
-
-
-
-
-
+}
+void DungeonCrawler::fight()
+{
+    std::cout << "3 2 1 FIGHT" << std::endl;
 }

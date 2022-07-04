@@ -1,5 +1,10 @@
 #include "tile.h"
 
+Character *Tile::getPlayer() const
+{
+    return player;
+}
+
 Tile::Tile(Character* player, const int& col, const int& row)
     : player(player), col(col), row(row)
 {

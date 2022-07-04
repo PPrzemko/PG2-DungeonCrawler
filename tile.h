@@ -30,6 +30,7 @@ public:
 
     void setPlayer(Character *newPlayer);
     void setTexture(const std::string &newTexture);
+    Character *getPlayer() const;
 };
 
 #endif // TILE_H

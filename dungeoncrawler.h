@@ -9,7 +9,8 @@
 class TerminalUI;
 class DungeonCrawler
 {
-
+private:
+    void fight(Character* attacker, Character* defender);
 protected:
     GraphicalUI* UI;
     Level* level;

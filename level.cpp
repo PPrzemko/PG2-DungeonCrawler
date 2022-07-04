@@ -52,12 +52,12 @@ Level::Level(const int& col, const int& row, Controller *con) :
 
 
 
-    Character* d = new Character(con,3,3,false);
+    Character* d = new Character(con,10,5,false);
     characterVector.push_back(d);
     placeCharacter(d,2,2);
 
     StationaryController* z1c = new StationaryController();
-    Character* z1 = new Character(z1c,5,10,true);
+    Character* z1 = new Character(z1c,10,5,true);
     characterVector.push_back(z1);
     placeCharacter(z1,4,4);
 
