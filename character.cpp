@@ -1,9 +1,20 @@
 #include "character.h"
-Character::Character(Controller* controller, const int& strength, const int& stamina) : controller(controller), strength(strength), stamina(stamina)
+
+
+Character::Character(Controller* controller, const int& strength, const int& stamina, const bool& npc) : controller(controller), strength(strength), stamina(stamina), npc(npc)
 {
-    texture="Player";
+    if(npc){
+        texture="zombieRIGHT";
+    }else{
+        texture="Player";
+    }
+
     this->hitpoints=getMaxHP();
 
+}
+bool Character::getNpc() const
+{
+    return npc;
 }
 int Character::getStrength() const
 {

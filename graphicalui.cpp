@@ -11,6 +11,8 @@ GraphicalUI::GraphicalUI()
 }
 
 
+
+
 void GraphicalUI::draw(Level* s){
 
     std::string tmpStrength = std::to_string(s->getCharacterVector().at(0)->getStrength());
@@ -18,37 +20,24 @@ void GraphicalUI::draw(Level* s){
     std::string tmpHitpoints = std::to_string(s->getCharacterVector().at(0)->getHitpoints());
     mainWindow->updateStausbarLabels(tmpStrength,tmpStamina,tmpHitpoints);
 
+    drawCharacter(s);
+
     int col = s->getCol();
     int row = s->getRow();
     for(int i = 0; i < col;++i){
         for(int j = 0; j < row;++j){
 
             Tile* currentTile = s->getTile(i,j);
-            // update Player Animation and falling down a pit
-            if(currentTile->hasCharacter()){
-                char movement = s->getCharacterVector().at(0)->getLastMoveDirection();
-                animateCharacter(movement);
-
-
-                bool isPit=false;
-                if(typeid (*currentTile) == typeid (Pit)){
-                   isPit=true;
-                }
-                mainWindow->setCharacterParent(i,j,isPit);
-
-            }
 
             // Update Door Status
             if(typeid (*currentTile) == typeid (Door)){
                 Door *door = dynamic_cast<Door*>(currentTile);
                 if(door->getOpen()){
-                    mainWindow->setLabelTexture(textures.find("DoorOpen")->second,i,j);
+                    mainWindow->setPlayerLabelTexture(textures.find("DoorOpen")->second,i,j);
                 }else if(!door->getOpen()){
-                    mainWindow->setLabelTexture(textures.find("DoorClose")->second,i,j);
+                    mainWindow->setPlayerLabelTexture(textures.find("DoorClose")->second,i,j);
                 }
             }
-
-
 
         }
     }
@@ -57,16 +46,44 @@ void GraphicalUI::draw(Level* s){
 
 }
 
+void GraphicalUI::drawCharacter(Level* s)
+{
+    for(int i=0 ; i < s->getCharacterVector().size() ; i++){
+        mainWindow->getCharacterLabelVector().at(i)->show();
+
+        char movement = s->getCharacterVector().at(i)->getLastMoveDirection();
+        if(s->getCharacterVector().at(i)->getNpc()){
+            animateZombie(movement,i);
+            std::cout << "Animate Zombie Movement:" << i << std::endl;
+        }else{
+            animatePlayer(movement);
+            std::cout << "Animate Player Movement"<< std::endl;
+        }
+
+        Tile* currentTile = s->getCharacterVector().at(i)->getCurrentTile();
+        bool isPit=false;
+        if(typeid (*currentTile) == typeid (Pit)){
+           isPit=true;
+        }
+        int col = currentTile->getColumn();
+        int row = currentTile->getRow();
+        mainWindow->setCharacterParent(col,row,isPit,i);
+    }
+
+}
+
 char GraphicalUI::move()
 {
     char c = 'o';
-     QTest::qWait(100);
-     QCoreApplication::processEvents(QEventLoop::AllEvents);
-     if(mainWindow->getHasInputReady()){
-         c = mainWindow->getDirection();
-         std::cout << "Direction: " << c << std::endl;
-         mainWindow->setHasInputReady(false);
-     }
+    while(c=='o'){
+        QTest::qWait(100);
+        QCoreApplication::processEvents(QEventLoop::AllEvents);
+        if(mainWindow->getHasInputReady()){
+            c = mainWindow->getDirection();
+            mainWindow->setHasInputReady(false);
+        }
+    }
+
      return c;
 }
 
@@ -76,7 +93,10 @@ void GraphicalUI::initField(Level* s)
 {
     initTextures();
     mainWindow->addControl(textures);
-    mainWindow->addPlayer(textures);
+    // TODO CharacterVector Add loop shit qlabel
+    mainWindow->addCharacter(textures);
+    mainWindow->addCharacter(textures);
+    mainWindow->addCharacter(textures);
     // create tiles with QPixmap texures
     for(auto &a: s->getTileVector()){
             for(auto &b : a){
@@ -91,6 +111,7 @@ void GraphicalUI::initField(Level* s)
                 mainWindow->addTile(texturePath, hasPlayer);
             }
     }
+
 
 }
 
@@ -196,6 +217,12 @@ void GraphicalUI::initTextures()
     QPixmap* playerLEFT2 = new QPixmap("://texture/char/left/char_left_3.png");
     textures.insert(std::make_pair("PlayerLEFT2",playerLEFT2));
 
+    QPixmap* zombieRIGHT = new QPixmap("://texture/zombie/zombie_right.png");
+    textures.insert(std::make_pair("zombieRIGHT",zombieRIGHT));
+    QPixmap* zombieLEFT = new QPixmap("://texture/zombie/zombie_left.png");
+    textures.insert(std::make_pair("zombieLEFT",zombieLEFT));
+
+
 }
 
 void GraphicalUI::StartButtonClicked()
@@ -204,59 +231,72 @@ void GraphicalUI::StartButtonClicked()
     mainWindow->show();
 }
 
-void GraphicalUI::animateCharacter(char movement)
+void GraphicalUI::animatePlayer(char movement)
 {
 
     if(movement=='w' || movement=='q' || movement=='e'){
         static int zahl=0;
         if(zahl==0){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerUP")->second);
             ++zahl;
         }else if(zahl==1){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP1")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerUP1")->second);
             ++zahl;
         }else if(zahl==2){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerUP2")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerUP2")->second);
             zahl=0;
         }
     }else if(movement=='x' ||	movement=='s' || movement=='y' ||	movement=='c'){
         static int zahl=0;
         if(zahl==0){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("Player")->second);
             ++zahl;
         }else if(zahl==1){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player1")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("Player1")->second);
             ++zahl;
         }else if(zahl==2){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("Player2")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("Player2")->second);
             zahl=0;
         }
 
     }else if(movement=='a'){
         static int zahl=0;
         if(zahl==0){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerLEFT")->second);
             ++zahl;
         }else if(zahl==1){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT1")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerLEFT1")->second);
             ++zahl;
         }else if(zahl==2){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerLEFT2")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerLEFT2")->second);
             zahl=0;
         }
 
     }else if(movement=='d'){
         static int zahl=0;
         if(zahl==0){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerRIGHT")->second);
             ++zahl;
         }else if(zahl==1){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT1")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerRIGHT1")->second);
             ++zahl;
         }else if(zahl==2){
-            mainWindow->getCurrentCharLabel()->setPixmap(*textures.find("PlayerRIGHT2")->second);
+            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerRIGHT2")->second);
             zahl=0;
         }
 
+    }else{
+        mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("Player")->second);
+    }
+}
+
+void GraphicalUI::animateZombie(char movement, int vectorIndex)
+{
+    if(movement=='a' || movement=='q' || movement=='y'){
+        mainWindow->getCharacterLabelVector().at(vectorIndex)->setPixmap(*textures.find("zombieLEFT")->second);
+    }else if(movement=='d'||movement=='e'||movement=='c'){
+        mainWindow->getCharacterLabelVector().at(vectorIndex)->setPixmap(*textures.find("zombieRIGHT")->second);
+    }else{
+        mainWindow->getCharacterLabelVector().at(vectorIndex)->setPixmap(*textures.find("zombieLEFT")->second);
     }
 }

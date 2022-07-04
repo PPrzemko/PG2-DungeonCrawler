@@ -4,8 +4,7 @@
 Level::Level(const int& col, const int& row, Controller *con) :
     col(col), row(row)
 {
-    Character* d = new Character(con,3,3);
-    characterVector.push_back(d);
+
 
     //Floor* k = new Floor(".", d, 0 , 0);
     //Floor* g = new Floor(".", nullptr, 1 , 1);
@@ -53,13 +52,28 @@ Level::Level(const int& col, const int& row, Controller *con) :
 
 
 
-
+    Character* d = new Character(con,3,3,false);
+    characterVector.push_back(d);
     placeCharacter(d,2,2);
+
+    StationaryController* z1c = new StationaryController();
+    Character* z1 = new Character(z1c,5,10,true);
+    characterVector.push_back(z1);
+    placeCharacter(z1,4,4);
+
+    GuardController* z2c = new GuardController("axdw");
+    Character* z2 = new Character(z2c,10,5,true);
+    characterVector.push_back(z2);
+    placeCharacter(z2,3,14);
 
 
 }
 
-
+void Level::placeCharacter(Character *c, int col, int row)
+{
+    c->setCurrentTile(world.at(col).at(row));
+    world.at(col).at(row)->setPlayer(c);
+}
 
 Level::Level(const Level &level) : col(level.getCol()), row(level.getRow())
 {
@@ -176,11 +190,7 @@ Level::~Level()
 
 }
 
-void Level::placeCharacter(Character *c, int col, int row)
-{
-    c->setCurrentTile(world.at(col).at(row));
-    world.at(col).at(row)->setPlayer(c);
-}
+
 
 
 Tile *Level::getTile(int col, int row) const

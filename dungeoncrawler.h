@@ -13,6 +13,7 @@ class DungeonCrawler
 protected:
     GraphicalUI* UI;
     Level* level;
+    std::vector<Level*> levelVector;
 
 
 public:

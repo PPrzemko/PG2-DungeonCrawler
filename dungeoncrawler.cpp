@@ -4,9 +4,10 @@
 DungeonCrawler::DungeonCrawler()
 {
     UI= new GraphicalUI();
-    level = new Level(8,16,dynamic_cast<Controller*>(UI));
+    level = new Level(8,16,UI);
 
     UI->initField(level);
+
 
 }
 
@@ -34,7 +35,7 @@ void DungeonCrawler::play()
         for(size_t i=0;i<level->getCharacterVector().size();++i){
             char input = level->getCharacterVector().at(i)->move();
             level->getCharacterVector().at(i)->setLastMoveDirection(input);
-
+            std:: cout << "Char:" << i << " : "<< input << std::endl;
             Tile* currentCharacterTile = level->getCharacterVector().at(i)->getCurrentTile();
             if(input=='q'){
                 moveOffset(i,currentCharacterTile,-1,-1);

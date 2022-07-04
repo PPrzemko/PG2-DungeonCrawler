@@ -19,7 +19,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     void addTile(QPixmap* texturePath, bool hasPlayer);
     void addControl(std::map<std::string,QPixmap*> textures);
-    void addPlayer(std::map<std::string,QPixmap*> textures);
+    void addCharacter(std::map<std::string,QPixmap*> textures);
     void updateStausbarLabels(const std::string &strength, const std::string &stamina, const std::string &hitpoint);
 
     // GET SET
@@ -29,18 +29,20 @@ public:
     bool getHasInputReady() const;
     void setHasInputReady(bool newHasInputReady);
     QPoint getQPosOfLabel(int col, int row);
-    QLabel *getCurrentCharLabel() const;
-    void setLabelTexture(QPixmap *texture);
-    void setLabelTexture(QPixmap* texture, int col, int row);
-    void setCharacterParent(int col, int row, bool isPit);
+    void setPlayerLabelTexture(QPixmap *texture);
+    void setPlayerLabelTexture(QPixmap* texture, int col, int row);
+    void setCharacterParent(int col, int row, bool isPit,int characterIndex);
 
     ~MainWindow();
+
+    const std::vector<QLabel *> &getCharacterLabelVector() const;
 
 private:
     Ui::MainWindow *ui;
     bool hasInputReady;
     char direction;
-    QLabel* currentCharLabel;
+
+    std::vector<QLabel*> characterLabelVector;
     std::vector<std::vector<QLabel*>> labelVector;
 
     void createGridTemplateForLabels();

@@ -18,6 +18,7 @@ SOURCES += \
         dungeoncrawler.cpp \
         floor.cpp \
         graphicalui.cpp \
+        guardcontroller.cpp \
         level.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
         portal.cpp \
         ramp.cpp \
         startscreen.cpp \
+        stationarycontroller.cpp \
         switch.cpp \
         terminalui.cpp \
         tile.cpp \
@@ -41,6 +43,7 @@ HEADERS += \
     dungeoncrawler.h \
     floor.h \
     graphicalui.h \
+    guardcontroller.h \
     level.h \
     main.h \
     mainwindow.h \
@@ -49,6 +52,7 @@ HEADERS += \
     portal.h \
     ramp.h \
     startscreen.h \
+    stationarycontroller.h \
     switch.h \
     terminalui.h \
     tile.h \

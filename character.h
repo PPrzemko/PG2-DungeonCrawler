@@ -14,12 +14,13 @@ private:
     int strength;
     int stamina;
     int hitpoints;
+    bool npc;
 protected:
 
 
 
 public:
-    Character(Controller* controller, const int& strength, const int& stamina);
+    Character(Controller* controller, const int& strength, const int& stamina, const bool& npc);
     Tile *getCurrentTile() const;
     const std::string &getTexture() const;
     void setCurrentTile(Tile *newCurrentTile);
@@ -31,6 +32,7 @@ public:
     int getStrength() const;
     int getStamina() const;
     int getHitpoints() const;
+    bool getNpc() const;
 };
 
 #endif // CHARACTER_H

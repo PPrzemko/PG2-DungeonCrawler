@@ -16,9 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
     for(int i=0; i<8;++i){
          labelVector.push_back(std::vector<QLabel*>(16));
     }
-
-
-
 }
 
 void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
@@ -33,8 +30,8 @@ void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
     ui->gridGame->addWidget(label);
     label->show();
     if(hasPlayer){
-        currentCharLabel->setParent(label);
-        currentCharLabel->show();
+        characterLabelVector.at(0)->setParent(label);
+        characterLabelVector.at(0)->show();
     }
 
     static int col = 0;
@@ -50,49 +47,37 @@ void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
      }
 }
 
-void MainWindow::addPlayer(std::map<std::string, QPixmap *> textures)
+void MainWindow::addCharacter(std::map<std::string, QPixmap *> textures)
 {
-    currentCharLabel = new QLabel();
-    currentCharLabel->setPixmap(*textures.find("Player")->second);
+    QLabel* currentCharLabel = new QLabel();
     currentCharLabel->setMaximumSize(64,64);
+    currentCharLabel->setMinimumSize(64,64);
     currentCharLabel->setScaledContents(true);
-    setCharacterParent(3,3,false);
-    //currentCharLabel->setAutoFillBackground(false);
     currentCharLabel->setStyleSheet("background-color: rgba(0,0,0,0%);color: rgba(150, 30, 30, 90%)");
-    currentCharLabel->hide();
+    characterLabelVector.push_back(currentCharLabel);
+    //setCharacterParent(3,3,false,characterLabelVector.size()-1);
+
+
 
 }
 
 
-void MainWindow::setLabelTexture(QPixmap *texture, int col, int row)
-{
-    labelVector.at(col).at(row)->setPixmap(*texture);
-}
-void MainWindow::setLabelTexture(QPixmap *texture)
-{
-    currentCharLabel->setPixmap(*texture);
-}
-
-void MainWindow::setCharacterParent(int col, int row, bool isPit)
+void MainWindow::setCharacterParent(int col, int row, bool isPit, int characterIndex)
 {
 
     if(isPit){
-        //labelVector.at(col).at(row)->setParent(currentCharLabel);
-        //currentCharLabel->setParent(this);
-        currentCharLabel->setParent(this);
+        characterLabelVector.at(characterIndex)->setParent(this);
         // Add QPoint to center char
-        currentCharLabel->move(labelVector.at(col).at(row)->pos() + QPoint(10,20));
-        currentCharLabel->lower();
+        characterLabelVector.at(characterIndex)->move(labelVector.at(col).at(row)->pos() + QPoint(10,20));
+        characterLabelVector.at(characterIndex)->lower();
         labelVector.at(col).at(row)->raise(); // does not do anything
-
-
     }else{
-        currentCharLabel->setParent(labelVector.at(col).at(row));
-        currentCharLabel->move(col,0);
+        characterLabelVector.at(characterIndex)->setParent(labelVector.at(col).at(row));
+        characterLabelVector.at(characterIndex)->move(col,0);
     }
     // need move col, row=0 if not player shifts down
 
-    currentCharLabel->show();
+    characterLabelVector.at(characterIndex)->show();
 }
 
 
@@ -138,6 +123,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+const std::vector<QLabel *> &MainWindow::getCharacterLabelVector() const
+{
+    return characterLabelVector;
+}
+
 void MainWindow::charButtonClickedSlot(char direction)
 {
     this->direction=direction;
@@ -152,6 +142,15 @@ const std::vector<std::vector<QLabel *> > &MainWindow::getLabelVector() const
     return labelVector;
 }
 
+
+void MainWindow::setPlayerLabelTexture(QPixmap *texture, int col, int row)
+{
+    labelVector.at(col).at(row)->setPixmap(*texture);
+}
+void MainWindow::setPlayerLabelTexture(QPixmap *texture)
+{
+    characterLabelVector.at(0)->setPixmap(*texture);
+}
 
 char MainWindow::getDirection() const
 {
@@ -173,10 +172,7 @@ QPoint MainWindow::getQPosOfLabel(int col, int row)
     return labelVector.at(col).at(row)->pos();
 }
 
-QLabel *MainWindow::getCurrentCharLabel() const
-{
-    return currentCharLabel;
-}
+
 
 void MainWindow::updateStausbarLabels(const std::string &strength, const std::string &stamina, const std::string &hitpoint)
 {

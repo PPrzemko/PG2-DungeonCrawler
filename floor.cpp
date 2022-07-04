@@ -22,6 +22,9 @@ Floor::Floor(const int& col, const int& row, Character* player)
 }
 
 Tile* Floor::onEnter(Tile* fromTile, Character* who){
+    if(hasCharacter()){
+        return nullptr;
+    }
     return this;
 }
 Tile* Floor::onLeave(Tile* destTile, Character* who){
