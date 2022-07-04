@@ -22,10 +22,10 @@ public:
     void setLabelTexture(QPixmap* texture, int col, int row);
     void setCharacterParent(int col, int row, bool isPit);
     void addPlayer(std::map<std::string,QPixmap*> textures);
-    void setLabelTexture(QPixmap *texture);
 
+    void updateStausbarLabels(const std::string &strength, const std::string &stamina, const std::string &hitpoint);
 
-    ~MainWindow();
+    // GET SET
     const std::vector<std::vector<QLabel *> > &getLabelVector() const;
     void setDirection(char newDirection);
     char getDirection() const;
@@ -33,10 +33,10 @@ public:
     void setHasInputReady(bool newHasInputReady);
     QPoint getQPosOfLabel(int col, int row);
     QLabel *getCurrentCharLabel() const;
+    void setLabelTexture(QPixmap *texture);
 
-    void updateStausbarLabels(const std::string &strength, const std::string &stamina, const std::string &hitpoint);
 
-
+    ~MainWindow();
 
 private:
     bool hasInputReady;
