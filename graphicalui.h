@@ -19,7 +19,6 @@ private:
     std::map<std::string,QPixmap*> textures;
 
 
-
     void animateCharacter(char movement);
 
 public:

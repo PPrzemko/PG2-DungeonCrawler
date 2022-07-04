@@ -19,10 +19,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     void addTile(QPixmap* texturePath, bool hasPlayer);
     void addControl(std::map<std::string,QPixmap*> textures);
-    void setLabelTexture(QPixmap* texture, int col, int row);
-    void setCharacterParent(int col, int row, bool isPit);
     void addPlayer(std::map<std::string,QPixmap*> textures);
-
     void updateStausbarLabels(const std::string &strength, const std::string &stamina, const std::string &hitpoint);
 
     // GET SET
@@ -34,23 +31,26 @@ public:
     QPoint getQPosOfLabel(int col, int row);
     QLabel *getCurrentCharLabel() const;
     void setLabelTexture(QPixmap *texture);
-
+    void setLabelTexture(QPixmap* texture, int col, int row);
+    void setCharacterParent(int col, int row, bool isPit);
 
     ~MainWindow();
 
 private:
-    bool hasInputReady;
     Ui::MainWindow *ui;
+    bool hasInputReady;
     char direction;
     QLabel* currentCharLabel;
     std::vector<std::vector<QLabel*>> labelVector;
 
+    void createGridTemplateForLabels();
+
+    // need for CharStatus in GUI
+    void initQStatusbar();
     QLabel* strengthStatusLabel;
     QLabel* staminaStatusLabel;
     QLabel* hitPointStatusLabel;
 
-    void initQStatusbar();
-    void createGridTemplateForLabels();
     
 public slots:
     void charButtonClickedSlot(char direction);

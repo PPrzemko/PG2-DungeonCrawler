@@ -168,12 +168,11 @@ Level::~Level()
             delete characterVector.at(i);
     }
 
-    for(size_t i = 0; i < col; ++i){
-        for (int j = 0; i < row; ++i){
-            delete world.at(i).at(j);
+    for(auto&a : world){
+        for(auto&b : a){
+            delete b;
         }
     }
-
 
 }
 

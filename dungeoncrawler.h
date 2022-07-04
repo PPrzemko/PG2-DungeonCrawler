@@ -5,13 +5,15 @@
 #include "graphicalui.h"
 #include "level.h"
 #include <iostream>
+#include <vector>
 class TerminalUI;
 class DungeonCrawler
 {
 
 protected:
-GraphicalUI* UI;
-Level* level;
+    GraphicalUI* UI;
+    Level* level;
+
 
 public:
     DungeonCrawler();
