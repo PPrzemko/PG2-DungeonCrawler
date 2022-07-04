@@ -70,7 +70,7 @@ void DungeonCrawler::play()
         }
     }
 }
-void DungeonCrawler::fight()
+void DungeonCrawler::fight(Character* attacker, Character* defender)
 {
     std::cout << "3 2 1 FIGHT" << std::endl;
 }
