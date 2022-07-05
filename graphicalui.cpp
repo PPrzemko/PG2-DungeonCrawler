@@ -226,6 +226,13 @@ void GraphicalUI::initTextures()
     QPixmap* zombieLEFT = new QPixmap("://texture/zombie/zombie_left.png");
     textures.insert(std::make_pair("zombieLEFT",zombieLEFT));
 
+    QPixmap* lootChest = new QPixmap("://texture/chest.png");
+    textures.insert(std::make_pair("lootChest",lootChest));
+
+    QPixmap* levelChanger = new QPixmap("://texture/levelchanger.png");
+    textures.insert(std::make_pair("levelChanger",levelChanger));
+
+
     QPixmap* DEAD = new QPixmap();
     textures.insert(std::make_pair("DEAD",DEAD));
 }

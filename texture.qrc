@@ -41,5 +41,7 @@
         <file>texture/wall/wall1.png</file>
         <file>texture/zombie/zombie_left.png</file>
         <file>texture/zombie/zombie_right.png</file>
+        <file>texture/chest.png</file>
+        <file>texture/levelchanger.png</file>
     </qresource>
 </RCC>

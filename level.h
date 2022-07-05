@@ -10,6 +10,7 @@ class Tile;
 #include "switch.h"
 #include "ramp.h"
 #include "pit.h"
+#include "lootchest.h"
 #include "stationarycontroller.h"
 #include "guardcontroller.h"
 

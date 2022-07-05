@@ -45,7 +45,7 @@ Level::Level(const int& col, const int& row, Controller *con) :
                      new Floor(5 , 9),new Floor(5 , 10),new Floor(5 , 11),new Floor(5 , 12),new Floor(5 , 13),new Floor(5 , 14),new Wall(5 , 15)});
     //6
     world.push_back({new Wall(6 , 0),bluePortal2        ,new Floor(6 , 2),new Floor(6 , 3),new Floor(6 , 4),new Floor(6 , 5),switch1      ,new Wall(6 , 7),new Wall(6 , 8),
-                     new Floor(6 , 9),new Floor(6 , 10),new Floor(6 , 11),new Floor(6 , 12),new Floor(6 , 13),new Floor(6 , 14),new Wall(6 , 15)});
+                     new Floor(6 , 9),new Floor(6 , 10),new Floor(6 , 11),new Floor(6 , 12),new Floor(6 , 13),new Lootchest(6 , 14),new Wall(6 , 15)});
     // 7
     world.push_back({new Wall(7 , 0),new Wall(7 , 1),new Wall(7 , 2),new Wall(7 , 3),new Wall(7 , 4),new Wall(7 , 5),new Wall(7 , 6),new Wall(7 , 7),new Wall(7 , 8),
                      new Wall(7 , 9),new Wall(7 , 10),new Wall(7 , 11),new Wall(7 , 12),new Wall(7 , 13),new Wall(7 , 14),new Wall(7 , 15)});

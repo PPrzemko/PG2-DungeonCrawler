@@ -1,11 +1,11 @@
 #ifndef LOOTCHEST_H
 #define LOOTCHEST_H
+#include "floor.h"
 
-
-class Lootchest
+class Lootchest : public Floor
 {
 public:
-    Lootchest();
+    Lootchest(const int& col, const int& row, Character* player=nullptr);
 };
 
 #endif // LOOTCHEST_H
