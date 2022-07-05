@@ -57,6 +57,8 @@ private:
     QLabel* hitPointStatusLabel;
 
     
+    void createEndScreenLabel();
+
 public slots:
     void charButtonClickedSlot(char direction);
 };

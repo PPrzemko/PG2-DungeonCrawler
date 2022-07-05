@@ -1,5 +1,4 @@
 #include "mylist.h"
-#include <iostream>
 
 using std::cout;
 using std::endl;
@@ -104,3 +103,4 @@ int main()
   l.pop_back();
   l.print();
 }
+
