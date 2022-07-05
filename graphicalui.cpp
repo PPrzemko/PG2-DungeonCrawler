@@ -61,8 +61,9 @@ void GraphicalUI::drawCharacter(Level* s)
             animatePlayer(movement, s->getCharacterVector().at(i));
             std::cout << "Animate Player Movement"<< std::endl;
         }
-
+        // Updates all pixmapes based on character texture attribute
         mainWindow->getCharacterLabelVector().at(i)->setPixmap(*textures.find(s->getCharacterVector().at(i)->getTexture())->second);
+
         Tile* currentTile = s->getCharacterVector().at(i)->getCurrentTile();
         bool isPit=false;
         if(typeid (*currentTile) == typeid (Pit)){

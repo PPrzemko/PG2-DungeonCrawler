@@ -20,6 +20,7 @@ SOURCES += \
         graphicalui.cpp \
         guardcontroller.cpp \
         level.cpp \
+        lootchest.cpp \
         main.cpp \
         mainwindow.cpp \
         passive.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     graphicalui.h \
     guardcontroller.h \
     level.h \
+    lootchest.h \
     main.h \
     mainwindow.h \
     passive.h \

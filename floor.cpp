@@ -22,7 +22,7 @@ Floor::Floor(const int& col, const int& row, Character* player)
 }
 
 Tile* Floor::onEnter(Tile* fromTile, Character* who){
-    if(hasCharacter()){
+    if(hasCharacter() && this->getPlayer()->isAlive()){
         return nullptr;
     }
     return this;
