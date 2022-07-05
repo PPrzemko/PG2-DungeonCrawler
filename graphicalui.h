@@ -28,6 +28,7 @@ public:
     void initField(Level* s);
     char move() override;
     void initTextures();
+    void showEndScreen(const bool& win);
 
 
 public slots:

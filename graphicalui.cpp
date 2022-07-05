@@ -237,6 +237,16 @@ void GraphicalUI::initTextures()
     textures.insert(std::make_pair("DEAD",DEAD));
 }
 
+void GraphicalUI::showEndScreen(const bool &win)
+{
+    if(win){
+        mainWindow->getEndScreen()->setText("You WON!");
+    }else if(!win){
+        mainWindow->getEndScreen()->setText("You Lost!");
+    }
+    mainWindow->getEndScreen()->show();
+}
+
 void GraphicalUI::StartButtonClicked()
 {
     startScreen->hide();

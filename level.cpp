@@ -62,7 +62,7 @@ Level::Level(const int& col, const int& row, Controller *con) :
     placeCharacter(z1,4,4);
 
     GuardController* z2c = new GuardController("axdw");
-    Character* z2 = new Character(z2c,7,4,true);
+    Character* z2 = new Character(z2c,20,10,true);
     characterVector.push_back(z2);
     placeCharacter(z2,3,14);
 

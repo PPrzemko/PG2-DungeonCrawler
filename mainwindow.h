@@ -37,10 +37,13 @@ public:
 
     const std::vector<QLabel *> &getCharacterLabelVector() const;
 
+    QLabel *getEndScreen() const;
+
 private:
     Ui::MainWindow *ui;
     bool hasInputReady;
     char direction;
+    QLabel* EndScreen;
 
     std::vector<QLabel*> characterLabelVector;
     std::vector<std::vector<QLabel*>> labelVector;

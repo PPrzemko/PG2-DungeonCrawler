@@ -6,6 +6,7 @@
 #include "level.h"
 #include <iostream>
 #include <vector>
+class Lootchest;
 class TerminalUI;
 class DungeonCrawler
 {

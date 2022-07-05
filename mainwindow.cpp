@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -9,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     createGridTemplateForLabels();
     initQStatusbar();
+    createEndScreenLabel();
 
     //QWidget::setStyleSheet("background-color: black;");
     // Background Label color (not working because character is below background label after lower)
@@ -84,6 +86,7 @@ void MainWindow::setCharacterParent(int col, int row, bool isPit, int characterI
 
 
 
+
 void MainWindow::addControl(std::map<std::string,QPixmap*> textures)
 {
 
@@ -126,6 +129,11 @@ MainWindow::~MainWindow()
 const std::vector<QLabel *> &MainWindow::getCharacterLabelVector() const
 {
     return characterLabelVector;
+}
+
+QLabel *MainWindow::getEndScreen() const
+{
+    return EndScreen;
 }
 
 void MainWindow::charButtonClickedSlot(char direction)
@@ -171,8 +179,6 @@ QPoint MainWindow::getQPosOfLabel(int col, int row)
 {
     return labelVector.at(col).at(row)->pos();
 }
-
-
 
 void MainWindow::updateStausbarLabels(const std::string &strength, const std::string &stamina, const std::string &hitpoint)
 {
@@ -221,3 +227,13 @@ void MainWindow::createGridTemplateForLabels()
     ui->gridControl->addLayout(tempGridControll ,2,2);
 }
 
+void MainWindow::createEndScreenLabel()
+{
+    EndScreen = new QLabel();
+    EndScreen->setStyleSheet("font-size: 130pt; background-color: black; color: white;");
+    EndScreen->setMinimumSize(1400,800);
+    EndScreen->setMaximumSize(1400,800);
+
+    EndScreen->setParent(this);
+    EndScreen->hide();
+}

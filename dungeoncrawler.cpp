@@ -75,8 +75,16 @@ void DungeonCrawler::play()
             }
 
         }
-
+        // Player Dies
         if(!level->getCharacterVector().at(0)->isAlive()){
+            UI->showEndScreen(false);
+            playing = false;
+        }
+        // player finds chest
+        if(dynamic_cast<Lootchest*>(level->getCharacterVector().at(0)->getCurrentTile())){
+
+            UI->showEndScreen(true);
+            std::cout << "YOU WON!!" << std::endl;
             playing = false;
         }
     }
