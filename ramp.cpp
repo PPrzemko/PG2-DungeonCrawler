@@ -5,6 +5,9 @@ Ramp::Ramp(const int& col, const int& row, Character* player) : Tile(player, col
     texture="Ramp";
 }
 Tile* Ramp::onEnter(Tile* fromTile, Character* who){
+    if(hasCharacter()){
+        return nullptr;
+    }
     return this;
 
 }

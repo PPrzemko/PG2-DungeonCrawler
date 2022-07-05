@@ -5,6 +5,9 @@ Pit::Pit(const int& col, const int& row, Character* player) : Tile(player, col, 
     texture="pit";
 }
 Tile* Pit::onEnter(Tile* fromTile, Character* who){
+    if(hasCharacter()){
+        return nullptr;
+    }
     return this;
 }
 

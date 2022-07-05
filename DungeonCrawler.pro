@@ -86,6 +86,7 @@ DISTFILES += \
     texture/char/right/char_right_1.png \
     texture/char/right/char_right_2.png \
     texture/char/right/char_right_3.png \
+    texture/chest.png \
     texture/doors/door1.png \
     texture/doors/door2.png \
     texture/floor/floor1.png \
@@ -93,6 +94,7 @@ DISTFILES += \
     texture/floor/floor3.png \
     texture/floor/floor4.png \
     texture/floor/floor5.png \
+    texture/levelchanger.png \
     texture/new_game_button.png \
     texture/pit.png \
     texture/portal/portal1.png \
