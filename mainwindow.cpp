@@ -68,7 +68,7 @@ void MainWindow::setCharacterParent(int col, int row, bool isPit, int characterI
     if(isPit){
         characterLabelVector.at(characterIndex)->setParent(this);
         // Add QPoint to center char
-        characterLabelVector.at(characterIndex)->move(labelVector.at(col).at(row)->pos() + QPoint(10,20));
+        characterLabelVector.at(characterIndex)->move(labelVector.at(col).at(row)->pos() + QPoint(15,30));
         characterLabelVector.at(characterIndex)->lower();
         labelVector.at(col).at(row)->raise(); // does not do anything
     }else{
@@ -131,7 +131,7 @@ const std::vector<QLabel *> &MainWindow::getCharacterLabelVector() const
 void MainWindow::charButtonClickedSlot(char direction)
 {
     this->direction=direction;
-    std::cout << direction;
+    //std::cout << direction;
     hasInputReady=true;
 
 }

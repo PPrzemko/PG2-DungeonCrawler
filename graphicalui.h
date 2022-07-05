@@ -18,8 +18,8 @@ private:
     MainWindow* mainWindow;
     std::map<std::string,QPixmap*> textures;
 
-    void animatePlayer(char movement);
-    void animateZombie(char movement, int vectorIndex);
+    void animatePlayer(char movement, Character* currentChar);
+    void animateZombie(char movement, Character* currentChar);
     void drawCharacter(Level* s);
 
 public:

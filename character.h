@@ -27,12 +27,16 @@ public:
     char move();
     const char &getLastMoveDirection() const;
     void setLastMoveDirection(const char &newLastMoveDirection);
+    void attack(Character* defender);
+    bool isAlive();
 
     int getMaxHP();
     int getStrength() const;
     int getStamina() const;
     int getHitpoints() const;
     bool getNpc() const;
+    void setHitpoints(int newHitpoints);
+    void setTexture(const std::string &newTexture);
 };
 
 #endif // CHARACTER_H

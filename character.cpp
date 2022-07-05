@@ -1,6 +1,4 @@
 #include "character.h"
-
-
 Character::Character(Controller* controller, const int& strength, const int& stamina, const bool& npc) : controller(controller), strength(strength), stamina(stamina), npc(npc)
 {
     if(npc){
@@ -12,6 +10,22 @@ Character::Character(Controller* controller, const int& strength, const int& sta
     this->hitpoints=getMaxHP();
 
 }
+
+void Character::attack(Character *defender)
+{
+    defender->setHitpoints(defender->getHitpoints()-strength);
+}
+
+bool Character::isAlive()
+{
+    bool isAlive = true;
+    if(hitpoints<=0){
+        isAlive=false;
+    }
+    return isAlive;
+}
+
+
 bool Character::getNpc() const
 {
     return npc;
@@ -25,6 +39,7 @@ int Character::getStamina() const
 {
     return stamina;
 }
+
 
 int Character::getHitpoints() const
 {
@@ -42,6 +57,7 @@ void Character::setLastMoveDirection(const char &newLastMoveDirection)
 {
     lastMoveDirection = newLastMoveDirection;
 }
+
 
 int Character::getMaxHP()
 {
@@ -68,5 +84,13 @@ const std::string &Character::getTexture() const
     return texture;
 }
 
+void Character::setHitpoints(int newHitpoints)
+{
+    hitpoints = newHitpoints;
+}
 
+void Character::setTexture(const std::string &newTexture)
+{
+    texture = newTexture;
+}
 

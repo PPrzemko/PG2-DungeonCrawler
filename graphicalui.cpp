@@ -49,17 +49,20 @@ void GraphicalUI::draw(Level* s){
 void GraphicalUI::drawCharacter(Level* s)
 {
     for(int i=0 ; i < s->getCharacterVector().size() ; i++){
-        mainWindow->getCharacterLabelVector().at(i)->show();
+
+
+        //std::cout << i << "Texture: " << s->getCharacterVector().at(i)->getTexture() << std::endl;
 
         char movement = s->getCharacterVector().at(i)->getLastMoveDirection();
-        if(s->getCharacterVector().at(i)->getNpc()){
-            animateZombie(movement,i);
+        if(s->getCharacterVector().at(i)->getNpc() && s->getCharacterVector().at(i)->isAlive()){
+            animateZombie(movement,s->getCharacterVector().at(i));
             std::cout << "Animate Zombie Movement:" << i << std::endl;
-        }else{
-            animatePlayer(movement);
+        }else if(!s->getCharacterVector().at(i)->getNpc() && s->getCharacterVector().at(i)->isAlive()){
+            animatePlayer(movement, s->getCharacterVector().at(i));
             std::cout << "Animate Player Movement"<< std::endl;
         }
 
+        mainWindow->getCharacterLabelVector().at(i)->setPixmap(*textures.find(s->getCharacterVector().at(i)->getTexture())->second);
         Tile* currentTile = s->getCharacterVector().at(i)->getCurrentTile();
         bool isPit=false;
         if(typeid (*currentTile) == typeid (Pit)){
@@ -222,7 +225,8 @@ void GraphicalUI::initTextures()
     QPixmap* zombieLEFT = new QPixmap("://texture/zombie/zombie_left.png");
     textures.insert(std::make_pair("zombieLEFT",zombieLEFT));
 
-
+    QPixmap* DEAD = new QPixmap();
+    textures.insert(std::make_pair("DEAD",DEAD));
 }
 
 void GraphicalUI::StartButtonClicked()
@@ -231,72 +235,74 @@ void GraphicalUI::StartButtonClicked()
     mainWindow->show();
 }
 
-void GraphicalUI::animatePlayer(char movement)
+void GraphicalUI::animatePlayer(char movement, Character* currentChar)
 {
 
     if(movement=='w' || movement=='q' || movement=='e'){
         static int zahl=0;
         if(zahl==0){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerUP")->second);
+            currentChar->setTexture("PlayerUP");
             ++zahl;
         }else if(zahl==1){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerUP1")->second);
+             currentChar->setTexture("PlayerUP1");
             ++zahl;
         }else if(zahl==2){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerUP2")->second);
+             currentChar->setTexture("PlayerUP2");
             zahl=0;
         }
     }else if(movement=='x' ||	movement=='s' || movement=='y' ||	movement=='c'){
         static int zahl=0;
         if(zahl==0){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("Player")->second);
+            currentChar->setTexture("Player");
             ++zahl;
         }else if(zahl==1){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("Player1")->second);
+            currentChar->setTexture("Player1");
             ++zahl;
         }else if(zahl==2){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("Player2")->second);
+            currentChar->setTexture("Player2");
             zahl=0;
         }
 
     }else if(movement=='a'){
         static int zahl=0;
         if(zahl==0){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerLEFT")->second);
+                    currentChar->setTexture("PlayerLEFT");
             ++zahl;
         }else if(zahl==1){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerLEFT1")->second);
+                    currentChar->setTexture("PlayerLEFT1");
             ++zahl;
         }else if(zahl==2){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerLEFT2")->second);
+                    currentChar->setTexture("PlayerLEFT2");
             zahl=0;
         }
 
     }else if(movement=='d'){
         static int zahl=0;
         if(zahl==0){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerRIGHT")->second);
+            currentChar->setTexture("PlayerRIGHT");
             ++zahl;
         }else if(zahl==1){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerRIGHT1")->second);
+            currentChar->setTexture("PlayerRIGHT1");
             ++zahl;
         }else if(zahl==2){
-            mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("PlayerRIGHT2")->second);
+            currentChar->setTexture("PlayerRIGHT2");
             zahl=0;
         }
 
     }else{
-        mainWindow->getCharacterLabelVector().at(0)->setPixmap(*textures.find("Player")->second);
+        currentChar->setTexture("Player");
+
     }
 }
 
-void GraphicalUI::animateZombie(char movement, int vectorIndex)
+void GraphicalUI::animateZombie(char movement, Character* currentChar)
 {
     if(movement=='a' || movement=='q' || movement=='y'){
-        mainWindow->getCharacterLabelVector().at(vectorIndex)->setPixmap(*textures.find("zombieLEFT")->second);
+        currentChar->setTexture("zombieLEFT");
     }else if(movement=='d'||movement=='e'||movement=='c'){
-        mainWindow->getCharacterLabelVector().at(vectorIndex)->setPixmap(*textures.find("zombieRIGHT")->second);
+        currentChar->setTexture("zombieRIGHT");
     }else{
-        mainWindow->getCharacterLabelVector().at(vectorIndex)->setPixmap(*textures.find("zombieLEFT")->second);
+        currentChar->setTexture("zombieLEFT");
     }
+
 }
