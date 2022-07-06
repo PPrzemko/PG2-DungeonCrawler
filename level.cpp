@@ -1,6 +1,7 @@
 #include "level.h"
 
 
+
 Level::Level(const int& col, const int& row, Controller *con) :
     col(col), row(row)
 {
@@ -45,7 +46,7 @@ Level::Level(const int& col, const int& row, Controller *con) :
                      new Floor(5 , 9),new Floor(5 , 10),new Floor(5 , 11),new Floor(5 , 12),new Floor(5 , 13),new Floor(5 , 14),new Wall(5 , 15)});
     //6
     world.push_back({new Wall(6 , 0),bluePortal2        ,new Floor(6 , 2),new Floor(6 , 3),new Floor(6 , 4),new Floor(6 , 5),switch1      ,new Wall(6 , 7),new Wall(6 , 8),
-                     new Floor(6 , 9),new Floor(6 , 10),new Floor(6 , 11),new Floor(6 , 12),new Floor(6 , 13),new Lootchest(6 , 14),new Wall(6 , 15)});
+                     new Floor(6 , 9),new Floor(6 , 10),new Floor(6 , 11),new Floor(6 , 12),new Floor(6 , 13),new Floor(6 , 14),new Wall(6 , 15)});
     // 7
     world.push_back({new Wall(7 , 0),new Wall(7 , 1),new Wall(7 , 2),new Wall(7 , 3),new Wall(7 , 4),new Wall(7 , 5),new Wall(7 , 6),new Wall(7 , 7),new Wall(7 , 8),
                      new Wall(7 , 9),new Wall(7 , 10),new Wall(7 , 11),new Wall(7 , 12),new Wall(7 , 13),new Wall(7 , 14),new Wall(7 , 15)});
@@ -55,6 +56,7 @@ Level::Level(const int& col, const int& row, Controller *con) :
     Character* d = new Character(con,10,5,false);
     characterVector.push_back(d);
     placeCharacter(d,2,2);
+    d->getCurrentTile()->setPlayer(nullptr);
 
     StationaryController* z1c = new StationaryController();
     Character* z1 = new Character(z1c,9,2,true);
@@ -74,7 +76,23 @@ void Level::placeCharacter(Character *c, int col, int row)
     c->setCurrentTile(world.at(col).at(row));
     world.at(col).at(row)->setPlayer(c);
 }
+Levelchanger *Level::createLevelChangerAt(const int &col, const int &row, Level *level)
+{
+    delete world.at(col).at(row);
+    // 0 Blue 1 Red 2 yellow first arugment
+    Levelchanger* tmpLevelchanger = new Levelchanger(col,row, level);
+    world.at(col).at(row)=tmpLevelchanger;
+    return tmpLevelchanger;
 
+}
+
+void Level::createLootChestAt(const int &col, const int &row)
+{
+    delete world.at(col).at(row);
+    Lootchest* tmpLootChest = new Lootchest(col,row);
+    world.at(col).at(row)=tmpLootChest;
+
+}
 Level::Level(const Level &level) : col(level.getCol()), row(level.getRow())
 {
     std::vector<Portal*> portalQueue;
@@ -174,8 +192,6 @@ Level &Level::operator=(Level level)
     return *this;
 }
 
-
-
 Level::~Level()
 {
     for(size_t i = 0; i < characterVector.size(); ++i){
@@ -190,13 +206,12 @@ Level::~Level()
 
 }
 
-
-
-
 Tile *Level::getTile(int col, int row) const
 {
     return world.at(col).at(row);
 }
+
+
 
 int Level::getCol() const
 {
@@ -217,3 +232,8 @@ const std::vector<Character *> &Level::getCharacterVector() const
     return characterVector;
 }
 
+
+void Level::setCharacterinVector(Character* newCharacter)
+{
+    characterVector.at(0)=newCharacter;
+}

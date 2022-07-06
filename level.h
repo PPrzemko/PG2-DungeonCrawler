@@ -13,6 +13,7 @@ class Tile;
 #include "lootchest.h"
 #include "stationarycontroller.h"
 #include "guardcontroller.h"
+#include "levelchanger.h"
 
 #include <algorithm>
 
@@ -36,6 +37,8 @@ public:
     Level(const Level &level);
     Level &operator=(Level level);
     Tile *getTile(int row, int col) const;
+    Levelchanger* createLevelChangerAt(const int& col, const int& row, Level* level);
+    void createLootChestAt(const int& col, const int& row);
     void placeCharacter(Character *c, int row, int col);
     ~Level();
 
@@ -45,6 +48,7 @@ public:
     int getCol() const;
     const std::vector<std::vector<Tile *> > &getTileVector() const;
     const std::vector<Character *> &getCharacterVector() const;
+    void setCharacterinVector(Character* newCharacter);
 };
 
 #endif // LEVEL_H

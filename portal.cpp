@@ -4,11 +4,11 @@
 Portal::Portal(int portaltype, const int& col, const int& row, Character* player)
     : Tile(player, col, row), portalTypeID(portaltype)
 {
-    if(portalTypeID == Blau){
+    if(portaltype == Blau){
         texture="Blau";
-    }else if(portalTypeID == Rot){
+    }else if(portaltype == Rot){
         texture="Rot";
-    }else if(portalTypeID == Gelb){
+    }else if(portaltype == Gelb){
         texture="Gelb";
     }
 

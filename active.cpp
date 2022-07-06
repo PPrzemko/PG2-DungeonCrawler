@@ -5,6 +5,11 @@ Active::Active()
 
 }
 
+Active::~Active()
+{
+
+}
+
 void Active::attach(Passive *obj)
 {
     bool duplicate=false;

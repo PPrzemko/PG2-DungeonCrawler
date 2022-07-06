@@ -9,7 +9,8 @@
 #include <QObject>
 #include <QTest>
 #include <QCoreApplication>
-
+class Levelchanger;
+class Door;
 class GraphicalUI : public AbstractUI, public Controller, public QObject
 {
 
@@ -29,6 +30,7 @@ public:
     char move() override;
     void initTextures();
     void showEndScreen(const bool& win);
+    void reDrawTexture(const int& col, const int& row);
 
 
 public slots:

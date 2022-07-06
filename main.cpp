@@ -6,10 +6,23 @@ using namespace std;
 
 
 
+
         QApplication a(argc, argv);
 
 
+
+
+
+
         DungeonCrawler* l = new DungeonCrawler();
+
+
+
+
+
+
+
+
         l->play();
 
         return a.exec();

@@ -5,35 +5,42 @@
 DungeonCrawler::DungeonCrawler()
 {
     UI= new GraphicalUI();
+
+
     level = new Level(8,16,UI);
+    Level* k2 = new Level(8,16,UI);
+    levelList.push_back(level);
+    levelList.push_back(k2);
+
+    k2->createLootChestAt(6,14);
+
+    Levelchanger* l1 = level->createLevelChangerAt(6,13,k2); // 6, 13
+    Levelchanger* l2 = k2->createLevelChangerAt(1,1,level);
+    l1->setPortalDestination(l2);
+    l2->setPortalDestination(l1);
+
+
+
+    Passive* dc = dynamic_cast<Passive*>(this);
+    l1->attach(dc);
+    l2->attach(dc);
 
     UI->initField(level);
+    levelList.push_back(level);
 
 
 }
-
-void DungeonCrawler::moveOffset(int i, Tile* currentCharacterTile, int colOffset, int rowOffset)
+void DungeonCrawler::notify(Active *source)
 {
-    colOffset = currentCharacterTile->getColumn()+colOffset;
-    rowOffset = currentCharacterTile->getRow()+rowOffset;
 
-    if(colOffset>=level->getCol() || colOffset < 0){
-        std::cout << "Spielfeld kann nicht verlassen werden" << std::endl;
-    }else if(rowOffset>=level->getRow() || rowOffset < 0){
-        std::cout << "Spielfeld kann nicht verlassen werden" << std::endl;
-    }else{
-        Tile* destionationtile = level->getTile(colOffset,rowOffset);
-        if(destionationtile->hasCharacter() && destionationtile->getPlayer()->isAlive()){
-            if(currentCharacterTile->getPlayer()->getNpc() != destionationtile->getPlayer()->getNpc()){
-
-                fight(currentCharacterTile->getPlayer(), destionationtile->getPlayer());
-
-            }
-        }
+    Levelchanger* levelchanger = dynamic_cast<Levelchanger*>(source);
+    levelchanger->getLevelDestination()->setCharacterinVector(this->level->getCharacterVector().at(0));
 
 
-        currentCharacterTile->moveTo(destionationtile, level->getCharacterVector().at(i));
-    }
+    UI->reDrawTexture(levelchanger->getColumn(),levelchanger->getRow());
+    this->level=levelchanger->getLevelDestination();
+
+
 
 
 
@@ -91,6 +98,32 @@ void DungeonCrawler::play()
 
 
 }
+
+void DungeonCrawler::moveOffset(int i, Tile* currentCharacterTile, int colOffset, int rowOffset)
+{
+    colOffset = currentCharacterTile->getColumn()+colOffset;
+    rowOffset = currentCharacterTile->getRow()+rowOffset;
+
+    if(colOffset>=level->getCol() || colOffset < 0){
+        std::cout << "Spielfeld kann nicht verlassen werden" << std::endl;
+    }else if(rowOffset>=level->getRow() || rowOffset < 0){
+        std::cout << "Spielfeld kann nicht verlassen werden" << std::endl;
+    }else{
+        Tile* destionationtile = level->getTile(colOffset,rowOffset);
+        if(destionationtile->hasCharacter() && destionationtile->getPlayer()->isAlive()){
+            if(currentCharacterTile->getPlayer()->getNpc() != destionationtile->getPlayer()->getNpc()){
+
+                fight(currentCharacterTile->getPlayer(), destionationtile->getPlayer());
+
+            }
+        }
+
+
+        currentCharacterTile->moveTo(destionationtile, level->getCharacterVector().at(i));
+    }
+
+}
+
 void DungeonCrawler::fight(Character* attacker, Character* defender)
 {
 

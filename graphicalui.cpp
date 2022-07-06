@@ -39,6 +39,16 @@ void GraphicalUI::draw(Level* s){
                 }
             }
 
+            if(typeid (*currentTile) == typeid (Levelchanger)){
+                Levelchanger* levelchanger = dynamic_cast<Levelchanger*>(currentTile);
+                mainWindow->setPlayerLabelTexture(textures.find("levelChanger")->second,i,j);
+            }
+            if(typeid (*currentTile) == typeid (Lootchest)){
+                Lootchest* lootchest = dynamic_cast<Lootchest*>(currentTile);
+                mainWindow->setPlayerLabelTexture(textures.find("lootChest")->second,i,j);
+            }
+
+
         }
     }
 
@@ -97,7 +107,7 @@ void GraphicalUI::initField(Level* s)
 {
     initTextures();
     mainWindow->addControl(textures);
-    // TODO CharacterVector Add loop shit qlabel
+    // TODO CharacterVector Add loop qlabel
     mainWindow->addCharacter(textures);
     mainWindow->addCharacter(textures);
     mainWindow->addCharacter(textures);
@@ -245,6 +255,11 @@ void GraphicalUI::showEndScreen(const bool &win)
         mainWindow->getEndScreen()->setText("You Lost!");
     }
     mainWindow->getEndScreen()->show();
+}
+
+void GraphicalUI::reDrawTexture(const int &col, const int &row)
+{
+    mainWindow->setPlayerLabelTexture(textures.find("floorType0")->second,col,row);
 }
 
 void GraphicalUI::StartButtonClicked()

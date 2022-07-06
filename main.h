@@ -9,7 +9,7 @@
 
 #include "startscreen.h"
 #include <QApplication>
-
+class Levelchanger;
 
 class main{
 

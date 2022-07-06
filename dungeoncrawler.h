@@ -6,9 +6,12 @@
 #include "level.h"
 #include <iostream>
 #include <vector>
+#include "passive.h"
+#include "list.h"
 class Lootchest;
 class TerminalUI;
-class DungeonCrawler
+#include "levelchanger.h"
+class DungeonCrawler : public Passive
 {
 private:
     void fight(Character* attacker, Character* defender);
@@ -16,12 +19,17 @@ protected:
     GraphicalUI* UI;
     Level* level;
     std::vector<Level*> levelVector;
+    List levelList;
 
 
 public:
     DungeonCrawler();
     void moveOffset(int i, Tile* currentCharacterTile, int colOfset, int rowOfset);
     void play();
+
+    // Passive interface
+public:
+    void notify(Active *source) override;
 };
 
 #endif // DUNGEONCRAWLER_H
