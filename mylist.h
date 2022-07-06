@@ -1,7 +1,4 @@
-#ifndef MYLIST_H
-#define MYLIST_H
 #include <cstddef>
-#include <iostream>
 
 class myList
 {
@@ -26,6 +23,3 @@ class myList
   Element* start     = nullptr;
   std::size_t m_size = 0;
 };
-
-
-#endif // MYLIST_H
