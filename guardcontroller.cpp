@@ -12,6 +12,4 @@ char GuardController::move()
         k=0;
     }
     return (sequence.at(k++));
-    // TODO Annika übernimmt sorgerecht für k++
-
 }

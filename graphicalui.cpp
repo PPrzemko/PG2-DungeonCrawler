@@ -111,6 +111,7 @@ void GraphicalUI::initField(Level* s)
     mainWindow->addCharacter(textures);
     mainWindow->addCharacter(textures);
     mainWindow->addCharacter(textures);
+
     // create tiles with QPixmap texures
     for(auto &a: s->getTileVector()){
             for(auto &b : a){

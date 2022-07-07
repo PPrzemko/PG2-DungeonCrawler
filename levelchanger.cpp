@@ -10,15 +10,14 @@ Levelchanger::Levelchanger(const int& col, const int& row,Level* destlvl, Charac
 
 Tile *Levelchanger::onEnter(Tile *fromTile, Character *who)
 {
-    activate();
-    return portalDestination;
     // TODO ZOMBIE CHECK PORTAL
-    /*
     if (!who->getNpc()) {
       activate();
+      return portalDestination;
+    }else{
+        return nullptr;
     }
-    */
-    //return nullptr;
+
 
 }
 

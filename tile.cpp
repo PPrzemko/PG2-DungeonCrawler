@@ -51,7 +51,7 @@ bool Tile::hasCharacter()
 
 const std::string &Tile::getTexture()
 {
-    // TODO: Auskommentiert
+    // TODO: Auskommentiert no longer needed?
     /*
     if(hasCharacter()){
         return player->getTexture();
