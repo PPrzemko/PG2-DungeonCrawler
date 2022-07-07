@@ -229,11 +229,9 @@ void MainWindow::createGridTemplateForLabels()
 
 void MainWindow::createEndScreenLabel()
 {
-    EndScreen = new QLabel();
+    EndScreen = new QLabel(this);
     EndScreen->setStyleSheet("font-size: 130pt; background-color: black; color: white;");
     EndScreen->setMinimumSize(1400,800);
     EndScreen->setMaximumSize(1400,800);
-
-    EndScreen->setParent(this);
     EndScreen->hide();
 }

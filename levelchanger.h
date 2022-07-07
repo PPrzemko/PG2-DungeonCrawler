@@ -3,7 +3,6 @@
 #include "tile.h"
 #include "active.h"
 class Level;
-//enum PortalTypes{Blau,Rot,Gelb};
 
 class Levelchanger : public Tile, public Active
 {
@@ -15,7 +14,6 @@ public:
 private:
     Level* levelDestination;
     Levelchanger* portalDestination;
-    int portalTypeID;
 
 
 

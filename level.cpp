@@ -79,7 +79,6 @@ void Level::placeCharacter(Character *c, int col, int row)
 Levelchanger *Level::createLevelChangerAt(const int &col, const int &row, Level *level)
 {
     delete world.at(col).at(row);
-    // 0 Blue 1 Red 2 yellow first arugment
     Levelchanger* tmpLevelchanger = new Levelchanger(col,row, level);
     world.at(col).at(row)=tmpLevelchanger;
     return tmpLevelchanger;

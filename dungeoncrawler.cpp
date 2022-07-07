@@ -6,7 +6,6 @@ DungeonCrawler::DungeonCrawler()
 {
     UI= new GraphicalUI();
 
-
     level = new Level(8,16,UI);
     Level* k2 = new Level(8,16,UI);
     levelList.push_back(level);
@@ -14,7 +13,7 @@ DungeonCrawler::DungeonCrawler()
 
     k2->createLootChestAt(6,14);
 
-    Levelchanger* l1 = level->createLevelChangerAt(6,13,k2); // 6, 13
+    Levelchanger* l1 = level->createLevelChangerAt(6,14,k2); // 6, 13
     Levelchanger* l2 = k2->createLevelChangerAt(1,1,level);
     l1->setPortalDestination(l2);
     l2->setPortalDestination(l1);
@@ -26,8 +25,6 @@ DungeonCrawler::DungeonCrawler()
     l2->attach(dc);
 
     UI->initField(level);
-    levelList.push_back(level);
-
 
 }
 void DungeonCrawler::notify(Active *source)

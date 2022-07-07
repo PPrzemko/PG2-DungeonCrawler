@@ -18,7 +18,7 @@ private:
 protected:
     GraphicalUI* UI;
     Level* level;
-    std::vector<Level*> levelVector;
+    //std::vector<Level*> levelVector;
     List levelList;
 
 
