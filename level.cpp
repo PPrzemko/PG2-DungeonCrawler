@@ -142,13 +142,14 @@ void Level::writeInJSON(const std::string &path)
 
 
                json passivearray;
-               passivearray["linkedPassives"] = json::array();
+               passivearray= json::array();
 
                for(auto &a : dynamic_cast<Active*>(b)->getLinkedPassives()){
-                   passivearray["linkedPassives"].push_back({
+                   passivearray.push_back({
                                               {"linkedcol", dynamic_cast<Tile*>(a)->getColumn()},
                                               {"linkedrow", dynamic_cast<Tile*>(a)->getRow()}
                                           });
+
                }
 
 
@@ -156,9 +157,13 @@ void Level::writeInJSON(const std::string &path)
                j["tiles"].push_back({
                                         {"col", b->getColumn()},
                                         {"row", b->getRow()},
-                                        {"texture", b->getTexture()}//,
-                                        //passivearray
+                                        {"texture", b->getTexture()},
+                                        {"targets", passivearray}
                                     });
+
+
+
+
            }
 
 
