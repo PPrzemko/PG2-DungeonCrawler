@@ -18,7 +18,6 @@ class Tile;
 #include "json.hpp"
 #include <fstream>
 
-
 class Controller;
 class Level
 {
