@@ -40,11 +40,11 @@ void GraphicalUI::draw(Level* s){
             }
 
             if(typeid (*currentTile) == typeid (Levelchanger)){
-                Levelchanger* levelchanger = dynamic_cast<Levelchanger*>(currentTile);
+                //Levelchanger* levelchanger = dynamic_cast<Levelchanger*>(currentTile);
                 mainWindow->setPlayerLabelTexture(textures.find("levelChanger")->second,i,j);
             }
             if(typeid (*currentTile) == typeid (Lootchest)){
-                Lootchest* lootchest = dynamic_cast<Lootchest*>(currentTile);
+                //Lootchest* lootchest = dynamic_cast<Lootchest*>(currentTile);
                 mainWindow->setPlayerLabelTexture(textures.find("lootChest")->second,i,j);
             }
 

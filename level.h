@@ -14,9 +14,9 @@ class Tile;
 #include "stationarycontroller.h"
 #include "guardcontroller.h"
 #include "levelchanger.h"
-
 #include <algorithm>
-
+#include "json.hpp"
+#include <fstream>
 
 
 class Controller;
@@ -40,7 +40,9 @@ public:
     Levelchanger* createLevelChangerAt(const int& col, const int& row, Level* level);
     void createLootChestAt(const int& col, const int& row);
     void placeCharacter(Character *c, int row, int col);
+    void writeInJSON(const std::string& path);
     ~Level();
+
 
 
 

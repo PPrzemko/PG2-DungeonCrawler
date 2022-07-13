@@ -18,13 +18,13 @@ DungeonCrawler::DungeonCrawler()
     l1->setPortalDestination(l2);
     l2->setPortalDestination(l1);
 
-
-
     Passive* dc = dynamic_cast<Passive*>(this);
     l1->attach(dc);
     l2->attach(dc);
 
     UI->initField(level);
+
+    k2->writeInJSON("level.json");
 
 }
 void DungeonCrawler::notify(Active *source)
@@ -32,7 +32,6 @@ void DungeonCrawler::notify(Active *source)
 
     Levelchanger* levelchanger = dynamic_cast<Levelchanger*>(source);
     levelchanger->getLevelDestination()->setCharacterinVector(this->level->getCharacterVector().at(0));
-
 
     UI->reDrawTexture(levelchanger->getColumn(),levelchanger->getRow());
     this->level=levelchanger->getLevelDestination();
@@ -86,7 +85,6 @@ void DungeonCrawler::play()
         }
         // player finds chest
         if(dynamic_cast<Lootchest*>(level->getCharacterVector().at(0)->getCurrentTile())){
-
             UI->showEndScreen(true);
             std::cout << "YOU WON!!" << std::endl;
             playing = false;

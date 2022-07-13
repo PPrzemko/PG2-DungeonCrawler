@@ -9,6 +9,8 @@ public:
     GuardController(const std::string& seq);
     char move() override;
 
+    const std::string &getSequence() const;
+
 private:
     std::string sequence;
 };

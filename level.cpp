@@ -1,6 +1,6 @@
 #include "level.h"
 
-
+using nlohmann::json;
 
 Level::Level(const int& col, const int& row, Controller *con) :
     col(col), row(row)
@@ -75,6 +75,87 @@ void Level::placeCharacter(Character *c, int col, int row)
 {
     c->setCurrentTile(world.at(col).at(row));
     world.at(col).at(row)->setPlayer(c);
+}
+
+void Level::writeInJSON(const std::string &path)
+{
+    std::ofstream tmplevel(path);
+    json j;
+    j["characters"] = json::array();
+    j["tiles"] = json::array();
+
+
+
+    for(auto& a: characterVector){
+
+        //if(typeid(*a->getController() == *GuardController))
+        std::string givenController = typeid(*a->getController()).name();
+        givenController=givenController.erase(0,2);
+
+        json i;
+        if(givenController=="GuardController"){
+            j["characters"].push_back({
+                                          {"col", a->getCurrentTile()->getColumn()},
+                                          {"row", a->getCurrentTile()->getRow()},
+                                          {"controller", givenController},
+                                          {"hp", a->getHitpoints()},
+                                          {"stamina", a->getStamina()},
+                                          {"strength", a->getStrength()},
+                                          {"npc", a->getNpc()},
+                                          {"texture", a->getTexture()},
+                                          {"movement",dynamic_cast<GuardController*>(a->getController())->getSequence()}
+            });
+        }else{
+            j["characters"].push_back({
+                                            {"col", a->getCurrentTile()->getColumn()},
+                                            {"row", a->getCurrentTile()->getRow()},
+                                            {"controller", givenController},
+                                            {"hp", a->getHitpoints()},
+                                            {"stamina", a->getStamina()},
+                                            {"strength", a->getStrength()},
+                                            {"npc", a->getNpc()},
+                                            {"texture", a->getTexture()}
+            });
+        }
+
+
+
+    }
+
+    for(auto &a : world){
+        for(auto &b : a){
+           if(typeid(*b)==typeid(Floor) || typeid(*b)==typeid(Wall)){
+               j["tiles"].push_back({
+                                             {"col", b->getColumn()},
+                                             {"row", b->getRow()},
+                                             {"texture", b->getTexture()}
+                                         });
+           }else if(typeid(*b)==typeid(Portal)){
+               j["tiles"].push_back({
+                                        {"col", b->getColumn()},
+                                        {"row", b->getRow()},
+                                        {"texture", b->getTexture()},
+                                        {"destinationCol", dynamic_cast<Portal*>(b)->getDestination()->getColumn()},
+                                        {"destionationRow", dynamic_cast<Portal*>(b)->getDestination()->getRow()}
+                                         });
+           }else if(typeid(*b)==typeid(Switch)){
+
+           }
+
+
+
+
+
+        }
+    }
+
+
+
+
+
+
+    tmplevel << j.dump(2);
+    tmplevel.close();
 }
 Levelchanger *Level::createLevelChangerAt(const int &col, const int &row, Level *level)
 {

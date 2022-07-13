@@ -13,3 +13,8 @@ char GuardController::move()
     }
     return (sequence.at(k++));
 }
+
+const std::string &GuardController::getSequence() const
+{
+    return sequence;
+}

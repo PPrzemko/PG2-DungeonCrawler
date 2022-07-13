@@ -47,6 +47,7 @@ HEADERS += \
     floor.h \
     graphicalui.h \
     guardcontroller.h \
+    json.hpp \
     level.h \
     levelchanger.h \
     list.h \

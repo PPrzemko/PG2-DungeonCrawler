@@ -37,6 +37,7 @@ public:
     bool getNpc() const;
     void setHitpoints(int newHitpoints);
     void setTexture(const std::string &newTexture);
+    Controller *getController() const;
 };
 
 #endif // CHARACTER_H

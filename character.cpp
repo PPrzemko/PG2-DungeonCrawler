@@ -1,4 +1,9 @@
 #include "character.h"
+Controller *Character::getController() const
+{
+    return controller;
+}
+
 Character::Character(Controller* controller, const int& strength, const int& stamina, const bool& npc) : controller(controller), strength(strength), stamina(stamina), npc(npc)
 {
     if(npc){
