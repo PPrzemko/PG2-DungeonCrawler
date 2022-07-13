@@ -124,7 +124,7 @@ void Level::writeInJSON(const std::string &path)
 
     for(auto &a : world){
         for(auto &b : a){
-           if(typeid(*b)==typeid(Floor) || typeid(*b)==typeid(Wall)){
+           if(typeid(*b)==typeid(Floor) || typeid(*b)==typeid(Wall) || typeid(*b)==typeid(Lootchest) ){
                j["tiles"].push_back({
                                              {"col", b->getColumn()},
                                              {"row", b->getRow()},
@@ -162,6 +162,16 @@ void Level::writeInJSON(const std::string &path)
                                     });
 
 
+
+
+           }else if(typeid(*b)==typeid(Door)){
+
+               j["tiles"].push_back({
+                                        {"col", b->getColumn()},
+                                        {"row", b->getRow()},
+                                        {"texture", b->getTexture()},
+                                        {"opened", dynamic_cast<Door*>(b)->getOpen()}
+                                    });
 
 
            }
