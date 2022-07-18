@@ -32,9 +32,9 @@ void GraphicalUI::draw(Level* s){
             // Update Door Status
             if(typeid (*currentTile) == typeid (Door)){
                 Door *door = dynamic_cast<Door*>(currentTile);
-                if(door->getOpen()){
+                if(door->isOpen()){
                     mainWindow->setPlayerLabelTexture(textures.find("DoorOpen")->second,i,j);
-                }else if(!door->getOpen()){
+                }else if(!door->isOpen()){
                     mainWindow->setPlayerLabelTexture(textures.find("DoorClose")->second,i,j);
                 }
             }

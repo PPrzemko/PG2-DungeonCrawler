@@ -21,6 +21,11 @@ Floor::Floor(const int& col, const int& row, Character* player)
 
 }
 
+Floor::Floor(const int &col, const int &row, const std::string &texture, Character *player): Tile(player, col, row)
+{
+    this->texture=texture;
+}
+
 Tile* Floor::onEnter(Tile* fromTile, Character* who){
     if(hasCharacter() && this->getPlayer()->isAlive()){
         return nullptr;

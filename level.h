@@ -18,6 +18,12 @@ class Tile;
 #include "json.hpp"
 #include <fstream>
 
+// includes for Json
+#include "graphicalui.h"
+#include "stationarycontroller.h"
+#include "guardcontroller.h"
+
+
 class Controller;
 class Level
 {
@@ -35,6 +41,7 @@ protected:
 public:
     Level(const int& col, const int& row, const std::string& name, Controller *con);
     Level(const Level &level);
+    Level(const std::string& path, Controller *con);
     Level &operator=(Level level);
     Tile *getTile(int row, int col) const;
     Levelchanger* createLevelChangerAt(const int& col, const int& row, Level* level);

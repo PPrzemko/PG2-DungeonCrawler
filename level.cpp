@@ -71,6 +71,100 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
 
 }
 
+
+Level::Level(const std::string &path, Controller *con)
+{
+     std::ifstream file(path);
+     json readFile;
+     file >> readFile;
+    this->name = readFile["alevel"];
+    this->col = readFile["alevelCol"];
+    this->row = readFile["alevelRow"];
+
+     // NEED Vector Initalisation
+     for(int i=0; i<this->col;++i){
+         world.push_back(std::vector<Tile*>(this->row));
+     }
+
+     for (const auto& tile : readFile["tiles"]){
+        std::string tileText = tile["texture"];
+
+        if(tileText== "Wall"){
+            world.at(tile["col"]).at(tile["row"]) = new Wall( tile["col"], tile["row"]);
+
+
+        }else if(tileText == "floorType0" || tileText == "floorType1" || tileText == "floorType2" || tileText == "floorType3" || tileText == "floorType4"){
+             world.at(tile["col"]).at(tile["row"]) = new Floor( tile["col"], tile["row"], tile["texture"]);
+
+         }else if(tileText == "Rot" || tileText == "Blau" || tileText == "Gelb"){
+            int x=0;
+            if(tileText=="Blau"){
+                x=0;
+            }else if(tileText=="Rot"){
+                x=1;
+            }else if(tileText=="Gelb"){
+                x=2;
+            }
+            world.at(tile["col"]).at(tile["row"]) = new Portal(x,tile["col"], tile["row"]);
+
+        }else if(tileText == "DoorClose" || tileText == "DoorOpen"){
+
+            bool open;
+            if(tileText == "DoorClose"){
+               open=false;
+            }else if(tileText == "DoorOpen"){
+                open=true;
+            }
+
+            Door* tmpDoor=new Door(tile["col"], tile["row"], open);
+            world.at(tile["col"]).at(tile["row"]) = tmpDoor;
+
+
+        }else if(tileText == "Switch"){
+            world.at(tile["col"]).at(tile["row"]) = new Switch( tile["col"], tile["row"]);
+
+
+        }else if(tileText == "lootChest"){
+            world.at(tile["col"]).at(tile["row"]) = new Lootchest( tile["col"], tile["row"]);
+
+
+        }
+
+
+
+     }
+
+     // TODO: PlaceChar only workes with tiles
+     for (const auto& character : readFile["characters"]){
+        if(character["controller"] == "GraphicalUI"){
+            Character* d = new Character(con, character["strength"], character["stamina"],character["npc"]);
+            // TODO: need to add tiles then place char
+            characterVector.push_back(d);
+            // this->placeCharacter(d,character["col"],character["row"]);
+            // d->getCurrentTile()->setPlayer(nullptr);
+
+        }else if(character["controller"] == "StationaryController"){
+            StationaryController* z1c = new StationaryController();
+            Character* z1 = new Character(z1c,character["strength"],character["stamina"],character["npc"]);
+            characterVector.push_back(z1);
+            //placeCharacter(z2,character["col"],character["row"]);
+
+         }else if(character["controller"] == "GuardController"){
+            GuardController* z2c = new GuardController(character["movement"]);
+            Character* z2 = new Character(z2c,character["strength"],character["stamina"],character["npc"]);
+            characterVector.push_back(z2);
+            //placeCharacter(z2,character["col"],character["row"]);
+        }else{
+            std::cout << std::endl << "CharacterController JSON Error" << std::endl;
+        }
+
+
+     }
+
+
+
+}
+
 void Level::placeCharacter(Character *c, int col, int row)
 {
     c->setCurrentTile(world.at(col).at(row));
@@ -81,7 +175,9 @@ void Level::writeInJSON(const std::string &path)
 {
     std::ofstream tmplevel(path);
     json j;
-    j["alevel"] = name;
+    j["alevel"] = this->name;
+    j["alevelCol"] = this->col;
+    j["alevelRow"] = this->row;
     j["characters"] = json::array();
     j["tiles"] = json::array();
 
@@ -170,7 +266,7 @@ void Level::writeInJSON(const std::string &path)
                                         {"col", b->getColumn()},
                                         {"row", b->getRow()},
                                         {"texture", b->getTexture()},
-                                        {"opened", dynamic_cast<Door*>(b)->getOpen()}
+                                        {"opened", dynamic_cast<Door*>(b)->isOpen()}
                                     });
            }else if(typeid(*b)==typeid(Levelchanger)){
 
@@ -199,6 +295,7 @@ void Level::writeInJSON(const std::string &path)
     tmplevel << j.dump(2);
     tmplevel.close();
 }
+
 Levelchanger *Level::createLevelChangerAt(const int &col, const int &row, Level *level)
 {
     delete world.at(col).at(row);
@@ -215,6 +312,7 @@ void Level::createLootChestAt(const int &col, const int &row)
     world.at(col).at(row)=tmpLootChest;
 
 }
+
 Level::Level(const Level &level) : col(level.getCol()), row(level.getRow())
 {
     std::vector<Portal*> portalQueue;
@@ -332,8 +430,6 @@ Tile *Level::getTile(int col, int row) const
 {
     return world.at(col).at(row);
 }
-
-
 
 int Level::getCol() const
 {

@@ -6,6 +6,18 @@ Door::Door(const int& col, const int& row, Character* player) : Tile(player, col
     texture = ("DoorClose");
 }
 
+Door::Door(const int &col, const int &row, const bool &status, Character *player) : Tile(player, col, row), Passive()
+{
+    // needed for JSon read in level
+    if(status){
+        open=true;
+        texture = ("DoorOpen");
+    }else if(!status){
+        open=false;
+        texture = ("DoorClose");
+    }
+}
+
 void Door::notify(Active *source)
 {
     this->swapState();
@@ -28,7 +40,7 @@ Tile* Door::onEnter(Tile* fromTile, Character* who){
     }
 }
 
-bool Door::getOpen() const
+bool Door::isOpen() const
 {
     return open;
 }
