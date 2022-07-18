@@ -2,8 +2,8 @@
 
 using nlohmann::json;
 
-Level::Level(const int& col, const int& row, Controller *con) :
-    col(col), row(row)
+Level::Level(const int& col, const int& row, const std::string& name, Controller *con) :
+    col(col), row(row), name(name)
 {
 
 
@@ -81,6 +81,7 @@ void Level::writeInJSON(const std::string &path)
 {
     std::ofstream tmplevel(path);
     json j;
+    j["alevel"] = name;
     j["characters"] = json::array();
     j["tiles"] = json::array();
 
@@ -92,7 +93,6 @@ void Level::writeInJSON(const std::string &path)
         std::string givenController = typeid(*a->getController()).name();
         givenController=givenController.erase(0,2);
 
-        json i;
         if(givenController=="GuardController"){
             j["characters"].push_back({
                                           {"col", a->getCurrentTile()->getColumn()},
@@ -136,7 +136,7 @@ void Level::writeInJSON(const std::string &path)
                                         {"row", b->getRow()},
                                         {"texture", b->getTexture()},
                                         {"destinationCol", dynamic_cast<Portal*>(b)->getDestination()->getColumn()},
-                                        {"destionationRow", dynamic_cast<Portal*>(b)->getDestination()->getRow()}
+                                        {"destinationRow", dynamic_cast<Portal*>(b)->getDestination()->getRow()}
                                          });
            }else if(typeid(*b)==typeid(Switch)){
 
@@ -172,8 +172,16 @@ void Level::writeInJSON(const std::string &path)
                                         {"texture", b->getTexture()},
                                         {"opened", dynamic_cast<Door*>(b)->getOpen()}
                                     });
+           }else if(typeid(*b)==typeid(Levelchanger)){
 
-
+                j["tiles"].push_back({
+                                        {"col", b->getColumn()},
+                                        {"row", b->getRow()},
+                                        {"texture", b->getTexture()},
+                                        {"destinationPortalCol", dynamic_cast<Levelchanger*>(b)->getPortalDestination()->getColumn()},
+                                        {"destinationPortalRol", dynamic_cast<Levelchanger*>(b)->getPortalDestination()->getRow()},
+                                        {"destinationLevel", dynamic_cast<Levelchanger*>(b)->getLevelDestination()->getName()}
+                                    });
            }
 
 
@@ -334,6 +342,11 @@ int Level::getCol() const
 int Level::getRow() const
 {
     return row;
+}
+
+const std::string &Level::getName() const
+{
+    return name;
 }
 
 const std::vector<std::vector<Tile *> > &Level::getTileVector() const

@@ -6,8 +6,8 @@ DungeonCrawler::DungeonCrawler()
 {
     UI= new GraphicalUI();
 
-    level = new Level(8,16,UI);
-    Level* k2 = new Level(8,16,UI);
+    level = new Level(8,16,"Level1", UI);
+    Level* k2 = new Level(8,16,"Level2",UI);
     levelList.push_back(level);
     levelList.push_back(k2);
 

@@ -25,6 +25,7 @@ class Level
 private:
     int col;
     int row;
+    std::string name;
 protected:
 
 
@@ -32,7 +33,7 @@ protected:
     std::vector<Character*> characterVector;
 
 public:
-    Level(const int& col, const int& row, Controller *con);
+    Level(const int& col, const int& row, const std::string& name, Controller *con);
     Level(const Level &level);
     Level &operator=(Level level);
     Tile *getTile(int row, int col) const;
@@ -50,6 +51,7 @@ public:
     const std::vector<std::vector<Tile *> > &getTileVector() const;
     const std::vector<Character *> &getCharacterVector() const;
     void setCharacterinVector(Character* newCharacter);
+    const std::string &getName() const;
 };
 
 #endif // LEVEL_H
