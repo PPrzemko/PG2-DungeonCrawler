@@ -29,23 +29,30 @@ void GraphicalUI::draw(Level* s){
 
             Tile* currentTile = s->getTile(i,j);
 
-            // Update Door Status
-            if(typeid (*currentTile) == typeid (Door)){
-                Door *door = dynamic_cast<Door*>(currentTile);
-                if(door->isOpen()){
-                    mainWindow->setPlayerLabelTexture(textures.find("DoorOpen")->second,i,j);
-                }else if(!door->isOpen()){
-                    mainWindow->setPlayerLabelTexture(textures.find("DoorClose")->second,i,j);
-                }
-            }
+            // TODO: Needs nullptr check for json readout
 
-            if(typeid (*currentTile) == typeid (Levelchanger)){
-                //Levelchanger* levelchanger = dynamic_cast<Levelchanger*>(currentTile);
-                mainWindow->setPlayerLabelTexture(textures.find("levelChanger")->second,i,j);
-            }
-            if(typeid (*currentTile) == typeid (Lootchest)){
-                //Lootchest* lootchest = dynamic_cast<Lootchest*>(currentTile);
-                mainWindow->setPlayerLabelTexture(textures.find("lootChest")->second,i,j);
+            if(currentTile){
+                // Update Door Status
+                if(typeid (*currentTile) == typeid (Door)){
+                    Door *door = dynamic_cast<Door*>(currentTile);
+                    if(door->isOpen()){
+                        mainWindow->setPlayerLabelTexture(textures.find("DoorOpen")->second,i,j);
+                    }else if(!door->isOpen()){
+                        mainWindow->setPlayerLabelTexture(textures.find("DoorClose")->second,i,j);
+                    }
+                }
+
+                if(typeid (*currentTile) == typeid (Levelchanger)){
+                    //Levelchanger* levelchanger = dynamic_cast<Levelchanger*>(currentTile);
+                    mainWindow->setPlayerLabelTexture(textures.find("levelChanger")->second,i,j);
+                }
+                if(typeid (*currentTile) == typeid (Lootchest)){
+                    //Lootchest* lootchest = dynamic_cast<Lootchest*>(currentTile);
+                    mainWindow->setPlayerLabelTexture(textures.find("lootChest")->second,i,j);
+                }
+
+            }else{
+                std::cout << std::endl << "TypeIDerror graphicalUI" << std::endl;
             }
 
 
@@ -76,9 +83,13 @@ void GraphicalUI::drawCharacter(Level* s)
 
         Tile* currentTile = s->getCharacterVector().at(i)->getCurrentTile();
         bool isPit=false;
-        if(typeid (*currentTile) == typeid (Pit)){
-           isPit=true;
+        // TODO: Need to Check for Nullpointer before typeID
+        if(currentTile){
+            if(typeid (*currentTile) == typeid (Pit)){
+               isPit=true;
+            }
         }
+
         int col = currentTile->getColumn();
         int row = currentTile->getRow();
         mainWindow->setCharacterParent(col,row,isPit,i);

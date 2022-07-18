@@ -126,8 +126,10 @@ Level::Level(const std::string &path, Controller *con)
 
         }else if(tileText == "lootChest"){
             world.at(tile["col"]).at(tile["row"]) = new Lootchest( tile["col"], tile["row"]);
-
-
+        }else if(tileText == "pit"){
+            world.at(tile["col"]).at(tile["row"]) = new Pit( tile["col"], tile["row"]);
+        }else if(tileText == "Ramp"){
+            world.at(tile["col"]).at(tile["row"]) = new Ramp( tile["col"], tile["row"]);
         }
 
 
@@ -140,20 +142,20 @@ Level::Level(const std::string &path, Controller *con)
             Character* d = new Character(con, character["strength"], character["stamina"],character["npc"]);
             // TODO: need to add tiles then place char
             characterVector.push_back(d);
-            // this->placeCharacter(d,character["col"],character["row"]);
-            // d->getCurrentTile()->setPlayer(nullptr);
+            this->placeCharacter(d,character["col"],character["row"]);
+            d->getCurrentTile()->setPlayer(nullptr);
 
         }else if(character["controller"] == "StationaryController"){
             StationaryController* z1c = new StationaryController();
             Character* z1 = new Character(z1c,character["strength"],character["stamina"],character["npc"]);
             characterVector.push_back(z1);
-            //placeCharacter(z2,character["col"],character["row"]);
+            placeCharacter(z1,character["col"],character["row"]);
 
          }else if(character["controller"] == "GuardController"){
             GuardController* z2c = new GuardController(character["movement"]);
             Character* z2 = new Character(z2c,character["strength"],character["stamina"],character["npc"]);
             characterVector.push_back(z2);
-            //placeCharacter(z2,character["col"],character["row"]);
+            placeCharacter(z2,character["col"],character["row"]);
         }else{
             std::cout << std::endl << "CharacterController JSON Error" << std::endl;
         }
@@ -220,7 +222,7 @@ void Level::writeInJSON(const std::string &path)
 
     for(auto &a : world){
         for(auto &b : a){
-           if(typeid(*b)==typeid(Floor) || typeid(*b)==typeid(Wall) || typeid(*b)==typeid(Lootchest) ){
+           if(typeid(*b)==typeid(Floor) || typeid(*b)==typeid(Wall) || typeid(*b)==typeid(Lootchest) || typeid(*b)==typeid(Ramp) || typeid(*b)==typeid(Pit) ){
                j["tiles"].push_back({
                                              {"col", b->getColumn()},
                                              {"row", b->getRow()},

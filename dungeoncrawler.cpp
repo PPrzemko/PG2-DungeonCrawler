@@ -24,7 +24,7 @@ DungeonCrawler::DungeonCrawler()
 
     UI->initField(level);
 
-    //k2->writeInJSON("level.json");
+    k2->writeInJSON("level.json");
 
     this->level = new Level("level.json", UI);
 
