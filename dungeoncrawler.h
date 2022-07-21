@@ -11,10 +11,15 @@
 class Lootchest;
 class TerminalUI;
 #include "levelchanger.h"
+
+
 class DungeonCrawler : public Passive
 {
 private:
     void fight(Character* attacker, Character* defender);
+    void writeSavegame();
+    void readSavegame();
+    
 protected:
     GraphicalUI* UI;
     Level* level;

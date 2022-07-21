@@ -42,6 +42,8 @@ public:
     Level(const int& col, const int& row, const std::string& name, Controller *con);
     Level(const Level &level);
     Level(const std::string& path, Controller *con);
+    std::tuple<Level*,Levelchanger*> createLevel(const std::string& path, Controller *con);
+
     Level &operator=(Level level);
     Tile *getTile(int row, int col) const;
     Levelchanger* createLevelChangerAt(const int& col, const int& row, Level* level);

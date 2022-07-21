@@ -2,6 +2,35 @@
 
 
 
+void DungeonCrawler::writeSavegame()
+{
+    for(List::Iterator it = levelList.begin(); it != levelList.end(); ++it){
+        std::string filename = (*it)->getName();
+        filename.append(".json");
+        (*it)->writeInJSON(filename);
+    }
+
+}
+
+void DungeonCrawler::readSavegame()
+{
+    // TODO: Need to read all json in level
+    auto level1  = new Level("Level1.json", UI);
+    //auto level2 = new Level("Level2.json", UI);
+
+
+
+
+    // How to set current level
+    this->level = level1;
+
+
+    // TODO: Link & create Levelchanger
+
+
+
+}
+
 DungeonCrawler::DungeonCrawler()
 {
     UI= new GraphicalUI();
@@ -10,6 +39,19 @@ DungeonCrawler::DungeonCrawler()
     Level* k2 = new Level(8,16,"Level2",UI);
     levelList.push_back(level);
     levelList.push_back(k2);
+
+
+    std::cout << std::endl;
+    std::cout << "test";
+    std::cout << levelList.begin().currentElement->level->getName();
+    std::cout << levelList.begin().currentElement->next_element->level->getName();
+
+
+    std::cout << std::endl;
+
+
+
+
 
     k2->createLootChestAt(6,14);
 
@@ -24,9 +66,12 @@ DungeonCrawler::DungeonCrawler()
 
     UI->initField(level);
 
-    k2->writeInJSON("level.json");
 
-    this->level = new Level("level.json", UI);
+    writeSavegame();
+
+    readSavegame();
+
+
 
 }
 void DungeonCrawler::notify(Active *source)

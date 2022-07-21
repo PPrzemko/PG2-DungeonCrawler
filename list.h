@@ -17,22 +17,23 @@ private:
     Element* bot_element = nullptr;
     size_t list_size = 0;
 
-    class Iterator{
-        public:
-            Iterator(Element* currentElement);
 
-            Iterator& operator++();
-            Iterator& operator--();
-            Level*& operator*();
-            bool operator==(const Iterator& comparison);
-            bool operator!=(const Iterator& comparison);
-            Element* currentElement;
-
-
-        private:
-
-    };
     public:
+        class Iterator{
+            public:
+                Iterator(Element* currentElement);
+
+                Iterator& operator++();
+                Iterator& operator--();
+                Level*& operator*();
+                bool operator==(const Iterator& comparison);
+                bool operator!=(const Iterator& comparison);
+                Element* currentElement;
+
+
+            private:
+
+        };
         List();
         void push_back(Level* level);
         void push_front(Level* level);

@@ -123,7 +123,7 @@ List::Iterator List::begin()
 
 List::Iterator List::end()
 {
-    return Iterator(bot_element);
+    return Iterator(nullptr);
 }
 
 List::Iterator &List::Iterator::operator++()

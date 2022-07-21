@@ -86,17 +86,23 @@ Level::Level(const std::string &path, Controller *con)
          world.push_back(std::vector<Tile*>(this->row));
      }
 
+     // Need Link queue for Portal and Switch
+     std::vector<std::tuple<Portal*, int, int>> portalQueue;
+     std::vector<std::tuple<Switch*, int, int>> doorQueue;
+
+
+
+
      for (const auto& tile : readFile["tiles"]){
         std::string tileText = tile["texture"];
 
         if(tileText== "Wall"){
             world.at(tile["col"]).at(tile["row"]) = new Wall( tile["col"], tile["row"]);
-
-
         }else if(tileText == "floorType0" || tileText == "floorType1" || tileText == "floorType2" || tileText == "floorType3" || tileText == "floorType4"){
              world.at(tile["col"]).at(tile["row"]) = new Floor( tile["col"], tile["row"], tile["texture"]);
-
          }else if(tileText == "Rot" || tileText == "Blau" || tileText == "Gelb"){
+            std::cout << "!!!!!!!!!!!!!!!!" << std::endl;
+            // Need if because of Enumn
             int x=0;
             if(tileText=="Blau"){
                 x=0;
@@ -105,10 +111,13 @@ Level::Level(const std::string &path, Controller *con)
             }else if(tileText=="Gelb"){
                 x=2;
             }
-            world.at(tile["col"]).at(tile["row"]) = new Portal(x,tile["col"], tile["row"]);
+            // Add Tupel to Queue to link later
+            auto tmpPortal = new Portal(x,tile["col"], tile["row"]);
+            world.at(tile["col"]).at(tile["row"]) = tmpPortal;
+            portalQueue.push_back(std::make_tuple(tmpPortal, tile["destinationCol"], tile["destinationRow"]));
 
         }else if(tileText == "DoorClose" || tileText == "DoorOpen"){
-
+            // TODO: Test if correct Door Status is loaded from json
             bool open;
             if(tileText == "DoorClose"){
                open=false;
@@ -121,7 +130,13 @@ Level::Level(const std::string &path, Controller *con)
 
 
         }else if(tileText == "Switch"){
-            world.at(tile["col"]).at(tile["row"]) = new Switch( tile["col"], tile["row"]);
+            Switch* tmpSwitch = new Switch( tile["col"], tile["row"]);
+            world.at(tile["col"]).at(tile["row"]) = tmpSwitch;
+
+            // Link all Passive targets to active Switch
+            for (const auto& linkedPassives : tile["targets"]){
+                doorQueue.push_back(std::make_tuple(tmpSwitch,  linkedPassives["linkedcol"], linkedPassives["linkedrow"]));
+            }
 
 
         }else if(tileText == "lootChest"){
@@ -136,11 +151,22 @@ Level::Level(const std::string &path, Controller *con)
 
      }
 
-     // TODO: PlaceChar only workes with tiles
+     // link portals
+    for(auto& portal : portalQueue){
+        Portal* destionationTile = dynamic_cast<Portal*>(this->getTile(std::get<1>(portal),std::get<2>(portal)));
+        std::get<0>(portal)->setDestination(destionationTile);
+    }
+    for(auto& door : doorQueue){
+        Passive* destionationTile = dynamic_cast<Passive*>(this->getTile(std::get<1>(door),std::get<2>(door)));
+        std::get<0>(door)->attach(destionationTile);
+    }
+
+
+
+
      for (const auto& character : readFile["characters"]){
         if(character["controller"] == "GraphicalUI"){
             Character* d = new Character(con, character["strength"], character["stamina"],character["npc"]);
-            // TODO: need to add tiles then place char
             characterVector.push_back(d);
             this->placeCharacter(d,character["col"],character["row"]);
             d->getCurrentTile()->setPlayer(nullptr);
@@ -157,8 +183,11 @@ Level::Level(const std::string &path, Controller *con)
             characterVector.push_back(z2);
             placeCharacter(z2,character["col"],character["row"]);
         }else{
-            std::cout << std::endl << "CharacterController JSON Error" << std::endl;
+            std::cout << std::endl << "JSON read Controller could not be found" << std::endl;
         }
+
+
+
 
 
      }
