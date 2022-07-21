@@ -8,6 +8,7 @@ class Levelchanger : public Tile, public Active
 {
 public:
     Levelchanger(const int& col, const int& row, Level* destlvl, Character* player=nullptr);
+    Levelchanger(const int& col, const int& row, Character* player=nullptr);
 
 
 

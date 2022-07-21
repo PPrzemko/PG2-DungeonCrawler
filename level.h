@@ -37,12 +37,12 @@ protected:
 
     std::vector<std::vector<Tile*>> world;
     std::vector<Character*> characterVector;
+    std::vector<std::tuple<Levelchanger*, std::string, int, int>> levelchangervector;
 
 public:
     Level(const int& col, const int& row, const std::string& name, Controller *con);
     Level(const Level &level);
     Level(const std::string& path, Controller *con);
-    std::tuple<Level*,Levelchanger*> createLevel(const std::string& path, Controller *con);
 
     Level &operator=(Level level);
     Tile *getTile(int row, int col) const;
@@ -61,6 +61,7 @@ public:
     const std::vector<Character *> &getCharacterVector() const;
     void setCharacterinVector(Character* newCharacter);
     const std::string &getName() const;
+    const std::vector<std::tuple<Levelchanger *, std::string, int, int> > &getLevelchangervector() const;
 };
 
 #endif // LEVEL_H

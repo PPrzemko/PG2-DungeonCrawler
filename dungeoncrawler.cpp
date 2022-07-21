@@ -16,7 +16,24 @@ void DungeonCrawler::readSavegame()
 {
     // TODO: Need to read all json in level
     auto level1  = new Level("Level1.json", UI);
-    //auto level2 = new Level("Level2.json", UI);
+    levelList.push_back(level1);
+    auto level2  = new Level("Level2.json", UI);
+    levelList.push_back(level2);
+
+    for(List::Iterator it = levelList.begin(); it != levelList.end(); ++it){
+        for(auto& levelchanger : (*it)->getLevelchangervector()){
+            Level* zielLevel = std::find(levelList.begin(), levelList.end(), std::get<1>(levelchanger)).currentElement->level;
+            std::get<0>(levelchanger)->setLevelDestination(zielLevel);
+            Tile* zielTile = zielLevel->getTile(std::get<2>(levelchanger),std::get<3>(levelchanger));
+             std::get<0>(levelchanger)->setPortalDestination(dynamic_cast<Levelchanger*>(zielTile));
+
+
+
+
+        }
+    }
+
+
 
 
 
@@ -33,24 +50,12 @@ void DungeonCrawler::readSavegame()
 
 DungeonCrawler::DungeonCrawler()
 {
-    UI= new GraphicalUI();
 
+    /*
     level = new Level(8,16,"Level1", UI);
     Level* k2 = new Level(8,16,"Level2",UI);
     levelList.push_back(level);
     levelList.push_back(k2);
-
-
-    std::cout << std::endl;
-    std::cout << "test";
-    std::cout << levelList.begin().currentElement->level->getName();
-    std::cout << levelList.begin().currentElement->next_element->level->getName();
-
-
-    std::cout << std::endl;
-
-
-
 
 
     k2->createLootChestAt(6,14);
@@ -64,12 +69,14 @@ DungeonCrawler::DungeonCrawler()
     l1->attach(dc);
     l2->attach(dc);
 
+    writeSavegame();
+*/
+    UI= new GraphicalUI();
+
+    readSavegame();
     UI->initField(level);
 
 
-    writeSavegame();
-
-    readSavegame();
 
 
 

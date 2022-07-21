@@ -6,7 +6,11 @@ Levelchanger::Levelchanger(const int& col, const int& row,Level* destlvl, Charac
     texture="levelChanger";
 }
 
-
+Levelchanger::Levelchanger(const int& col, const int& row, Character* player)
+    : Tile(player, col, row), Active()
+{
+    texture="levelChanger";
+}
 
 Tile *Levelchanger::onEnter(Tile *fromTile, Character *who)
 {

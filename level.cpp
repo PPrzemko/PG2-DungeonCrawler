@@ -2,6 +2,8 @@
 
 using nlohmann::json;
 
+
+
 Level::Level(const int& col, const int& row, const std::string& name, Controller *con) :
     col(col), row(row), name(name)
 {
@@ -71,7 +73,7 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
 
 }
 
-
+// Use levelchanger as "return" value of constructor
 Level::Level(const std::string &path, Controller *con)
 {
      std::ifstream file(path);
@@ -91,8 +93,6 @@ Level::Level(const std::string &path, Controller *con)
      std::vector<std::tuple<Switch*, int, int>> doorQueue;
 
 
-
-
      for (const auto& tile : readFile["tiles"]){
         std::string tileText = tile["texture"];
 
@@ -100,7 +100,7 @@ Level::Level(const std::string &path, Controller *con)
             world.at(tile["col"]).at(tile["row"]) = new Wall( tile["col"], tile["row"]);
         }else if(tileText == "floorType0" || tileText == "floorType1" || tileText == "floorType2" || tileText == "floorType3" || tileText == "floorType4"){
              world.at(tile["col"]).at(tile["row"]) = new Floor( tile["col"], tile["row"], tile["texture"]);
-         }else if(tileText == "Rot" || tileText == "Blau" || tileText == "Gelb"){
+        }else if(tileText == "Rot" || tileText == "Blau" || tileText == "Gelb"){
             std::cout << "!!!!!!!!!!!!!!!!" << std::endl;
             // Need if because of Enumn
             int x=0;
@@ -145,6 +145,12 @@ Level::Level(const std::string &path, Controller *con)
             world.at(tile["col"]).at(tile["row"]) = new Pit( tile["col"], tile["row"]);
         }else if(tileText == "Ramp"){
             world.at(tile["col"]).at(tile["row"]) = new Ramp( tile["col"], tile["row"]);
+        }else if(tileText == "levelChanger"){
+            auto tmpLevelchanger = new Levelchanger(tile["col"], tile["row"]);
+            world.at(tile["col"]).at(tile["row"]) = tmpLevelchanger;
+
+            levelchangervector.push_back(std::make_tuple(tmpLevelchanger,tile["destinationLevel"],tile["destinationPortalCol"],tile["destinationPortalRow"]));
+
         }
 
 
@@ -186,15 +192,15 @@ Level::Level(const std::string &path, Controller *con)
             std::cout << std::endl << "JSON read Controller could not be found" << std::endl;
         }
 
-
-
-
-
      }
 
 
 
 }
+
+
+
+
 
 void Level::placeCharacter(Character *c, int col, int row)
 {
@@ -306,7 +312,7 @@ void Level::writeInJSON(const std::string &path)
                                         {"row", b->getRow()},
                                         {"texture", b->getTexture()},
                                         {"destinationPortalCol", dynamic_cast<Levelchanger*>(b)->getPortalDestination()->getColumn()},
-                                        {"destinationPortalRol", dynamic_cast<Levelchanger*>(b)->getPortalDestination()->getRow()},
+                                        {"destinationPortalRow", dynamic_cast<Levelchanger*>(b)->getPortalDestination()->getRow()},
                                         {"destinationLevel", dynamic_cast<Levelchanger*>(b)->getLevelDestination()->getName()}
                                     });
            }
@@ -491,3 +497,9 @@ void Level::setCharacterinVector(Character* newCharacter)
 {
     characterVector.at(0)=newCharacter;
 }
+
+const std::vector<std::tuple<Levelchanger *, std::string, int, int> > &Level::getLevelchangervector() const
+{
+    return levelchangervector;
+}
+
