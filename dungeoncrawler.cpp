@@ -21,11 +21,31 @@ void DungeonCrawler::readSavegame()
     levelList.push_back(level2);
 
     for(List::Iterator it = levelList.begin(); it != levelList.end(); ++it){
+        // go through every Levelchanger for level
         for(auto& levelchanger : (*it)->getLevelchangervector()){
-            Level* zielLevel = std::find(levelList.begin(), levelList.end(), std::get<1>(levelchanger)).currentElement->level;
-            std::get<0>(levelchanger)->setLevelDestination(zielLevel);
-            Tile* zielTile = zielLevel->getTile(std::get<2>(levelchanger),std::get<3>(levelchanger));
-             std::get<0>(levelchanger)->setPortalDestination(dynamic_cast<Levelchanger*>(zielTile));
+            // Search for level
+            for(List::Iterator it = levelList.begin(); it != levelList.end(); ++it){
+                if((*it)->getName()==std::get<1>(levelchanger)){
+                    Level* zielLevel=(*it);
+                    std::get<0>(levelchanger)->setLevelDestination(zielLevel);
+
+                    Tile* zielTile = zielLevel->getTile(std::get<2>(levelchanger),std::get<3>(levelchanger));
+                    std::get<0>(levelchanger)->setPortalDestination(dynamic_cast<Levelchanger*>(zielTile));
+                    std::get<0>(levelchanger)->attach(this);
+
+                    std::cout << "connected levelchanger" << std::endl;
+                }else{
+                    std::cout << "name not to equal to list" << std::endl;
+                }
+
+
+
+            }
+
+
+
+
+
 
 
 
@@ -33,16 +53,8 @@ void DungeonCrawler::readSavegame()
         }
     }
 
-
-
-
-
-
-    // How to set current level
     this->level = level1;
 
-
-    // TODO: Link & create Levelchanger
 
 
 
@@ -50,6 +62,7 @@ void DungeonCrawler::readSavegame()
 
 DungeonCrawler::DungeonCrawler()
 {
+    UI= new GraphicalUI();
 
     /*
     level = new Level(8,16,"Level1", UI);
@@ -71,7 +84,7 @@ DungeonCrawler::DungeonCrawler()
 
     writeSavegame();
 */
-    UI= new GraphicalUI();
+
 
     readSavegame();
     UI->initField(level);

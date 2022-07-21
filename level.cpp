@@ -146,6 +146,7 @@ Level::Level(const std::string &path, Controller *con)
         }else if(tileText == "Ramp"){
             world.at(tile["col"]).at(tile["row"]) = new Ramp( tile["col"], tile["row"]);
         }else if(tileText == "levelChanger"){
+
             auto tmpLevelchanger = new Levelchanger(tile["col"], tile["row"]);
             world.at(tile["col"]).at(tile["row"]) = tmpLevelchanger;
 
