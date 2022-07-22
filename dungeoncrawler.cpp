@@ -7,6 +7,7 @@ DungeonCrawler::DungeonCrawler()
     //writeSavegame()
     //readSavegame();
     level = new Level(8,16,"tmpLevel", UI);
+    levelList.push_back(level);
 
     QPushButton* save = UI->getMainWindow()->getSaveGameButton();
     QPushButton* load = UI->getStartScreen()->getLoadGameButton();
@@ -36,6 +37,7 @@ void DungeonCrawler::writeSavegame()
 
 void DungeonCrawler::readSavegame()
 {
+    levelList.pop_back();
     // TODO: Need to read all json in level
     auto level1  = new Level("Level1.json", UI);
     levelList.push_back(level1);
@@ -75,8 +77,7 @@ void DungeonCrawler::readSavegame()
 
 void DungeonCrawler::newGame()
 {
-
-
+    levelList.pop_back();
     level = new Level(8,16,"Level1", UI);
     Level* k2 = new Level(8,16,"Level2",UI);
     levelList.push_back(level);
