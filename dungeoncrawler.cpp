@@ -32,24 +32,8 @@ void DungeonCrawler::readSavegame()
                     Tile* zielTile = zielLevel->getTile(std::get<2>(levelchanger),std::get<3>(levelchanger));
                     std::get<0>(levelchanger)->setPortalDestination(dynamic_cast<Levelchanger*>(zielTile));
                     std::get<0>(levelchanger)->attach(this);
-
-                    std::cout << "connected levelchanger" << std::endl;
-                }else{
-                    std::cout << "name not to equal to list" << std::endl;
                 }
-
-
-
             }
-
-
-
-
-
-
-
-
-
         }
     }
 

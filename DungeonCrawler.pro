@@ -11,6 +11,7 @@ QT += testlib
 SOURCES += \
         abstractui.cpp \
         active.cpp \
+        attackcontroller.cpp \
         character.cpp \
         controller.cpp \
         directionbutton.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
 HEADERS += \
     abstractui.h \
     active.h \
+    attackcontroller.h \
     character.h \
     controller.h \
     directionbutton.h \

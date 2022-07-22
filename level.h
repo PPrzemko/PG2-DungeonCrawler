@@ -44,6 +44,7 @@ public:
     Level(const Level &level);
     Level(const std::string& path, Controller *con);
 
+    std::vector<std::string> getPath(const Level* from,const Level* to);
     Level &operator=(Level level);
     Tile *getTile(int row, int col) const;
     Levelchanger* createLevelChangerAt(const int& col, const int& row, Level* level);
