@@ -33,8 +33,12 @@ public:
     void reDrawTexture(const int& col, const int& row);
 
 
-public slots:
+    StartScreen *getStartScreen() const;
+    MainWindow *getMainWindow() const;
     void StartButtonClicked();
+
+public slots:
+
 
 };
 

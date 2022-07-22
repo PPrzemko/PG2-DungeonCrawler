@@ -16,6 +16,8 @@ public:
     explicit StartScreen(QWidget *parent = nullptr);
     QPushButton* getButtonStartGame();
     ~StartScreen();
+    QPushButton* getLoadGameButton() const;
+
 
 private:
     Ui::StartScreen *ui;

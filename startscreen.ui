@@ -39,8 +39,25 @@
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="loadGameButton">
+   <property name="geometry">
+    <rect>
+     <x>880</x>
+     <y>480</y>
+     <width>181</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>load game</string>
+   </property>
+  </widget>
   <zorder>LabelBackgroundImage</zorder>
   <zorder>ButtonStartGame</zorder>
+  <zorder>loadGameButton</zorder>
  </widget>
  <resources/>
  <connections/>

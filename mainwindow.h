@@ -32,6 +32,8 @@ public:
     void setPlayerLabelTexture(QPixmap *texture);
     void setPlayerLabelTexture(QPixmap* texture, int col, int row);
     void setCharacterParent(int col, int row, bool isPit,int characterIndex);
+    QPushButton* getSaveGameButton() const;
+
 
     ~MainWindow();
 
@@ -58,6 +60,7 @@ private:
 
     
     void createEndScreenLabel();
+
 
 public slots:
     void charButtonClickedSlot(char direction);

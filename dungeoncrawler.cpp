@@ -1,6 +1,23 @@
 #include "dungeoncrawler.h"
 
+DungeonCrawler::DungeonCrawler()
+{
+    UI= new GraphicalUI();
 
+    //writeSavegame()
+    //readSavegame();
+    level = new Level(8,16,"tmpLevel", UI);
+
+    QPushButton* save = UI->getMainWindow()->getSaveGameButton();
+    QPushButton* load = UI->getStartScreen()->getLoadGameButton();
+    QPushButton* start = UI->getStartScreen()->getButtonStartGame();
+
+    QObject::connect(save, &QPushButton::clicked, this, &DungeonCrawler::writeSavegame);
+    QObject::connect(load, &QPushButton::clicked, this, &DungeonCrawler::readSavegame);
+    QObject::connect(start, &QPushButton::clicked, this, &DungeonCrawler::newGame);
+
+
+}
 
 void DungeonCrawler::writeSavegame()
 {
@@ -9,6 +26,11 @@ void DungeonCrawler::writeSavegame()
         filename.append(".json");
         (*it)->writeInJSON(filename);
     }
+
+
+
+    UI->initField(level);
+    UI->StartButtonClicked();
 
 }
 
@@ -37,18 +59,24 @@ void DungeonCrawler::readSavegame()
         }
     }
 
+
+
     this->level = level1;
+    UI->initField(level);
+    UI->StartButtonClicked();
+
+    // TODO Go to correct level
+
 
 
 
 
 }
 
-DungeonCrawler::DungeonCrawler()
+void DungeonCrawler::newGame()
 {
-    UI= new GraphicalUI();
 
-    /*
+
     level = new Level(8,16,"Level1", UI);
     Level* k2 = new Level(8,16,"Level2",UI);
     levelList.push_back(level);
@@ -66,15 +94,10 @@ DungeonCrawler::DungeonCrawler()
     l1->attach(dc);
     l2->attach(dc);
 
-    writeSavegame();
-*/
 
 
-    readSavegame();
     UI->initField(level);
-
-
-
+    UI->StartButtonClicked();
 
 
 }
@@ -86,11 +109,6 @@ void DungeonCrawler::notify(Active *source)
 
     UI->reDrawTexture(levelchanger->getColumn(),levelchanger->getRow());
     this->level=levelchanger->getLevelDestination();
-
-
-
-
-
 
 }
 

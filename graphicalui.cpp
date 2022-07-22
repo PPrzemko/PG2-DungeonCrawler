@@ -5,7 +5,7 @@ GraphicalUI::GraphicalUI()
 {
     mainWindow = new MainWindow();
     startScreen = new StartScreen(mainWindow);
-    QObject::connect(startScreen->getButtonStartGame(), &QPushButton::clicked, this, &GraphicalUI::StartButtonClicked);
+    //QObject::connect(startScreen->getButtonStartGame(), &QPushButton::clicked, this, &GraphicalUI::StartButtonClicked);
     startScreen->show();
 
 }
@@ -278,6 +278,16 @@ void GraphicalUI::StartButtonClicked()
 {
     startScreen->hide();
     mainWindow->show();
+}
+
+StartScreen *GraphicalUI::getStartScreen() const
+{
+    return startScreen;
+}
+
+MainWindow *GraphicalUI::getMainWindow() const
+{
+    return mainWindow;
 }
 
 void GraphicalUI::animatePlayer(char movement, Character* currentChar)

@@ -82,6 +82,13 @@ void MainWindow::setCharacterParent(int col, int row, bool isPit, int characterI
     characterLabelVector.at(characterIndex)->show();
 }
 
+QPushButton* MainWindow::getSaveGameButton() const
+{
+    return this->ui->saveGameButton;
+}
+
+
+
 
 
 

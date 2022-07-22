@@ -13,12 +13,11 @@ class TerminalUI;
 #include "levelchanger.h"
 
 
-class DungeonCrawler : public Passive
+class DungeonCrawler : public Passive, public QObject
 {
 private:
     void fight(Character* attacker, Character* defender);
-    void writeSavegame();
-    void readSavegame();
+
     
 protected:
     GraphicalUI* UI;
@@ -31,10 +30,12 @@ public:
     DungeonCrawler();
     void moveOffset(int i, Tile* currentCharacterTile, int colOfset, int rowOfset);
     void play();
-
-    // Passive interface
-public:
     void notify(Active *source) override;
+
+public slots:
+    void writeSavegame();
+    void readSavegame();
+    void newGame();
 };
 
 #endif // DUNGEONCRAWLER_H

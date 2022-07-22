@@ -27,4 +27,10 @@ StartScreen::~StartScreen()
     delete ui;
 }
 
+QPushButton *StartScreen::getLoadGameButton() const
+{
+    return this->ui->loadGameButton;
+}
+
+
 
