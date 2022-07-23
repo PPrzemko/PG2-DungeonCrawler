@@ -2,8 +2,8 @@
 #define DOOR_H
 #include "passive.h"
 #include "tile.h"
-
-class Door : public Tile, public Passive
+#include "active.h"
+class Door : public Tile, public Passive, public Active
 {
 public:
     Door(const int& col, const int& row, Character* player=nullptr);

@@ -23,9 +23,14 @@ class Tile;
 #include "stationarycontroller.h"
 #include "guardcontroller.h"
 
+#include "passive.h"
+#include "graph.h"
+#include "attackcontroller.h"
+#include <list>
+
 class GraphicalUI;
 class Controller;
-class Level
+class Level : public Passive
 {
 
 private:
@@ -33,6 +38,9 @@ private:
     int row;
     std::string name;
     bool active=false;
+    Graph* graph;
+
+
 protected:
 
 
@@ -66,6 +74,9 @@ public:
     const std::vector<std::tuple<Levelchanger *, std::string, int, int> > &getLevelchangervector() const;
     void setActive(bool newActive);
     bool getActive() const;
+
+    void notify(Active *source) override;
+    Graph *getGraph() const;
 };
 
 #endif // LEVEL_H

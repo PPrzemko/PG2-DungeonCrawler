@@ -1,11 +1,10 @@
 #include "level.h"
 
 using nlohmann::json;
-
-
 Level::Level(const int& col, const int& row, const std::string& name, Controller *con) :
     col(col), row(row), name(name)
 {
+
 
 
     //Floor* k = new Floor(".", d, 0 , 0);
@@ -25,6 +24,8 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
     Door* door1 = new Door(4 , 11);
     Switch* switch1 = new Switch(6 ,6);
     switch1->attach(door1);
+    door1->attach(this);
+
 
 
     // 0
@@ -53,6 +54,7 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
                      new Wall(7 , 9),new Wall(7 , 10),new Wall(7 , 11),new Wall(7 , 12),new Wall(7 , 13),new Wall(7 , 14),new Wall(7 , 15)});
 
 
+    Graph* graph = new Graph(world);
 
     Character* d = new Character(con,10,5,false);
     characterVector.push_back(d);
@@ -68,6 +70,16 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
     Character* z2 = new Character(z2c,20,10,true);
     characterVector.push_back(z2);
     placeCharacter(z2,3,14);
+
+    AttackController* z3c = new AttackController(graph);
+    Character* z3 = new Character(z3c,5,5,true);
+    characterVector.push_back(z3);
+    z3c->setFollowingCharacter(characterVector.at(0));
+    z3c->setThisCharacter(z3);
+    placeCharacter(z3,6,4);
+
+
+
 
 
 }
@@ -124,6 +136,7 @@ Level::Level(const std::string &path, Controller *con)
             }
 
             Door* tmpDoor=new Door(tile["col"], tile["row"], open);
+            tmpDoor->attach(this);
             world.at(tile["col"]).at(tile["row"]) = tmpDoor;
 
 
@@ -168,6 +181,7 @@ Level::Level(const std::string &path, Controller *con)
     }
 
 
+    Graph* graph = new Graph(world);
 
 
      for (const auto& character : readFile["characters"]){
@@ -198,6 +212,19 @@ Level::Level(const std::string &path, Controller *con)
             placeCharacter(z2,character["col"],character["row"]);
 
 
+        }else if(character["controller"] == "AttackController"){
+            AttackController* z3c = new AttackController(graph);
+            Character* z3 = new Character(z3c,5,5,true);
+            characterVector.push_back(z3);
+            z3c->setFollowingCharacter(characterVector.at(0));
+            z3c->setThisCharacter(z3);
+            placeCharacter(z3,character["col"],character["row"]);
+            if(character["hp"] <= 0 ){
+                z3->setHitpoints(0);
+                z3->setTexture("DEAD");
+            }
+
+
         }else{
             std::cout << std::endl << "JSON read Controller could not be found" << std::endl;
         }
@@ -207,9 +234,6 @@ Level::Level(const std::string &path, Controller *con)
 
 
 }
-
-
-
 
 
 void Level::placeCharacter(Character *c, int col, int row)
@@ -350,6 +374,14 @@ Levelchanger *Level::createLevelChangerAt(const int &col, const int &row, Level 
     Levelchanger* tmpLevelchanger = new Levelchanger(col,row, level);
     world.at(col).at(row)=tmpLevelchanger;
     return tmpLevelchanger;
+
+}
+
+void Level::notify(Active *source)
+{
+    std::cout << std::endl << "test48897"<< std::endl;
+    graph->updateList(world);
+    std::cout << std::endl << "test48897"<< std::endl;
 
 }
 
@@ -522,4 +554,7 @@ void Level::setActive(bool newActive)
 bool Level::getActive() const
 {
     return active;
+}
+Graph *Level::getGraph() const{
+    return graph;
 }

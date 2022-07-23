@@ -21,6 +21,7 @@ Door::Door(const int &col, const int &row, const bool &status, Character *player
 void Door::notify(Active *source)
 {
     this->swapState();
+    this->activate();
 }
 
 void Door::swapState()

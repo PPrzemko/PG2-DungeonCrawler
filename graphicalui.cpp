@@ -119,11 +119,6 @@ char GraphicalUI::move()
 
 void GraphicalUI::initField(Level* s)
 {
-    //mainWindow = new MainWindow(startScreen);
-
-
-
-
     initTextures();
     mainWindow->initLabel();
     mainWindow->addControl(textures);

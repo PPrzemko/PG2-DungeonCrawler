@@ -18,6 +18,7 @@ SOURCES += \
         door.cpp \
         dungeoncrawler.cpp \
         floor.cpp \
+        graph.cpp \
         graphicalui.cpp \
         guardcontroller.cpp \
         level.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     door.h \
     dungeoncrawler.h \
     floor.h \
+    graph.h \
     graphicalui.h \
     guardcontroller.h \
     json.hpp \
