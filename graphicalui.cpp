@@ -128,9 +128,10 @@ void GraphicalUI::initField(Level* s)
     mainWindow->initLabel();
     mainWindow->addControl(textures);
     // TODO CharacterVector Add loop qlabel
-    mainWindow->addCharacter(textures);
-    mainWindow->addCharacter(textures);
-    mainWindow->addCharacter(textures);
+    for(auto& a : s->getCharacterVector()){
+        mainWindow->addCharacter(textures);
+    }
+
 
     // create tiles with QPixmap texures
     for(auto &a: s->getTileVector()){
