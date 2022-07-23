@@ -7,7 +7,7 @@ StartScreen::StartScreen(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QWidget::setStyleSheet("background-color: black;");
+    //QWidget::setStyleSheet("background-color: black;");
     ui->LabelBackgroundImage->setScaledContents(true);
     QPixmap bg = QPixmap("://texture/startscreen.png");
     ui->LabelBackgroundImage->setPixmap(bg);

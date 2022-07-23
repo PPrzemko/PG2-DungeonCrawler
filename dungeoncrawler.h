@@ -17,7 +17,7 @@ class DungeonCrawler : public Passive, public QObject
 {
 private:
     void fight(Character* attacker, Character* defender);
-
+    bool playing=true;
     
     void createTmpLevel();
 

@@ -176,18 +176,26 @@ Level::Level(const std::string &path, Controller *con)
             characterVector.push_back(d);
             this->placeCharacter(d,character["col"],character["row"]);
             d->getCurrentTile()->setPlayer(nullptr);
-
         }else if(character["controller"] == "StationaryController"){
             StationaryController* z1c = new StationaryController();
             Character* z1 = new Character(z1c,character["strength"],character["stamina"],character["npc"]);
             characterVector.push_back(z1);
-            placeCharacter(z1,character["col"],character["row"]);
+            if(character["hp"] <= 0 ){
+                z1->setHitpoints(0);
+            }else{
+                placeCharacter(z1,character["col"],character["row"]);
+            }
 
          }else if(character["controller"] == "GuardController"){
             GuardController* z2c = new GuardController(character["movement"]);
             Character* z2 = new Character(z2c,character["strength"],character["stamina"],character["npc"]);
             characterVector.push_back(z2);
-            placeCharacter(z2,character["col"],character["row"]);
+            if(character["hp"] <= 0 ){
+                z2->setHitpoints(0);
+            }else{
+              placeCharacter(z2,character["col"],character["row"]);
+            }
+
         }else{
             std::cout << std::endl << "JSON read Controller could not be found" << std::endl;
         }

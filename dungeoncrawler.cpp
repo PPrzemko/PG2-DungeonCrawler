@@ -5,16 +5,14 @@
 DungeonCrawler::DungeonCrawler()
 {
     UI= new GraphicalUI();
-    // Need trash level
     createTmpLevel();
 
 
 
-    QPushButton* save = UI->getMainWindow()->getSaveGameButton();
+
     QPushButton* load = UI->getStartScreen()->getLoadGameButton();
     QPushButton* start = UI->getStartScreen()->getButtonStartGame();
 
-    QObject::connect(save, &QPushButton::clicked, this, &DungeonCrawler::writeSavegame);
     QObject::connect(load, &QPushButton::clicked, this, &DungeonCrawler::readSavegame);
     QObject::connect(start, &QPushButton::clicked, this, &DungeonCrawler::newGame);
 
@@ -32,13 +30,15 @@ void DungeonCrawler::writeSavegame()
 
 
 
-    UI->initField(level);
-    UI->StartButtonClicked();
+    playing=false;
+    // Dont know how to close UI
+    exit(0);
 
 }
 
 void DungeonCrawler::readSavegame()
 {
+    UI= new GraphicalUI();
     for(int i=0; i <= levelList.size() ; i++){
         levelList.pop_back();
 
@@ -78,12 +78,17 @@ void DungeonCrawler::readSavegame()
 
     UI->initField(level);
     UI->StartButtonClicked();
-
     // TODO Go to correct level
 
 
+        std::string tmpStrength = std::to_string(level->getCharacterVector().at(0)->getStrength());
+       std::string tmpStamina = std::to_string(level->getCharacterVector().at(0)->getStamina());
+       std::string tmpHitpoints = std::to_string(level->getCharacterVector().at(0)->getHitpoints());
+       UI->getMainWindow()->updateStausbarLabels(tmpStrength,tmpStamina,tmpHitpoints);
 
 
+    QPushButton* save = UI->getMainWindow()->getSaveGameButton();
+    QObject::connect(save, &QPushButton::clicked, this, &DungeonCrawler::writeSavegame);
 
 }
 
@@ -110,10 +115,12 @@ void DungeonCrawler::newGame()
     l2->attach(dc);
 
     UI->initField(level);
-    std::cout << "test";
     UI->StartButtonClicked();
-    std::cout << "test";
 
+
+
+    QPushButton* save = UI->getMainWindow()->getSaveGameButton();
+    QObject::connect(save, &QPushButton::clicked, this, &DungeonCrawler::writeSavegame);
 }
 
 
@@ -130,7 +137,7 @@ void DungeonCrawler::notify(Active *source)
 
 void DungeonCrawler::play()
 {
-    bool playing=true;
+
     while(playing){
         UI->draw(level);
         for(size_t i=0;i<level->getCharacterVector().size();++i){
