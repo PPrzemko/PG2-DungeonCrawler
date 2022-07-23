@@ -5,7 +5,7 @@
 DungeonCrawler::DungeonCrawler()
 {
     UI= new GraphicalUI();
-    createTmpLevel();
+
 
 
 
@@ -38,12 +38,8 @@ void DungeonCrawler::writeSavegame()
 
 void DungeonCrawler::readSavegame()
 {
-    UI= new GraphicalUI();
-    for(int i=0; i <= levelList.size() ; i++){
-        levelList.pop_back();
 
-    }
-    std::cout << "test";
+
     // TODO: Need to read all json in level
     Level* level1  = new Level("Level1.json", UI);
     levelList.push_back(level1);
@@ -89,13 +85,13 @@ void DungeonCrawler::readSavegame()
 
     QPushButton* save = UI->getMainWindow()->getSaveGameButton();
     QObject::connect(save, &QPushButton::clicked, this, &DungeonCrawler::writeSavegame);
+    levelIsHere=true;
 
 }
 
 void DungeonCrawler::newGame()
 {
-    levelList.pop_back();
-    levelList.pop_back();
+
 
     level = new Level(8,16,"Level1", UI);
     Level* k2 = new Level(8,16,"Level2",UI);
@@ -121,6 +117,7 @@ void DungeonCrawler::newGame()
 
     QPushButton* save = UI->getMainWindow()->getSaveGameButton();
     QObject::connect(save, &QPushButton::clicked, this, &DungeonCrawler::writeSavegame);
+    levelIsHere=true;
 }
 
 
@@ -139,50 +136,53 @@ void DungeonCrawler::play()
 {
 
     while(playing){
-        UI->draw(level);
-        for(size_t i=0;i<level->getCharacterVector().size();++i){
-            if(level->getCharacterVector().at(i)->isAlive()){
-                char input = level->getCharacterVector().at(i)->move();
-                level->getCharacterVector().at(i)->setLastMoveDirection(input);
-                std:: cout << "Char:" << i << " : "<< input << std::endl;
-                Tile* currentCharacterTile = level->getCharacterVector().at(i)->getCurrentTile();
-                if(input=='q'){
-                    moveOffset(i,currentCharacterTile,-1,-1);
-                }else if(input =='w'){
-                    moveOffset(i,currentCharacterTile,-1,+0);
-                }else if(input =='e'){
-                    moveOffset(i,currentCharacterTile,-1,+1);
-                }else if(input =='a'){
-                    moveOffset(i,currentCharacterTile,+0,-1);
-                }else if(input =='s'){
-                    moveOffset(i,currentCharacterTile,+0,+0);
-                }else if(input =='d'){
-                    moveOffset(i,currentCharacterTile,+0,+1);
-                }else if(input =='y'){
-                    moveOffset(i,currentCharacterTile,+1,-1);
-                }else if(input =='x'){
-                    moveOffset(i,currentCharacterTile,+1,+0);
-                }else if(input =='c'){
-                    moveOffset(i,currentCharacterTile,+1,+1);
-                }else if(input =='p'){
-                    playing = false;
+        QTest::qWait(100);
+        QCoreApplication::processEvents(QEventLoop::AllEvents);
+        if(levelIsHere){
+            UI->draw(level);
+            for(size_t i=0;i<level->getCharacterVector().size();++i){
+                if(level->getCharacterVector().at(i)->isAlive()){
+                    char input = level->getCharacterVector().at(i)->move();
+                    level->getCharacterVector().at(i)->setLastMoveDirection(input);
+                    std:: cout << "Char:" << i << " : "<< input << std::endl;
+                    Tile* currentCharacterTile = level->getCharacterVector().at(i)->getCurrentTile();
+                    if(input=='q'){
+                        moveOffset(i,currentCharacterTile,-1,-1);
+                    }else if(input =='w'){
+                        moveOffset(i,currentCharacterTile,-1,+0);
+                    }else if(input =='e'){
+                        moveOffset(i,currentCharacterTile,-1,+1);
+                    }else if(input =='a'){
+                        moveOffset(i,currentCharacterTile,+0,-1);
+                    }else if(input =='s'){
+                        moveOffset(i,currentCharacterTile,+0,+0);
+                    }else if(input =='d'){
+                        moveOffset(i,currentCharacterTile,+0,+1);
+                    }else if(input =='y'){
+                        moveOffset(i,currentCharacterTile,+1,-1);
+                    }else if(input =='x'){
+                        moveOffset(i,currentCharacterTile,+1,+0);
+                    }else if(input =='c'){
+                        moveOffset(i,currentCharacterTile,+1,+1);
+                    }else if(input =='p'){
+                        playing = false;
+                    }
                 }
-            }
 
-        }
-        // Player Dies
-        if(!level->getCharacterVector().at(0)->isAlive()){
-            UI->showEndScreen(false);
-            playing = false;
-        }
-        // player finds chest
-        if(dynamic_cast<Lootchest*>(level->getCharacterVector().at(0)->getCurrentTile())){
-            UI->showEndScreen(true);
-            std::cout << "YOU WON!!" << std::endl;
-            playing = false;
+            }
+            // Player Dies
+            if(!level->getCharacterVector().at(0)->isAlive()){
+                UI->showEndScreen(false);
+                playing = false;
+            }
+            // player finds chest
+            if(dynamic_cast<Lootchest*>(level->getCharacterVector().at(0)->getCurrentTile())){
+                UI->showEndScreen(true);
+                std::cout << "YOU WON!!" << std::endl;
+                playing = false;
+            }
         }
     }
-
 
 }
 

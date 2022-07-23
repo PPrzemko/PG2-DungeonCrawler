@@ -182,9 +182,10 @@ Level::Level(const std::string &path, Controller *con)
             characterVector.push_back(z1);
             if(character["hp"] <= 0 ){
                 z1->setHitpoints(0);
-            }else{
-                placeCharacter(z1,character["col"],character["row"]);
+                z1->setTexture("DEAD");
             }
+            placeCharacter(z1,character["col"],character["row"]);
+
 
          }else if(character["controller"] == "GuardController"){
             GuardController* z2c = new GuardController(character["movement"]);
@@ -192,9 +193,10 @@ Level::Level(const std::string &path, Controller *con)
             characterVector.push_back(z2);
             if(character["hp"] <= 0 ){
                 z2->setHitpoints(0);
-            }else{
-              placeCharacter(z2,character["col"],character["row"]);
+                z2->setTexture("DEAD");
             }
+            placeCharacter(z2,character["col"],character["row"]);
+
 
         }else{
             std::cout << std::endl << "JSON read Controller could not be found" << std::endl;
