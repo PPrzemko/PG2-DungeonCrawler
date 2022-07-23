@@ -2,6 +2,26 @@
 #include "ui_mainwindow.h"
 
 
+void MainWindow::initLabel()
+{
+
+    for(auto& vectorlabel : labelVector){
+        for(auto& label : vectorlabel){
+            delete label;
+        }
+    }
+    labelVector.clear();
+
+    for(int i=0; i<8;++i){
+         labelVector.push_back(std::vector<QLabel*>(16));
+    }
+    addTilecol=0;
+    addTilerow=0;
+    std::cout << std::endl << "CLEARED VECTOR" << std::endl;
+
+
+}
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -15,9 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //QWidget::setStyleSheet("background-color: black;");
     // Background Label color (not working because character is below background label after lower)
     //ui->backgroundColorLabel->setStyleSheet("background-color : white");
-    for(int i=0; i<8;++i){
-         labelVector.push_back(std::vector<QLabel*>(16));
-    }
+    initLabel();
+
 }
 
 void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
@@ -36,16 +55,15 @@ void MainWindow::addTile(QPixmap* texturePath, bool hasPlayer)
         characterLabelVector.at(0)->show();
     }
 
-    static int col = 0;
-    static int row = 0;
 
-    labelVector.at(col).at(row) = label;
+    std::cout << std::endl << addTilecol << "  " << addTilerow << std::endl;
 
-    if(row < 15){
-         ++row;
+    labelVector.at(addTilecol).at(addTilerow) = label;
+    if(addTilerow < 15){
+         ++addTilerow;
      }else{
-         row = 0;
-         ++col;
+         addTilerow = 0;
+         ++addTilecol;
      }
 }
 

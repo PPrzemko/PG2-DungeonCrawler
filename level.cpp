@@ -3,7 +3,6 @@
 using nlohmann::json;
 
 
-
 Level::Level(const int& col, const int& row, const std::string& name, Controller *con) :
     col(col), row(row), name(name)
 {
@@ -73,7 +72,6 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
 
 }
 
-// Use levelchanger as "return" value of constructor
 Level::Level(const std::string &path, Controller *con)
 {
      std::ifstream file(path);
@@ -82,6 +80,8 @@ Level::Level(const std::string &path, Controller *con)
     this->name = readFile["alevel"];
     this->col = readFile["alevelCol"];
     this->row = readFile["alevelRow"];
+    this->active = readFile["alevelActive"];
+
 
      // NEED Vector Initalisation
      for(int i=0; i<this->col;++i){
@@ -101,7 +101,6 @@ Level::Level(const std::string &path, Controller *con)
         }else if(tileText == "floorType0" || tileText == "floorType1" || tileText == "floorType2" || tileText == "floorType3" || tileText == "floorType4"){
              world.at(tile["col"]).at(tile["row"]) = new Floor( tile["col"], tile["row"], tile["texture"]);
         }else if(tileText == "Rot" || tileText == "Blau" || tileText == "Gelb"){
-            std::cout << "!!!!!!!!!!!!!!!!" << std::endl;
             // Need if because of Enumn
             int x=0;
             if(tileText=="Blau"){
@@ -115,7 +114,6 @@ Level::Level(const std::string &path, Controller *con)
             auto tmpPortal = new Portal(x,tile["col"], tile["row"]);
             world.at(tile["col"]).at(tile["row"]) = tmpPortal;
             portalQueue.push_back(std::make_tuple(tmpPortal, tile["destinationCol"], tile["destinationRow"]));
-
         }else if(tileText == "DoorClose" || tileText == "DoorOpen"){
             // TODO: Test if correct Door Status is loaded from json
             bool open;
@@ -163,6 +161,7 @@ Level::Level(const std::string &path, Controller *con)
         Portal* destionationTile = dynamic_cast<Portal*>(this->getTile(std::get<1>(portal),std::get<2>(portal)));
         std::get<0>(portal)->setDestination(destionationTile);
     }
+
     for(auto& door : doorQueue){
         Passive* destionationTile = dynamic_cast<Passive*>(this->getTile(std::get<1>(door),std::get<2>(door)));
         std::get<0>(door)->attach(destionationTile);
@@ -216,6 +215,7 @@ void Level::writeInJSON(const std::string &path)
     j["alevel"] = this->name;
     j["alevelCol"] = this->col;
     j["alevelRow"] = this->row;
+    j["alevelActive"] = this->active;
     j["characters"] = json::array();
     j["tiles"] = json::array();
 
@@ -504,3 +504,12 @@ const std::vector<std::tuple<Levelchanger *, std::string, int, int> > &Level::ge
     return levelchangervector;
 }
 
+void Level::setActive(bool newActive)
+{
+    active = newActive;
+}
+
+bool Level::getActive() const
+{
+    return active;
+}

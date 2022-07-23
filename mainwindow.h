@@ -41,11 +41,17 @@ public:
 
     QLabel *getEndScreen() const;
 
+    void initLabel();
+
 private:
     Ui::MainWindow *ui;
     bool hasInputReady;
     char direction;
     QLabel* EndScreen;
+    int addTilecol=0;
+    int addTilerow=0;
+
+
 
     std::vector<QLabel*> characterLabelVector;
     std::vector<std::vector<QLabel*>> labelVector;

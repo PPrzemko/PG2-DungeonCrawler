@@ -1,13 +1,14 @@
 #include "dungeoncrawler.h"
 
+
+
 DungeonCrawler::DungeonCrawler()
 {
     UI= new GraphicalUI();
+    // Need trash level
+    createTmpLevel();
 
-    //writeSavegame()
-    //readSavegame();
-    level = new Level(8,16,"tmpLevel", UI);
-    levelList.push_back(level);
+
 
     QPushButton* save = UI->getMainWindow()->getSaveGameButton();
     QPushButton* load = UI->getStartScreen()->getLoadGameButton();
@@ -22,6 +23,7 @@ DungeonCrawler::DungeonCrawler()
 
 void DungeonCrawler::writeSavegame()
 {
+    this->level->setActive(true);
     for(List::Iterator it = levelList.begin(); it != levelList.end(); ++it){
         std::string filename = (*it)->getName();
         filename.append(".json");
@@ -37,20 +39,26 @@ void DungeonCrawler::writeSavegame()
 
 void DungeonCrawler::readSavegame()
 {
-    levelList.pop_back();
+    for(int i=0; i <= levelList.size() ; i++){
+        levelList.pop_back();
+
+    }
+    std::cout << "test";
     // TODO: Need to read all json in level
-    auto level1  = new Level("Level1.json", UI);
+    Level* level1  = new Level("Level1.json", UI);
     levelList.push_back(level1);
-    auto level2  = new Level("Level2.json", UI);
+    Level* level2  = new Level("Level2.json", UI);
     levelList.push_back(level2);
+
 
     for(List::Iterator it = levelList.begin(); it != levelList.end(); ++it){
         // go through every Levelchanger for level
         for(auto& levelchanger : (*it)->getLevelchangervector()){
             // Search for level
-            for(List::Iterator it = levelList.begin(); it != levelList.end(); ++it){
-                if((*it)->getName()==std::get<1>(levelchanger)){
-                    Level* zielLevel=(*it);
+            for(List::Iterator it2 = levelList.begin(); it2 != levelList.end(); ++it2){
+                std::string levelname = (*it2)->getName();
+                if(levelname==std::get<1>(levelchanger)){
+                    Level* zielLevel=(*it2);
                     std::get<0>(levelchanger)->setLevelDestination(zielLevel);
 
                     Tile* zielTile = zielLevel->getTile(std::get<2>(levelchanger),std::get<3>(levelchanger));
@@ -59,11 +67,15 @@ void DungeonCrawler::readSavegame()
                 }
             }
         }
+        if((*it)->getActive()){
+            this->level=(*it);
+        }
     }
 
 
 
-    this->level = level1;
+
+
     UI->initField(level);
     UI->StartButtonClicked();
 
@@ -78,6 +90,8 @@ void DungeonCrawler::readSavegame()
 void DungeonCrawler::newGame()
 {
     levelList.pop_back();
+    levelList.pop_back();
+
     level = new Level(8,16,"Level1", UI);
     Level* k2 = new Level(8,16,"Level2",UI);
     levelList.push_back(level);
@@ -95,13 +109,14 @@ void DungeonCrawler::newGame()
     l1->attach(dc);
     l2->attach(dc);
 
-
-
     UI->initField(level);
+    std::cout << "test";
     UI->StartButtonClicked();
-
+    std::cout << "test";
 
 }
+
+
 void DungeonCrawler::notify(Active *source)
 {
 
@@ -188,7 +203,28 @@ void DungeonCrawler::moveOffset(int i, Tile* currentCharacterTile, int colOffset
     }
 
 }
+void DungeonCrawler::createTmpLevel()
+{
+    level = new Level(8,16,"Level1", UI);
+    Level* k2 = new Level(8,16,"Level2",UI);
+    levelList.push_back(level);
+    levelList.push_back(k2);
 
+
+    k2->createLootChestAt(6,14);
+
+    Levelchanger* l1 = level->createLevelChangerAt(6,14,k2); // 6, 13
+    Levelchanger* l2 = k2->createLevelChangerAt(1,1,level);
+    l1->setPortalDestination(l2);
+    l2->setPortalDestination(l1);
+
+    Passive* dc = dynamic_cast<Passive*>(this);
+    l1->attach(dc);
+    l2->attach(dc);
+
+
+    UI->initField(level);
+}
 void DungeonCrawler::fight(Character* attacker, Character* defender)
 {
 

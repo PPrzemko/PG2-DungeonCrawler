@@ -88,11 +88,14 @@ void GraphicalUI::drawCharacter(Level* s)
             if(typeid (*currentTile) == typeid (Pit)){
                isPit=true;
             }
+
+            int col = currentTile->getColumn();
+            int row = currentTile->getRow();
+            mainWindow->setCharacterParent(col,row,isPit,i);
+
         }
 
-        int col = currentTile->getColumn();
-        int row = currentTile->getRow();
-        mainWindow->setCharacterParent(col,row,isPit,i);
+
     }
 
 }
@@ -117,6 +120,7 @@ char GraphicalUI::move()
 void GraphicalUI::initField(Level* s)
 {
     initTextures();
+    mainWindow->initLabel();
     mainWindow->addControl(textures);
     // TODO CharacterVector Add loop qlabel
     mainWindow->addCharacter(textures);
@@ -128,7 +132,8 @@ void GraphicalUI::initField(Level* s)
             for(auto &b : a){
                 bool hasPlayer=false;
                 // std::cout << textures.find(b->getTexture())->first;
-                QPixmap* texturePath = textures.find(b->getTexture())->second;
+                std::string textureName=b->getTexture();
+                QPixmap* texturePath = textures.find(textureName)->second;
 
                 if(b->hasCharacter()){
                    hasPlayer=true;

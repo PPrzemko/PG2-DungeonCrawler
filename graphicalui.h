@@ -9,6 +9,7 @@
 #include <QObject>
 #include <QTest>
 #include <QCoreApplication>
+
 class Levelchanger;
 class Door;
 class GraphicalUI : public AbstractUI, public Controller, public QObject

@@ -19,6 +19,8 @@ private:
     void fight(Character* attacker, Character* defender);
 
     
+    void createTmpLevel();
+
 protected:
     GraphicalUI* UI;
     Level* level;

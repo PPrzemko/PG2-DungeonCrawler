@@ -19,11 +19,11 @@ class Tile;
 #include <fstream>
 
 // includes for Json
-#include "graphicalui.h"
+//#include "graphicalui.h"
 #include "stationarycontroller.h"
 #include "guardcontroller.h"
 
-
+class GraphicalUI;
 class Controller;
 class Level
 {
@@ -32,6 +32,7 @@ private:
     int col;
     int row;
     std::string name;
+    bool active=false;
 protected:
 
 
@@ -63,6 +64,8 @@ public:
     void setCharacterinVector(Character* newCharacter);
     const std::string &getName() const;
     const std::vector<std::tuple<Levelchanger *, std::string, int, int> > &getLevelchangervector() const;
+    void setActive(bool newActive);
+    bool getActive() const;
 };
 
 #endif // LEVEL_H
