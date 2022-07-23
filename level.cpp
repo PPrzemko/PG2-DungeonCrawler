@@ -76,7 +76,7 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
     characterVector.push_back(z3);
     z3c->setFollowingCharacter(characterVector.at(0));
     z3c->setThisCharacter(z3);
-    placeCharacter(z3,6,4);
+    placeCharacter(z3,5,11); //6 4
 
 
 

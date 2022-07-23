@@ -2,6 +2,7 @@
 #define ACTIVE_H
 #include <vector>
 #include "passive.h"
+#include <iostream>
 
 class Active
 {

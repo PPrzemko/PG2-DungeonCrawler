@@ -42,7 +42,11 @@ void Active::detach(Passive *obj)
 void Active::activate()
 {
    for(auto &a : linkedPassives){
-        a->notify(this);
+       if(a==nullptr){
+        std::cout << std::endl << "Linked passive could not be activated(nullptr)" << std::endl;
+       }else{
+           a->notify(this);
+       }
    }
 
 }

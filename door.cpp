@@ -21,7 +21,12 @@ Door::Door(const int &col, const int &row, const bool &status, Character *player
 void Door::notify(Active *source)
 {
     this->swapState();
-    this->activate();
+    try {
+        this->activate();
+    }  catch (...) {
+        std::cout << "could not be activated";
+    }
+
 }
 
 void Door::swapState()

@@ -126,14 +126,8 @@ std::list<Tile *> Graph::getPath(Tile *from, Tile *to)
 
 void Graph::updateList(std::vector<std::vector<Tile *> > &world)
 {
-    std::cout << std::endl << "/////////////////////"<< std::endl;
-
-    std::cout << std::endl << "=========="<< std::endl;
-
-    std::map adjacencyListnew = std::map<Tile*,std::vector<Tile*>>();
-    this->setAdjacencyList(adjacencyListnew);
-    std::cout << std::endl << "##################"<< std::endl;
-
+    // TODO: Error
+    adjacencyList = std::map<Tile*,std::vector<Tile*>>();
 
     for(auto& tileVector: world){
         for(auto& tile: tileVector){
@@ -145,7 +139,3 @@ void Graph::updateList(std::vector<std::vector<Tile *> > &world)
 
 
 
-void Graph::setAdjacencyList(const std::map<Tile *, std::vector<Tile *> > &newAdjacencyList)
-{
-    adjacencyList = newAdjacencyList;
-}
