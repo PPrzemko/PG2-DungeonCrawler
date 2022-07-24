@@ -3,8 +3,8 @@
 
 Graph::Graph(std::vector<std::vector<Tile*>> &world)
 {
-    for(auto tileVector: world){
-        for(auto tile: tileVector){
+    for(auto& tileVector: world){
+        for(auto& tile: tileVector){
             calculateAdjacencyList(tile,world);
         }
     }
@@ -13,6 +13,9 @@ Graph::Graph(std::vector<std::vector<Tile*>> &world)
 
 void Graph::calculateAdjacencyList(Tile* currentTile, std::vector<std::vector<Tile*>> &world)
 {
+
+
+
     int currentTileCol = currentTile->getColumn();
     int currentTileRow = currentTile->getRow();
 
@@ -30,28 +33,27 @@ void Graph::calculateAdjacencyList(Tile* currentTile, std::vector<std::vector<Ti
         Tile* bottomRightTile = world.at(currentTileCol + 1).at(currentTileRow + 1);
 
         std::vector<Tile*> adjacency;
-        if(isAccessible(currentTile,topLeftTile)){
-            adjacency.push_back(topLeftTile);
-        }
-        if(isAccessible(currentTile,topTile)){
-            adjacency.push_back(topTile);
-        }
-        if(isAccessible(currentTile,topRightTile)){
-            adjacency.push_back(topRightTile);
-        }
 
         if(isAccessible(currentTile,leftTile)){
             adjacency.push_back(leftTile);
         }
-        if(isAccessible(currentTile,rightTile)){
-            adjacency.push_back(rightTile);
-        }
-
-        if(isAccessible(currentTile,bottomLeftTile)){
-            adjacency.push_back(bottomLeftTile);
+        if(isAccessible(currentTile,topTile)){
+            adjacency.push_back(topTile);
         }
         if(isAccessible(currentTile,bottomTile)){
             adjacency.push_back(bottomTile);
+        }
+        if(isAccessible(currentTile,rightTile)){
+            adjacency.push_back(rightTile);
+        }
+        if(isAccessible(currentTile,topLeftTile)){
+            adjacency.push_back(topLeftTile);
+        }
+        if(isAccessible(currentTile,topRightTile)){
+            adjacency.push_back(topRightTile);
+        }
+        if(isAccessible(currentTile,bottomLeftTile)){
+            adjacency.push_back(bottomLeftTile);
         }
         if(isAccessible(currentTile,bottomRightTile)){
             adjacency.push_back(bottomRightTile);
@@ -60,8 +62,12 @@ void Graph::calculateAdjacencyList(Tile* currentTile, std::vector<std::vector<Ti
         if(typeid (*currentTile) == typeid (Portal)){
             adjacency.push_back(dynamic_cast<Portal*>(currentTile)->getDestination());
         }
+        std::cout << std::endl << "AAAAAAAAAAAA" << std::endl;
 
-        adjacencyList.insert(std::make_pair(currentTile, adjacency));
+
+        adjacencyList.insert_or_assign(currentTile, adjacency);
+        std::cout << std::endl << "BBBBBBBBBBBBB" << std::endl;
+
     }
 
 
@@ -127,10 +133,22 @@ std::list<Tile *> Graph::getPath(Tile *from, Tile *to)
 void Graph::updateList(std::vector<std::vector<Tile *> > &world)
 {
     // TODO: Error
-    adjacencyList = std::map<Tile*,std::vector<Tile*>>();
+
+
+
+    std::cout << std::endl << "######" << std::endl;
+
+    //adjacencyList = std::map<Tile*,std::vector<Tile*>>();
+    std::cout << std::endl << "######" << std::endl;
+
+
+
+
 
     for(auto& tileVector: world){
         for(auto& tile: tileVector){
+            std::cout << std::endl << "/////////" << std::endl;
+
             calculateAdjacencyList(tile,world);
         }
     }

@@ -8,9 +8,9 @@ AttackController::AttackController(Graph* graph) : graph(graph)
 
 char AttackController::move()
 {
-    static int i=5;
+    static int i=3;
     i++;
-    if(i>4){
+    if(i>2){
         i=0;
         return 's';
     }

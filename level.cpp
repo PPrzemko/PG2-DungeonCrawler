@@ -54,7 +54,7 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
                      new Wall(7 , 9),new Wall(7 , 10),new Wall(7 , 11),new Wall(7 , 12),new Wall(7 , 13),new Wall(7 , 14),new Wall(7 , 15)});
 
 
-    Graph* graph = new Graph(world);
+    graph = new Graph(world);
 
     Character* d = new Character(con,10,5,false);
     characterVector.push_back(d);
@@ -76,7 +76,7 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
     characterVector.push_back(z3);
     z3c->setFollowingCharacter(characterVector.at(0));
     z3c->setThisCharacter(z3);
-    placeCharacter(z3,5,11); //6 4
+    placeCharacter(z3,6,4); //6 4 //5 11
 
 
 
@@ -181,7 +181,7 @@ Level::Level(const std::string &path, Controller *con)
     }
 
 
-    Graph* graph = new Graph(world);
+    graph = new Graph(world);
 
 
      for (const auto& character : readFile["characters"]){
@@ -380,7 +380,7 @@ Levelchanger *Level::createLevelChangerAt(const int &col, const int &row, Level 
 void Level::notify(Active *source)
 {
     std::cout << std::endl << "test48897"<< std::endl;
-    graph->updateList(world);
+    this->graph->updateList(world);
     std::cout << std::endl << "test48897"<< std::endl;
 
 }
