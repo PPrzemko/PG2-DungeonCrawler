@@ -1,0 +1,699 @@
+{
+  "alevel": "Level2",
+  "alevelCol": 8,
+  "alevelRow": 16,
+  "alevelActive": true,
+  "characters": [
+    {
+      "col": 2,
+      "controller": "GraphicalUI",
+      "hp": 45,
+      "npc": false,
+      "row": 2,
+      "stamina": 5,
+      "strength": 10,
+      "texture": "Player"
+    },
+    {
+      "col": 4,
+      "controller": "StationaryController",
+      "hp": 30,
+      "npc": true,
+      "row": 4,
+      "stamina": 2,
+      "strength": 9,
+      "texture": "zombieRIGHT"
+    },
+    {
+      "col": 3,
+      "controller": "GuardController",
+      "hp": 70,
+      "movement": "axdw",
+      "npc": true,
+      "row": 14,
+      "stamina": 10,
+      "strength": 20,
+      "texture": "zombieRIGHT"
+    }
+  ],
+  "tiles": [
+    {
+      "col": 0,
+      "row": 0,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 12,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 13,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 14,
+      "texture": "Wall"
+    },
+    {
+      "col": 0,
+      "row": 15,
+      "texture": "Wall"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "texture": "Wall"
+    },
+    {
+      "col": 1,
+      "destinationLevel": "Level1",
+      "destinationPortalCol": 6,
+      "destinationPortalRow": 14,
+      "row": 1,
+      "texture": "levelChanger"
+    },
+    {
+      "col": 1,
+      "row": 2,
+      "texture": "floorType3"
+    },
+    {
+      "col": 1,
+      "row": 3,
+      "texture": "floorType4"
+    },
+    {
+      "col": 1,
+      "row": 4,
+      "texture": "floorType3"
+    },
+    {
+      "col": 1,
+      "row": 5,
+      "texture": "floorType0"
+    },
+    {
+      "col": 1,
+      "row": 6,
+      "texture": "floorType4"
+    },
+    {
+      "col": 1,
+      "row": 7,
+      "texture": "floorType1"
+    },
+    {
+      "col": 1,
+      "row": 8,
+      "texture": "Wall"
+    },
+    {
+      "col": 1,
+      "destinationCol": 2,
+      "destinationRow": 1,
+      "row": 9,
+      "texture": "Rot"
+    },
+    {
+      "col": 1,
+      "row": 10,
+      "texture": "floorType0"
+    },
+    {
+      "col": 1,
+      "row": 11,
+      "texture": "pit"
+    },
+    {
+      "col": 1,
+      "row": 12,
+      "texture": "Ramp"
+    },
+    {
+      "col": 1,
+      "row": 13,
+      "texture": "floorType3"
+    },
+    {
+      "col": 1,
+      "row": 14,
+      "texture": "floorType2"
+    },
+    {
+      "col": 1,
+      "row": 15,
+      "texture": "Wall"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "texture": "Wall"
+    },
+    {
+      "col": 2,
+      "destinationCol": 1,
+      "destinationRow": 9,
+      "row": 1,
+      "texture": "Rot"
+    },
+    {
+      "col": 2,
+      "row": 2,
+      "texture": "floorType1"
+    },
+    {
+      "col": 2,
+      "row": 3,
+      "texture": "floorType4"
+    },
+    {
+      "col": 2,
+      "row": 4,
+      "texture": "floorType4"
+    },
+    {
+      "col": 2,
+      "row": 5,
+      "texture": "floorType1"
+    },
+    {
+      "col": 2,
+      "row": 6,
+      "texture": "Wall"
+    },
+    {
+      "col": 2,
+      "row": 7,
+      "texture": "Wall"
+    },
+    {
+      "col": 2,
+      "row": 8,
+      "texture": "Wall"
+    },
+    {
+      "col": 2,
+      "row": 9,
+      "texture": "floorType3"
+    },
+    {
+      "col": 2,
+      "row": 10,
+      "texture": "pit"
+    },
+    {
+      "col": 2,
+      "row": 11,
+      "texture": "pit"
+    },
+    {
+      "col": 2,
+      "row": 12,
+      "texture": "pit"
+    },
+    {
+      "col": 2,
+      "row": 13,
+      "texture": "floorType2"
+    },
+    {
+      "col": 2,
+      "row": 14,
+      "texture": "floorType3"
+    },
+    {
+      "col": 2,
+      "row": 15,
+      "texture": "Wall"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "texture": "Wall"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "texture": "floorType3"
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "texture": "floorType3"
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "texture": "floorType3"
+    },
+    {
+      "col": 3,
+      "row": 4,
+      "texture": "floorType1"
+    },
+    {
+      "col": 3,
+      "row": 5,
+      "texture": "floorType0"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "texture": "Wall"
+    },
+    {
+      "col": 3,
+      "destinationCol": 6,
+      "destinationRow": 1,
+      "row": 7,
+      "texture": "Blau"
+    },
+    {
+      "col": 3,
+      "row": 8,
+      "texture": "Wall"
+    },
+    {
+      "col": 3,
+      "row": 9,
+      "texture": "floorType3"
+    },
+    {
+      "col": 3,
+      "row": 10,
+      "texture": "floorType0"
+    },
+    {
+      "col": 3,
+      "row": 11,
+      "texture": "floorType4"
+    },
+    {
+      "col": 3,
+      "row": 12,
+      "texture": "floorType3"
+    },
+    {
+      "col": 3,
+      "row": 13,
+      "texture": "floorType1"
+    },
+    {
+      "col": 3,
+      "row": 14,
+      "texture": "floorType0"
+    },
+    {
+      "col": 3,
+      "row": 15,
+      "texture": "Wall"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "texture": "Wall"
+    },
+    {
+      "col": 4,
+      "row": 1,
+      "texture": "floorType4"
+    },
+    {
+      "col": 4,
+      "row": 2,
+      "texture": "floorType0"
+    },
+    {
+      "col": 4,
+      "row": 3,
+      "texture": "floorType4"
+    },
+    {
+      "col": 4,
+      "row": 4,
+      "texture": "floorType4"
+    },
+    {
+      "col": 4,
+      "row": 5,
+      "texture": "floorType1"
+    },
+    {
+      "col": 4,
+      "row": 6,
+      "texture": "floorType2"
+    },
+    {
+      "col": 4,
+      "row": 7,
+      "texture": "floorType0"
+    },
+    {
+      "col": 4,
+      "row": 8,
+      "texture": "Wall"
+    },
+    {
+      "col": 4,
+      "row": 9,
+      "texture": "Wall"
+    },
+    {
+      "col": 4,
+      "row": 10,
+      "texture": "Wall"
+    },
+    {
+      "col": 4,
+      "opened": false,
+      "row": 11,
+      "texture": "DoorClose"
+    },
+    {
+      "col": 4,
+      "row": 12,
+      "texture": "Wall"
+    },
+    {
+      "col": 4,
+      "row": 13,
+      "texture": "Wall"
+    },
+    {
+      "col": 4,
+      "row": 14,
+      "texture": "Wall"
+    },
+    {
+      "col": 4,
+      "row": 15,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 1,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 2,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 3,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 4,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 5,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 6,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 7,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 8,
+      "texture": "Wall"
+    },
+    {
+      "col": 5,
+      "row": 9,
+      "texture": "floorType0"
+    },
+    {
+      "col": 5,
+      "row": 10,
+      "texture": "floorType4"
+    },
+    {
+      "col": 5,
+      "row": 11,
+      "texture": "floorType1"
+    },
+    {
+      "col": 5,
+      "row": 12,
+      "texture": "floorType3"
+    },
+    {
+      "col": 5,
+      "row": 13,
+      "texture": "floorType3"
+    },
+    {
+      "col": 5,
+      "row": 14,
+      "texture": "floorType3"
+    },
+    {
+      "col": 5,
+      "row": 15,
+      "texture": "Wall"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "texture": "Wall"
+    },
+    {
+      "col": 6,
+      "destinationCol": 3,
+      "destinationRow": 7,
+      "row": 1,
+      "texture": "Blau"
+    },
+    {
+      "col": 6,
+      "row": 2,
+      "texture": "floorType0"
+    },
+    {
+      "col": 6,
+      "row": 3,
+      "texture": "floorType2"
+    },
+    {
+      "col": 6,
+      "row": 4,
+      "texture": "floorType2"
+    },
+    {
+      "col": 6,
+      "row": 5,
+      "texture": "floorType1"
+    },
+    {
+      "col": 6,
+      "row": 6,
+      "targets": [
+        {
+          "linkedcol": 4,
+          "linkedrow": 11
+        }
+      ],
+      "texture": "Switch"
+    },
+    {
+      "col": 6,
+      "row": 7,
+      "texture": "Wall"
+    },
+    {
+      "col": 6,
+      "row": 8,
+      "texture": "Wall"
+    },
+    {
+      "col": 6,
+      "row": 9,
+      "texture": "floorType1"
+    },
+    {
+      "col": 6,
+      "row": 10,
+      "texture": "floorType2"
+    },
+    {
+      "col": 6,
+      "row": 11,
+      "texture": "floorType3"
+    },
+    {
+      "col": 6,
+      "row": 12,
+      "texture": "floorType4"
+    },
+    {
+      "col": 6,
+      "row": 13,
+      "texture": "floorType1"
+    },
+    {
+      "col": 6,
+      "row": 14,
+      "texture": "lootChest"
+    },
+    {
+      "col": 6,
+      "row": 15,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 1,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 2,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 3,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 4,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 5,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 6,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 7,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 8,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 9,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 10,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 11,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 12,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 13,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 14,
+      "texture": "Wall"
+    },
+    {
+      "col": 7,
+      "row": 15,
+      "texture": "Wall"
+    }
+  ]
+}

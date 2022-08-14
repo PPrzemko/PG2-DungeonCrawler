@@ -72,7 +72,7 @@ Level::Level(const int& col, const int& row, const std::string& name, Controller
     placeCharacter(z2,3,14);
 
     AttackController* z3c = new AttackController(graph);
-    Character* z3 = new Character(z3c,5,5,true);
+    Character* z3 = new Character(z3c,2,2,true);
     characterVector.push_back(z3);
     z3c->setFollowingCharacter(characterVector.at(0));
     z3c->setThisCharacter(z3);
