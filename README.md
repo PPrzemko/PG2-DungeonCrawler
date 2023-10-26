@@ -8,6 +8,7 @@
 3. GUI und Pit Integration
 4. Multi-Level Support und Health implementation
 5. Praktikum
-![image](https://github.com/PPrzemko/PG2-DungeonCrawler/assets/38755500/1f1c2f92-3508-4770-a125-63110866cc20)
-![image](https://github.com/PPrzemko/PG2-DungeonCrawler/assets/38755500/2b2442dd-0704-458c-909d-5449caed4eda)
+![image](https://github.com/PPrzemko/PG2-DungeonCrawler/assets/38755500/aa503f47-b6f8-4698-8cf4-3144b73c10d5)
+![image](https://github.com/PPrzemko/PG2-DungeonCrawler/assets/38755500/bd4d489a-1877-4d8a-a149-0551322945fb)
+
 
