@@ -10,5 +10,6 @@
 5. Praktikum
 ![image](https://github.com/PPrzemko/PG2-DungeonCrawler/assets/38755500/aa503f47-b6f8-4698-8cf4-3144b73c10d5)
 ![image](https://github.com/PPrzemko/PG2-DungeonCrawler/assets/38755500/bd4d489a-1877-4d8a-a149-0551322945fb)
+![image](https://github.com/PPrzemko/PG2-DungeonCrawler/assets/38755500/3e5b0b23-1a9a-4e91-955a-375ef682e312)
 
 
